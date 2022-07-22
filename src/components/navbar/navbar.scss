@@ -1,2 +1,74 @@
 .navbar {
+    height: 6%;
+    border-bottom: 2px solid rgb(231, 228, 228);
+    display: flex;
+    align-items: center;
+    font-size: 100%;
+    color: #555;
+
+    .wrapper {
+        padding: 1%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        .search {
+            display: flex;
+            align-items: center;
+            border: 0.5px solid lightgray;
+            padding: 0.5%;
+
+            input {
+                border: none;
+                outline: none;
+                background-color: transparent;
+
+                &::placeholder {
+                    font-size: 90%;
+                }
+            }
+        }
+
+        .items {
+            display: flex;
+            align-items: center;
+
+            .item {
+                display: flex;
+                align-items: center;
+                margin-right: 1vw;
+                position: relative;
+
+                .icon {
+                    font-size: 150%;
+                    cursor: pointer;
+                }
+
+                .avatar {
+                    max-width: 2vmax;
+                    min-width: 4.5vmin;
+                    height: auto;
+                    border-radius: 50%;
+                    cursor: pointer;
+                }
+
+                .counter {
+                    width: 70%;
+                    height: 70%;
+                    background-color: red;
+                    border-radius: 50%;
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 60%;
+                    font-weight: bold;
+                    position: absolute;
+                    top: -20%;
+                    right: -20%;
+                }
+            }
+        }
+    }
 }
