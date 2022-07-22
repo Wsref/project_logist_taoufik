@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
@@ -20,15 +21,19 @@ const Sidebar = () => {
             <div className="center">
                 <ul>
                     <p className="title">MAIN</p>
-                    <li>
-                        <DashboardIcon className="icon" />
-                        <span>Dashboard</span>
-                    </li>
+                    <Link to="/" style={{textDecoration: "none"}}>
+                        <li>
+                            <DashboardIcon className="icon" />
+                            <span>Dashboard</span>
+                        </li>
+                    </Link>
                     <div className="title">RESOURCES</div>
-                    <li>
-                        <LocalShippingOutlinedIcon className="icon" />
-                        <span>Trucks</span>
-                    </li>
+                    <Link to="/trucks" style={{textDecoration: "none"}}>
+                        <li>
+                            <LocalShippingOutlinedIcon className="icon" />
+                            <span>Trucks</span>
+                        </li>
+                    </Link>
                     <li>
                         <MapOutlinedIcon className="icon" />
                         <span>Trips</span>
