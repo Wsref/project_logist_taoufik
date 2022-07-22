@@ -56,7 +56,9 @@ const Sidebar = () => {
                     </li>
                 </ul>
             </div>
-            <div className="bottom">All Rights Reserved, 2022</div>
+            <div className="bottom">
+                <span>All Rights Reserved, 2022</span>
+            </div>
         </div>
     )
 }
