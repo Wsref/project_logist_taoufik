@@ -1,13 +1,13 @@
 .navbar {
-    height: 6%;
-    border-bottom: 2px solid rgb(231, 228, 228);
+    height: 5%;
+    border-bottom: 0.5px solid rgb(231, 228, 228);
     display: flex;
     align-items: center;
-    font-size: 100%;
+    font-size: 14px;
     color: #555;
 
     .wrapper {
-        padding: 1%;
+        padding: 20px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -16,8 +16,8 @@
         .search {
             display: flex;
             align-items: center;
-            // border: 0.5px solid lightgray;
-            padding: 0.5%;
+            border: 0.5px solid lightgray;
+            padding: 3px;
 
             input {
                 border: none;
@@ -25,7 +25,7 @@
                 background-color: transparent;
 
                 &::placeholder {
-                    font-size: 90%;
+                    font-size: 12px;
                 }
             }
         }
@@ -37,36 +37,34 @@
             .item {
                 display: flex;
                 align-items: center;
-                margin-right: 1vw;
+                margin-right: 20px;
                 position: relative;
 
                 .icon {
-                    font-size: 150%;
+                    font-size: 20px;
                     cursor: pointer;
                 }
 
                 .avatar {
-                    max-width: 2vmax;
-                    min-width: 4.5vmin;
-                    height: auto;
+                    width: 30px;
+                    height: 30px;
                     border-radius: 50%;
-                    cursor: pointer;
                 }
 
                 .counter {
-                    width: 70%;
-                    height: 70%;
+                    width: 15px;
+                    height: 15px;
                     background-color: red;
                     border-radius: 50%;
                     color: #fff;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 60%;
+                    font-size: 10px;
                     font-weight: bold;
                     position: absolute;
-                    top: -20%;
-                    right: -20%;
+                    top: -5px;
+                    right: -5px;
                 }
             }
         }

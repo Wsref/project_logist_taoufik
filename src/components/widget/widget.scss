@@ -27,6 +27,7 @@
 
         .link {
             width: max-content;
+            font-size: 12px;
             border-bottom: 1px solid gray;
         }
 
@@ -49,8 +50,6 @@
             padding: 5px;
             border-radius: 5px;
             align-self: flex-end;
-            color: crimson;
-            background-color: rgba(255, 0, 0, 0.2);
         }
     }
 }
