@@ -2,7 +2,7 @@
     flex: 1;
     border-right: 0.5px solid rgb(230, 227, 227);
     min-height: 100vh;
-    max-width: 300px;
+    min-width: 15vw;
     background-color: white;
 
     .top {
@@ -12,7 +12,7 @@
         justify-content: center;
 
         .logo {
-            font-size: 1.2vmax;
+            font-size: 20px;
             font-weight: bold;
             color: #045d10;
         }
@@ -25,7 +25,6 @@
 
     .center {
         padding-left: 10px;
-        height: 80%;
 
         ul {
             list-style: none;
@@ -51,7 +50,7 @@
                 }
 
                 .icon {
-                    font-size: 1.8vmin;
+                    font-size: 18px;
                     color: #079d1b;
                 }
 
@@ -68,12 +67,22 @@
     .bottom {
         display: flex;
         align-items: center;
-        width: 100%;
+        margin: 10px;
 
-        span {
-            font-size: 100%;
-            text-align: center;
-            margin: auto;
+        .colorOption {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            border: 1px solid #7451f8;
+            cursor: pointer;
+            margin: 5px;
+
+            &:nth-child(1) {
+                background-color: whitesmoke;
+            }
+            &:nth-child(2) {
+                background-color: #333;
+            }
         }
     }
 }

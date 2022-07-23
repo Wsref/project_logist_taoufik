@@ -4,6 +4,8 @@ import Navbar from '../../components/navbar/Navbar'
 import Widget from '../../components/widget/Widget'
 import './home.scss'
 import ListTable from '../../components/listTable/ListTable'
+import Chart from '../../components/chart/Chart'
+import Featured from '../../components/featured/Featured'
 
 const Home = () => {
   return (
@@ -18,7 +20,8 @@ const Home = () => {
                 <Widget type="earning" />
             </div>
             <div className="charts">
-                Chart
+                <Featured />
+                <Chart />
             </div>
             <div className="listContainer">
                 <div className="listTitle">Latest Trips</div>
