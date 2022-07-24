@@ -1,5 +1,5 @@
 .dataTable {
-    height: 66vh;
+    height: 100%;
     width: 90%;
     padding: 10px;
     margin: auto;
@@ -29,6 +29,7 @@
     .datagrid {
         min-height: auto;
         max-height: fit-content;
+        max-width: 100%;
         font-size: 1.3vmin;
     }
 

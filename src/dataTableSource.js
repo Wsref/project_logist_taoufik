@@ -2,7 +2,7 @@ export const truckColumns = [
     {
         field: "id",
         headerName: "ID",
-        flex: 1,
+        flex: 0.25,
     },
     {
         field: "license",
@@ -17,17 +17,17 @@ export const truckColumns = [
     {
         field: "capacity",
         headerName: "Capacity",
-        flex: 1,
+        flex: 0.75,
     },
     {
         field: "tripCount",
         headerName: "Trips",
-        flex: 1,
+        flex: 0.5,
     },
     {
         field: "registration",
         headerName: "Registration",
-        flex: 1,
+        flex: 0.75,
         renderCell: (params) => {
             return (
                 <div className={`cellWithStatus ${params.row.registration}`}>
@@ -142,17 +142,17 @@ export const facilityColumns = [
     {
         field: "id",
         headerName: "ID",
-        flex: 1,
+        flex: 0.5,
     },
     {
         field: "facilityName",
         headerName: "Facility Name",
-        flex: 2,
+        flex: 1,
     },
     {
         field: "address",
         headerName: "Address",
-        flex: 2,
+        flex: 1,
     },
     {
         field: "city",
@@ -162,7 +162,7 @@ export const facilityColumns = [
     {
         field: "facilityState",
         headerName: "State",
-        flex: 1,
+        flex: 0.5,
     },
     {
         field: "zipCode",
@@ -250,7 +250,7 @@ export const tripColumns = [
     {
         field: "id",
         headerName: "ID",
-        flex: 1,
+        flex: 0.5,
     },
     {
         field: "truck",
@@ -280,7 +280,7 @@ export const tripColumns = [
     {
         field: "earnings",
         headerName: "Earnings",
-        flex: 1,
+        flex: 0.5,
     },
 ];
 

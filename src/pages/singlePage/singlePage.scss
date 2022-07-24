@@ -17,6 +17,9 @@
                 box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
                 position: relative;
                 min-height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
 
                 .editButton {
                     position: absolute;
@@ -33,12 +36,17 @@
                 .item {
                     display: flex;
                     gap: 20px;
+                    height: 100%;
 
                     .itemImg {
                         width: 12vmin;
                         height: 12vmin;
                         border-radius: 50%;
                         object-fit: cover;
+                    }
+
+                    .portrait-view {
+                        height: 100%;
                     }
 
                     .details {
@@ -49,16 +57,18 @@
 
                         .detailItem {
                             margin-bottom: 10px;
-                            font-size: 14px;
+                            font-size: 2vmin;
 
                             .itemKey {
                                 font-weight: bold;
                                 color: gray;
                                 margin-right: 5px;
+                                font-size: 2vmin;
                             }
 
                             .itemValue {
                                 font-weight: 300;
+                                font-size: 1.5vmin;
                             }
                         }
                     }

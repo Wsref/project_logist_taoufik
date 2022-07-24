@@ -5,6 +5,10 @@
     .newContainer {
         flex: 6;
 
+        .bottom {
+            gap: 20%;
+        }
+
         .top,
         .bottom {
             padding: 10px;
@@ -21,10 +25,13 @@
             .left {
                 flex: 1;
                 text-align: center;
+                display: flex;
+                justify-content: center;
 
                 img {
-                    width: 100px;
-                    height: 100px;
+                    // margin-top: 10%;
+                    width: 20vmin;
+                    height: 20vmin;
                     border-radius: 50%;
                     object-fit: cover;
                 }
@@ -36,6 +43,7 @@
                 form {
                     display: flex;
                     flex-wrap: wrap;
+                    flex-direction: column;
                     gap: 30px;
                     justify-content: space-around;
 

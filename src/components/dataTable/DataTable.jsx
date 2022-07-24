@@ -47,7 +47,7 @@ const DataTable = ({ resource, title }) => {
             renderCell: (params) => {
                 return (
                     <div className="cellAction">
-                        <Link to={`/${resource}/${params.row.id}`} style={{textDecoration: "none"}}>
+                        <Link to={`/${resource}/${params.row.id}`} style={{textDecoration: "none", flex: 2}}>
                             <div className="viewButton">View</div>
                         </Link>
                         <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>Delete</div>
