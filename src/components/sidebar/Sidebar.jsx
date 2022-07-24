@@ -34,14 +34,18 @@ const Sidebar = () => {
                             <span>Trucks</span>
                         </li>
                     </Link>
-                    <li>
-                        <MapOutlinedIcon className="icon" />
-                        <span>Trips</span>
-                    </li>
-                    <li>
-                        <FactoryOutlinedIcon className="icon" />
-                        <span>Facilities</span>
-                    </li>
+                    <Link to="/trips" style={{textDecoration: "none"}}>
+                        <li>
+                            <MapOutlinedIcon className="icon" />
+                            <span>Trips</span>
+                        </li>
+                    </Link>
+                    <Link to="/facilities" style={{textDecoration: "none"}}>
+                        <li>
+                            <FactoryOutlinedIcon className="icon" />
+                            <span>Facilities</span>
+                        </li>                    
+                    </Link>
                     <div className="title">TOOLS</div>
                     <li>
                         <CalendarMonthOutlinedIcon className="icon" />

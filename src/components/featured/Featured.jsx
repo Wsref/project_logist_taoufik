@@ -1,7 +1,7 @@
 import React from 'react'
 import './featured.scss'
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import "react-circular-progressbar/dist/styles.css"
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
@@ -15,7 +15,11 @@ const Featured = () => {
             </div>
             <div className="bottom">
                 <div className="featuredChart">
-                    <CircularProgressbar value={42} text={"42%"} strokeWidth={5}/>
+                    <CircularProgressbar 
+                        value={42} 
+                        text={"42%"} 
+                        strokeWidth={5} 
+                    />
                 </div>
                 <p className="title">Total sales made this month</p>
                 <p className="amount">$11000</p>

@@ -6,7 +6,6 @@
     -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
     box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
     border-radius: 10px;
-    height: 100px;
 
     .left,
     .right {
@@ -16,25 +15,25 @@
 
         .title {
             font-weight: bold;
-            font-size: 14px;
+            font-size: 2vmin;
             color: rgb(160, 160, 160);
         }
 
         .counter {
-            font-size: 28px;
+            font-size: 3.2vmin;
             font-weight: 300;
         }
 
         .link {
             width: max-content;
-            font-size: 12px;
+            font-size: 1.5vmin;
             border-bottom: 1px solid gray;
         }
 
         .percentage {
             display: flex;
             align-items: center;
-            font-size: 14px;
+            font-size: 1.7vmin;
 
             &.positive {
                 color: green;
@@ -46,9 +45,9 @@
         }
 
         .icon {
-            font-size: 18px;
-            padding: 5px;
-            border-radius: 5px;
+            font-size: 2.5vmin;
+            padding: 0.75vmin;
+            border-radius: 0.75vmin;
             align-self: flex-end;
         }
     }

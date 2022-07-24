@@ -1,4 +1,4 @@
-export const userColumns = [
+export const truckColumns = [
     {
         field: "id",
         headerName: "ID",
@@ -39,7 +39,7 @@ export const userColumns = [
 ];
 
 //temporary data
-export const userRows = [
+export const truckRows = [
     {
         id: 1,
         license: "AE19FI2",
@@ -135,5 +135,253 @@ export const userRows = [
         capacity: 36000,
         tripCount: 51,
         registration: "valid",
+    },
+];
+
+export const facilityColumns = [
+    {
+        field: "id",
+        headerName: "ID",
+        flex: 1,
+    },
+    {
+        field: "facilityName",
+        headerName: "Facility Name",
+        flex: 2,
+    },
+    {
+        field: "address",
+        headerName: "Address",
+        flex: 2,
+    },
+    {
+        field: "city",
+        headerName: "City",
+        flex: 1,
+    },
+    {
+        field: "facilityState",
+        headerName: "State",
+        flex: 1,
+    },
+    {
+        field: "zipCode",
+        headerName: "ZIP Code",
+        flex: 1,
+    },
+];
+
+export const facilityRows = [
+    {
+        id: 1,
+        facilityName: "Central Logistics",
+        address: "98 State Ave",
+        city: "Perrysburg",
+        facilityState: "OH",
+        zipCode: "43551",
+    },
+    {
+        id: 2,
+        facilityName: "Lakeview Shipping",
+        address: "9377 Edgewood Dr",
+        city: "Clarkston",
+        facilityState: "MI",
+        zipCode: "48348",
+    },
+    {
+        id: 3,
+        facilityName: "A1 Fulfillment",
+        address: "1 Hartford St",
+        city: "Union City",
+        facilityState: "NJ",
+        zipCode: "07087",
+    },
+    {
+        id: 4,
+        facilityName: "Keystone Packaging",
+        address: "8600 SW. Addison Ln",
+        city: "Springfield",
+        facilityState: "PA",
+        zipCode: "19064",
+    },
+    {
+        id: 5,
+        facilityName: "Redwood Distribution",
+        address: "75 Selby Dr",
+        city: "Yuba City",
+        facilityState: "CA",
+        zipCode: "95993",
+    },
+    {
+        id: 6,
+        facilityName: "Ladybug Retail",
+        address: "821 Surrey Ave",
+        city: "Cockeysville",
+        facilityState: "MD",
+        zipCode: "21030",
+    },
+    {
+        id: 7,
+        facilityName: "Principal Shipping",
+        address: "439 Whitemarsh Ave",
+        city: "Cedar Rapids",
+        facilityState: "IA",
+        zipCode: "52402",
+    },
+    {
+        id: 8,
+        facilityName: "Warehouse 29",
+        address: "38 Iroquois St",
+        city: "Winchester",
+        facilityState: "VA",
+        zipCode: "22601",
+    },
+    {
+        id: 9,
+        facilityName: "Ladybug Retail",
+        address: "16 Locust Dr",
+        city: "Plymouth",
+        facilityState: "MA",
+        zipCode: "02360",
+    },
+];
+
+export const tripColumns = [
+    {
+        field: "id",
+        headerName: "ID",
+        flex: 1,
+    },
+    {
+        field: "truck",
+        headerName: "Truck",
+        flex: 1,
+    },
+    {
+        field: "originFacility",
+        headerName: "Origin Facility",
+        flex: 1,
+    },
+    {
+        field: "destinationFacility",
+        headerName: "Destination Facility",
+        flex: 1,
+    },
+    {
+        field: "startDate",
+        headerName: "Start Date",
+        flex: 1,
+    },
+    {
+        field: "endDate",
+        headerName: "End Date",
+        flex: 1,
+    },
+    {
+        field: "earnings",
+        headerName: "Earnings",
+        flex: 1,
+    },
+];
+
+export const tripRows = [
+    {
+        id: 1,
+        truck: "V7TB9OG",
+        originFacility: "Central Logistics",
+        destinationFacility: "Keystone Packaging",
+        startDate: "07-03-2022 04:30:00",
+        endDate: "07-05-2022 18:00:00",
+        earnings: 2000,
+    },
+    {
+        id: 2,
+        truck: "ZJNIISF",
+        originFacility: "Lakeview Shipping",
+        destinationFacility: "Ladybug Retail",
+        startDate: "08-03-2022 21:00:00",
+        endDate: "08-06-2022 08:45:00",
+        earnings: 3550,
+    },
+    {
+        id: 3,
+        truck: "LZE23VH",
+        originFacility: "Keystone Packaging",
+        destinationFacility: "Ladybug Retail",
+        startDate: "07-30-2022 19:30:00",
+        endDate: "08-05-2022 06:45:00",
+        earnings: 7500,
+    },
+    {
+        id: 4,
+        truck: "HDWHW3G",
+        originFacility: "Lakeview Shipping",
+        destinationFacility: "Central Logistics",
+        startDate: "08-01-2022 22:15:00",
+        endDate: "08-04-2022 03:00:00",
+        earnings: 4300,
+    },
+    {
+        id: 5,
+        truck: "MXXKF31",
+        originFacility: "Ladybug Retail",
+        destinationFacility: "Redwood Distribution",
+        startDate: "07-22-2022 23:20:00",
+        endDate: "07-26-2022 00:00:00",
+        earnings: 4800,
+    },
+    {
+        id: 6,
+        truck: "V7TB9OG",
+        originFacility: "Redwood Distribution",
+        destinationFacility: "A1 Fulfillment",
+        startDate: "07-21-2022 09:30:00",
+        endDate: "07-25-2022 15:45:00",
+        earnings: 6100,
+    },
+    {
+        id: 7,
+        truck: "LZE23VH",
+        originFacility: "Central Logistics",
+        destinationFacility: "Redwood Distribution",
+        startDate: "07-18-2022 08:00:00",
+        endDate: "07-21-2022 05:30:00",
+        earnings: 5100,
+    },
+    {
+        id: 8,
+        truck: "LZE23VH",
+        originFacility: "Keystone Packaging",
+        destinationFacility: "A1 Fulfillment",
+        startDate: "07-15-2022 14:45:00",
+        endDate: "07-17-2022 08:50:00",
+        earnings: 1300,
+    },
+    {
+        id: 9,
+        truck: "G2N75IL",
+        originFacility: "Lakeview Shipping",
+        destinationFacility: "Ladybug Retail",
+        startDate: "07-25-2022 15:40:00",
+        endDate: "07-27-2022 12:10:00",
+        earnings: 5000,
+    },
+    {
+        id: 10,
+        truck: "TQSY7FY",
+        originFacility: "Redwood Distribution",
+        destinationFacility: "Central Logistics",
+        startDate: "07-28-2022 08:00:00",
+        endDate: "08-01-2022 12:00:00",
+        earnings: 3200,
+    },
+    {
+        id: 11,
+        truck: "C9KY7VF",
+        originFacility: "Central Logistics",
+        destinationFacility: "A1 Fulfillment",
+        startDate: "07-14-2022 11:00:00",
+        endDate: "07-17-2022 15:45:00",
+        earnings: 3500,
     },
 ];

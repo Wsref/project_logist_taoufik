@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
@@ -16,7 +17,8 @@ const Widget = ({ type }) => {
             data = {
                 title: "TRUCKS",
                 isMoney: false,
-                link: "See all trucks",
+                link: "All trucks",
+                url: "/trucks",
                 icon: (
                     <LocalShippingOutlinedIcon
                         className="icon" 
@@ -32,7 +34,8 @@ const Widget = ({ type }) => {
             data = {
                 title: "TRIPS",
                 isMoney: false,
-                link: "See all trips",
+                link: "All trips",
+                url: "/trips",
                 icon: (
                     <MapOutlinedIcon 
                         className="icon" 
@@ -48,7 +51,8 @@ const Widget = ({ type }) => {
             data = {
                 title: "FACILITIES",
                 isMoney: false,
-                link: "See all facilities",
+                link: "All facilities",
+                url: '/facilities',
                 icon: (
                     <FactoryOutlinedIcon
                         className="icon" 
@@ -64,7 +68,8 @@ const Widget = ({ type }) => {
             data = {
                 title: "EARNINGS",
                 isMoney: true,
-                link: "See earnings details",
+                link: "All earnings",
+                url: "",
                 icon: (
                     <MonetizationOnOutlinedIcon
                         className="icon" 
@@ -85,7 +90,9 @@ const Widget = ({ type }) => {
             <div className="left">
                 <span className="title">{data.title}</span>
                 <span className="counter">{data.isMoney && "$"}{amount}</span>
-                <span className="link">{data.link}</span>
+                <Link to={data.url} style={{textDecoration: "none"}}>
+                    <span className="link">{data.link}</span>
+                </Link>
             </div>
             <div className="right">
                 <div className="percentage positive">

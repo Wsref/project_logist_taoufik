@@ -4,7 +4,7 @@ import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUpload
 import Sidebar from '../../components/sidebar/Sidebar'
 import Navbar from '../../components/navbar/Navbar'
 
-const New = () => {
+const New = ({ title, inputs }) => {
 
     const [file, setFile] = useState("")
 
@@ -14,7 +14,7 @@ const New = () => {
             <div className="newContainer">
                 <Navbar />
                 <div className="top">
-                    <h1>Add New Truck</h1>
+                    <h1>{title}</h1>
                 </div>
                 <div className="bottom">
                     <div className="left">
@@ -29,18 +29,14 @@ const New = () => {
                                 Image <label htmlFor="file"><DriveFolderUploadOutlinedIcon className='icon'/></label>
                                 <input type="file" id="file" onChange={e => setFile(e.target.files[0])} style={{display: "none"}}/>
                             </div>
-                            <div className="formInput">
-                                <label>License</label>
-                                <input type="string" placeholder="ABCD123" />
-                            </div>
-                            <div className="formInput">
-                                <label>Driver's Name</label>
-                                <input type="string" placeholder="John Doe" />
-                            </div>
-                            <div className="formInput">
-                                <label>Capacity</label>
-                                <input type="number" placeholder="12345" />
-                            </div>
+                            {
+                                inputs.map((input) => (
+                                    <div className="formInput" key={input.id}>
+                                        <label>{input.label}</label>
+                                        <input type={input.type} placeholder={input.placeholder} />
+                                    </div>
+                                ))
+                            }
                             <button>Send</button>
                         </form>
                     </div>

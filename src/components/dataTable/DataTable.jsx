@@ -1,12 +1,39 @@
 import './dataTable.scss'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DataGrid } from '@mui/x-data-grid';
-import { userColumns, userRows } from '../../dataTableSource';
+import { 
+    truckColumns, 
+    truckRows, 
+    tripColumns, 
+    tripRows, 
+    facilityColumns, 
+    facilityRows 
+} from '../../dataTableSource';
 
-const DataTable = () => {
+const DataTable = ({ resource, title }) => {
 
-    const [data, setData] = useState(userRows)
+    const [data, setData] = useState(truckRows)
+    const [fields, setFields] = useState(truckColumns)
+
+    useEffect(() => {
+        switch(resource) {
+        case "trucks":
+            setData(truckRows);
+            setFields(truckColumns);
+            break;
+        case "facilities":
+            setData(facilityRows);
+            setFields(facilityColumns);
+            break;
+        case "trips":
+            setData(tripRows);
+            setFields(tripColumns);
+            break;
+        default:
+            break;
+    }
+    }, [resource])
 
     const handleDelete = (id) => {
         setData(data.filter(item => item.id !== id));
@@ -20,7 +47,7 @@ const DataTable = () => {
             renderCell: (params) => {
                 return (
                     <div className="cellAction">
-                        <Link to={`/trucks/${params.row.id}`} style={{textDecoration: "none"}}>
+                        <Link to={`/${resource}/${params.row.id}`} style={{textDecoration: "none"}}>
                             <div className="viewButton">View</div>
                         </Link>
                         <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>Delete</div>
@@ -33,14 +60,14 @@ const DataTable = () => {
     return (
         <div className='dataTable'>
             <div className="datatableTitle">
-                Add New Truck
-                <Link to="/trucks/new" style={{textDecoration: "none"}} className="link">
+                {title}
+                <Link to={`/${resource}/new`} style={{textDecoration: "none"}} className="link">
                     Add New
                 </Link> 
             </div>
             <DataGrid
                 rows={data}
-                columns={userColumns.concat(actionColumn)}
+                columns={fields.concat(actionColumn)}
                 autoHeight={true}
                 pageSize={10}
                 rowsPerPageOptions={[10]}
