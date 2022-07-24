@@ -1,4 +1,10 @@
 .listTable {
+    width: 100%;
+
+    .table {
+        width: 100%;
+    }
+
     .cellWrapper {
         display: flex;
         align-items: center;

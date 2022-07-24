@@ -21,7 +21,7 @@ const Featured = () => {
                         strokeWidth={5} 
                     />
                 </div>
-                <p className="title">Total sales made this month</p>
+                <p className="title">Total revenue this month</p>
                 <p className="amount">$11000</p>
                 <p className="desc">Previous transactions processing. Last payments may not be included.</p>
                 <div className="summary">

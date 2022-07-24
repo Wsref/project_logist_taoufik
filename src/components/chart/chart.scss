@@ -5,9 +5,10 @@
     padding: 1%;
     color: gray;
     max-width: 60vw;
+    // height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 
     .title {
         height: 5%;

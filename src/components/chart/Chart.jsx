@@ -15,12 +15,12 @@ const Chart = ({aspect, title}) => {
   return (
     <div className='chart'>
         <div className="title">{"Earnings (Last 6 months)"}</div>
-        <ResponsiveContainer width="100%" aspect={aspect}>
+        <ResponsiveContainer width="100%" aspect={aspect} className="chart-wrapper">
             <AreaChart 
-                width="99%" 
-                height="99%" 
+                width="90%"
+                height="100%"
                 data={data}
-                
+                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
             >
                 <defs>
                     <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">

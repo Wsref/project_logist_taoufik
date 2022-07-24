@@ -47,7 +47,7 @@
 
         .desc {
             font-weight: 300;
-            font-size: 12px;
+            font-size: 1vmin;
             color: gray;
             text-align: center;
         }
@@ -62,7 +62,7 @@
                 text-align: center;
 
                 .itemTitle {
-                    font-size: 14px;
+                    font-size: 1.2vmin;
                     color: gray;
                 }
 
@@ -70,7 +70,7 @@
                     display: flex;
                     align-items: center;
                     margin-top: 10px;
-                    font-size: 14px;
+                    font-size: 1.2vmin;
 
                     &.positive {
                         color: green;
