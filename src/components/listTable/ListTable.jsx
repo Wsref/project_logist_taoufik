@@ -41,9 +41,14 @@ const ListTable = () => {
 
     return (
         <TableContainer component={Paper} className="table">
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table aria-label="simple table">
             <TableHead>
-            <TableRow>
+                <TableRow  sx={{
+                    "& th": {
+                    fontSize: "1.5vmin",
+                    color: "rgba(96, 96, 96)"
+                    }
+                }}>
                 <TableCell className='tableCell'>Trip ID</TableCell>
                 <TableCell className='tableCell'>Truck</TableCell>
                 <TableCell className='tableCell'>Origin Facility</TableCell>
@@ -56,20 +61,20 @@ const ListTable = () => {
             <TableBody>
             {rows.map((row) => (
                 <TableRow key={row.id} >
-                <TableCell className='tableCell'>
+                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>
                     {row.id}
                 </TableCell>
-                <TableCell className='tableCell'>
+                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>
                     <div className="cellWrapper">
                         <img src={row.img} alt="" className='image'/>
                         {row.truck}
                     </div>
                 </TableCell>
-                <TableCell className='tableCell'>{row.originFacility}</TableCell>
-                <TableCell className='tableCell'>{row.destinationFacility}</TableCell>
-                <TableCell className='tableCell'>{row.endDate}</TableCell>
-                <TableCell className='tableCell'>{row.method}</TableCell>
-                <TableCell className='tableCell'>{row.earnings}</TableCell>
+                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>{row.originFacility}</TableCell>
+                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>{row.destinationFacility}</TableCell>
+                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>{row.endDate}</TableCell>
+                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>{row.method}</TableCell>
+                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>{row.earnings}</TableCell>
                 </TableRow>
             ))}
             </TableBody>

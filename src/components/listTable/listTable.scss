@@ -3,6 +3,12 @@
 
     .table {
         width: 100%;
+
+        table {
+            .tableCell {
+                font-size: 20px;
+            }
+        }
     }
 
     .cellWrapper {
