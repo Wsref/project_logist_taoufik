@@ -62,7 +62,7 @@ const SinglePage = ({ resource, details }) => {
                             </div>
                         </div>
                     <div className="right">
-                        <Chart aspect={2 / 1} title="User Spending (Last 6 months)" />
+                        <Chart aspect={2} title="User Spending (Last 6 months)" />
                     </div>
                 </div>
                 <div className="bottom">

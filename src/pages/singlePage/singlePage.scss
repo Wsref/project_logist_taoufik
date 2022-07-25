@@ -4,11 +4,15 @@
 
     .singleContainer {
         flex: 6;
+        overflow: hidden;
 
         .top {
-            padding: 20px;
+            padding: 1.5%;
             display: flex;
-            gap: 20px;
+            gap: 2%;
+            flex: 1;
+            margin-left: 2%;
+            margin-right: 2%;
 
             .left {
                 flex: 2;
@@ -77,14 +81,71 @@
 
             .right {
                 flex: 3;
+                height: 100%;
+                margin: 0;
+                padding: auto;
+
+                .top {
+                    width: 90%;
+                    margin: auto;
+                }
+
+                .chart {
+                    max-width: 100%;
+                    height: 100%;
+                    margin-right: 0 !important;
+                }
+
+                .recharts-responsive-container {
+                    width: 100% !important;
+                    max-height: 80% !important;
+                }
+
+                .recharts-surface {
+                    min-width: 90% !important;
+                    min-height: 90% !important;
+                    max-height: 100% !important;
+                    position: relative;
+                }
+
+                .recharts-curve {
+                    min-width: 100% !important;
+                    height: 100% !important;
+                }
+
+                .recharts-area-area {
+                    width: 100% !important;
+                }
+
+                .recharts-wrapper {
+                    // min-height: 90% !important;
+                    min-width: 100% !important;
+                }
+
+                .recharts-wrapper {
+                    // margin-top: 1%;
+                    min-width: 100% !important;
+                    max-height: 60% !important;
+                    justify-self: center !important;
+                    max-height: max-content;
+                    max-width: max-content;
+                }
             }
         }
 
         .bottom {
-            padding: 20px;
+            padding: 3%;
             -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
             box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-            margin: 10px 20px;
+            margin-left: calc(2% + 1.5%); // padding + padding
+            margin-right: calc(2% + 0.5%); // gap minus padding (2% - 1.5%)
+            flex: 1;
+
+            .table {
+                margin: auto;
+                padding: auto;
+                margin-bottom: 1%;
+            }
         }
     }
 

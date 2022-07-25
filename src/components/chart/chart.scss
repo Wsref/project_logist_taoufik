@@ -4,11 +4,47 @@
     box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
     padding: 1%;
     color: gray;
-    max-width: 60vw;
-    // height: 100%;
+    // max-width: 60vw;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    .top {
+        display: flex;
+        width: 100%;
+        height: 2.5vmin;
+        justify-content: space-between;
+        align-items: flex-start;
+        align-content: center;
+        margin-bottom: 0;
+
+        .title {
+            height: 2vmin;
+        }
+
+        .toggle {
+            width: 5vmin;
+            height: 2vmin;
+            border: 1px solid black;
+            padding: 0% 1%;
+            line-height: 100%;
+            // height: 100%;
+            border-radius: 0.2vmin;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+
+            .btnText {
+                line-height: 100%;
+                font-size: 1vmin;
+                text-align: center;
+                justify-self: center;
+                padding: auto;
+            }
+        }
+    }
 
     .title {
         height: 5%;
