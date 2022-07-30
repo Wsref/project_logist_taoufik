@@ -24,7 +24,7 @@ const Chart = ({aspect, title}) => {
                 <div className="title">{title}</div>
                 <div className="toggle" onClick={handleToggle}><span className="btnText">{isArea ? "Bar Chart": "Area Chart"}</span></div>
             </div>
-            <ResponsiveContainer width={"100%"} aspect={aspect}>
+            <ResponsiveContainer className="bottom" maxWidth={"60%"} height={"auto"} aspect={aspect}>
                 {isArea ? <AreaChart 
                     width="100%"
                     height="100%"

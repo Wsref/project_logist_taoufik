@@ -1,9 +1,9 @@
 .featured {
     flex: 2;
-    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.6);
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.6);
     padding: 1%;
-    // min-width: 20vw;
+    background-color: white;
     height: 100%;
 
     .top {
@@ -26,13 +26,16 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: 15px;
-        height: 80%;
+        gap: 2%;
+        height: 100%;
 
         .featuredChart {
             width: 50%;
-            height: 100%;
+            height: 50%;
+
+            .CircularProgressbar {
+                height: 100%;
+            }
         }
 
         .title {
@@ -42,12 +45,12 @@
         }
 
         .amount {
-            font-size: 30px;
+            font-size: 5vmin;
         }
 
         .desc {
             font-weight: 300;
-            font-size: 1vmin;
+            font-size: 1.2vmin;
             color: gray;
             text-align: center;
         }
@@ -57,20 +60,24 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 2%;
 
             .item {
-                text-align: center;
+                flex: 1;
 
                 .itemTitle {
-                    font-size: 1.2vmin;
+                    font-size: 90%;
+                    text-align: center;
                     color: gray;
                 }
 
                 .itemResult {
+                    justify-content: center;
                     display: flex;
-                    align-items: center;
-                    margin-top: 10px;
-                    font-size: 1.2vmin;
+                    font-size: 90%;
+                    margin-top: 10%;
+                    margin-left: auto;
+                    margin-right: auto;
 
                     &.positive {
                         color: green;
