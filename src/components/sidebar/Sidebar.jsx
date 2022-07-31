@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 import { Link } from 'react-router-dom'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
@@ -8,10 +9,18 @@ import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 import './sidebar.scss'
 
 const Sidebar = () => {
+
+    const { dispatch } = useContext(AuthContext)
+
+    const handleLogout = () => {
+        dispatch({type: "LOGOUT"});
+    }
+
     return (
         <div className='sidebar'>
             <div className="top">
@@ -62,6 +71,11 @@ const Sidebar = () => {
                     <li>
                         <SettingsOutlinedIcon className="icon" />
                         <span>Settings</span>
+                    </li>
+                    <div className="title">ACCOUNT</div>
+                    <li onClick={handleLogout}>
+                        <LogoutOutlinedIcon className="icon" />
+                        <span>Logout</span>
                     </li>
                 </ul>
             </div>
