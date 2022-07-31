@@ -1,6 +1,8 @@
 import './chart.scss'
 import { AreaChart, BarChart, Legend, Bar, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import React, { useState } from 'react'
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import CropOriginalIcon from '@mui/icons-material/CropOriginal';
 
 const data = [
     {name: "February", Total: 9000},
@@ -22,7 +24,7 @@ const Chart = ({aspect, title}) => {
         <div className='chart'>
             <div className="top">
                 <div className="title">{title}</div>
-                <div className="toggle" onClick={handleToggle}><span className="btnText">{isArea ? "Bar Chart": "Area Chart"}</span></div>
+                <div onClick={handleToggle}><span className="btnText">{isArea ? <AssessmentIcon /> : <CropOriginalIcon />}</span></div>
             </div>
             <ResponsiveContainer className="bottom" maxWidth={"60%"} height={"auto"} aspect={aspect}>
                 {isArea ? <AreaChart 
@@ -33,7 +35,7 @@ const Chart = ({aspect, title}) => {
                 >
                     <defs>
                         <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#079d1b" stopOpacity={0.8}/>
+                        <stop offset="5%" stopColor="#0C0268" stopOpacity={0.8}/>
                         <stop offset="95%" stopColor="#b5e2bb" stopOpacity={0}/>
                         </linearGradient>
                     </defs>
@@ -44,7 +46,7 @@ const Chart = ({aspect, title}) => {
                     <Area 
                         type="monotone" 
                         dataKey="Total" 
-                        stroke="#079d1b" 
+                        stroke="#0C0268"
                         fillOpacity={1} 
                         fill="url(#total)" 
                     />

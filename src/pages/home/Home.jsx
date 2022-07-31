@@ -7,6 +7,7 @@ import ListTable from '../../components/listTable/ListTable'
 import Chart from '../../components/chart/Chart'
 import Featured from '../../components/featured/Featured'
 
+
 const Home = () => {
   return (
     <div className='home'>

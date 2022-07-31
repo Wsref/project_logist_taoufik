@@ -14,7 +14,7 @@
         .logo {
             font-size: 1vmax;
             font-weight: bold;
-            color: #045d10;
+            color: rgb(12, 2, 104);
         }
     }
 
@@ -48,12 +48,16 @@
                 width: 100%;
 
                 &:hover {
-                    background-color: #b6fcbf;
+                    background-color: rgb(131, 118, 250);
+
+                    span {
+                        color: #fff;
+                    }
                 }
 
                 .icon {
                     font-size: 2.5vmin;
-                    color: #079d1b;
+                    color: rgb(12, 2, 104);
                 }
 
                 span {

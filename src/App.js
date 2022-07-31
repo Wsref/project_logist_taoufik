@@ -1,45 +1,68 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
 import SinglePage from "./pages/singlePage/SinglePage";
 import New from "./pages/new/New";
 import { facilityInputs, tripInputs, truckInputs } from "./formSource";
 import { truckDetails, tripDetails, facilityDetails } from "./detailSource";
+import Login from "./pages/login/Login";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
+    const { currentUser } = useContext(AuthContext);
+
+    const RequireAuth = ({ children }) => {
+        return currentUser ? children : <Navigate to="/login" />;
+    };
+
     return (
         <div>
             <BrowserRouter>
                 <Routes>
                     <Route path="/">
-                        <Route index element={<Home />} />
+                        <Route path="login" element={<Login />} />
+                        <Route
+                            index
+                            element={
+                                <RequireAuth>
+                                    <Home />
+                                </RequireAuth>
+                            }
+                        />
                         <Route path="trucks">
                             <Route
                                 index
                                 element={
-                                    <List
-                                        resource={"trucks"}
-                                        title="Add New Truck"
-                                    />
+                                    <RequireAuth>
+                                        <List
+                                            resource={"trucks"}
+                                            title="Add New Truck"
+                                        />
+                                    </RequireAuth>
                                 }
                             />
                             <Route
                                 path=":id"
                                 element={
-                                    <SinglePage
-                                        resource={"trucks"}
-                                        details={truckDetails}
-                                    />
+                                    <RequireAuth>
+                                        <SinglePage
+                                            resource={"trucks"}
+                                            details={truckDetails}
+                                        />
+                                    </RequireAuth>
                                 }
                             />
                             <Route
                                 path="new"
                                 element={
-                                    <New
-                                        resource={"trucks"}
-                                        title="Add New Truck"
-                                        inputs={truckInputs}
-                                    />
+                                    <RequireAuth>
+                                        <New
+                                            resource={"trucks"}
+                                            title="Add New Truck"
+                                            inputs={truckInputs}
+                                        />
+                                    </RequireAuth>
                                 }
                             />
                         </Route>
@@ -47,29 +70,35 @@ function App() {
                             <Route
                                 index
                                 element={
-                                    <List
-                                        resource={"trips"}
-                                        title="Add New Trip"
-                                    />
+                                    <RequireAuth>
+                                        <List
+                                            resource={"trips"}
+                                            title="Add New Trip"
+                                        />
+                                    </RequireAuth>
                                 }
                             />
                             <Route
                                 path=":id"
                                 element={
-                                    <SinglePage
-                                        resource={"trips"}
-                                        details={tripDetails}
-                                    />
+                                    <RequireAuth>
+                                        <SinglePage
+                                            resource={"trips"}
+                                            details={tripDetails}
+                                        />
+                                    </RequireAuth>
                                 }
                             />
                             <Route
                                 path="new"
                                 element={
-                                    <New
-                                        resource="trips"
-                                        title="Add New Trip"
-                                        inputs={tripInputs}
-                                    />
+                                    <RequireAuth>
+                                        <New
+                                            resource="trips"
+                                            title="Add New Trip"
+                                            inputs={tripInputs}
+                                        />
+                                    </RequireAuth>
                                 }
                             />
                         </Route>
@@ -77,29 +106,35 @@ function App() {
                             <Route
                                 index
                                 element={
-                                    <List
-                                        resource="facilities"
-                                        title="Add New Facility"
-                                    />
+                                    <RequireAuth>
+                                        <List
+                                            resource="facilities"
+                                            title="Add New Facility"
+                                        />
+                                    </RequireAuth>
                                 }
                             />
                             <Route
                                 path=":id"
                                 element={
-                                    <SinglePage
-                                        resource={"facilities"}
-                                        details={facilityDetails}
-                                    />
+                                    <RequireAuth>
+                                        <SinglePage
+                                            resource={"facilities"}
+                                            details={facilityDetails}
+                                        />
+                                    </RequireAuth>
                                 }
                             />
                             <Route
                                 path="new"
                                 element={
-                                    <New
-                                        resource={"facilities"}
-                                        title="Add New Facility"
-                                        inputs={facilityInputs}
-                                    />
+                                    <RequireAuth>
+                                        <New
+                                            resource={"facilities"}
+                                            title="Add New Facility"
+                                            inputs={facilityInputs}
+                                        />
+                                    </RequireAuth>
                                 }
                             />
                         </Route>

@@ -33,7 +33,6 @@
                 display: flex;
                 flex-direction: column;
                 padding: auto;
-                justify-content: space-between;
                 height: 48vh;
             }
 
@@ -54,7 +53,7 @@
                 .top {
                     padding: 1%;
                     height: auto;
-                    margin-bottom: 2.5%;
+                    margin-bottom: 5%;
 
                     .toggle {
                         height: 3vmin;
@@ -111,6 +110,7 @@
                 margin: auto;
                 padding: auto;
                 margin-bottom: 1%;
+                font-size: 1.7vmin !important;
             }
 
             .listTitle {
