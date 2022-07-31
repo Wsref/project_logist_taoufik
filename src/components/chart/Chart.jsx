@@ -67,7 +67,7 @@ const Chart = ({aspect, title}) => {
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
-                    <Bar dataKey="Total" fill="#82ca9d" />
+                    <Bar dataKey="Total" fill="#0C0268" />
                 </BarChart>
             } 
             </ResponsiveContainer>

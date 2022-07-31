@@ -45,7 +45,7 @@ const ListTable = () => {
             <TableHead>
                 <TableRow  sx={{
                     "& th": {
-                    fontSize: "1.5vmin",
+                    fontSize: "2vmin",
                     color: "rgba(96, 96, 96)"
                     }
                 }}>
@@ -61,20 +61,20 @@ const ListTable = () => {
             <TableBody>
             {rows.map((row) => (
                 <TableRow key={row.id} >
-                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>
+                <TableCell className='tableCell' sx={{fontSize: "1.7vmin"}}>
                     {row.id}
                 </TableCell>
-                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>
+                <TableCell className='tableCell' sx={{fontSize: "1.7vmin"}}>
                     <div className="cellWrapper">
                         <img src={row.img} alt="" className='image'/>
                         {row.truck}
                     </div>
                 </TableCell>
-                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>{row.originFacility}</TableCell>
-                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>{row.destinationFacility}</TableCell>
-                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>{row.endDate}</TableCell>
-                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>{row.method}</TableCell>
-                <TableCell className='tableCell' sx={{fontSize: "1.4vmin"}}>{row.earnings}</TableCell>
+                <TableCell className='tableCell' sx={{fontSize: "1.7vmin"}}>{row.originFacility}</TableCell>
+                <TableCell className='tableCell' sx={{fontSize: "1.7vmin"}}>{row.destinationFacility}</TableCell>
+                <TableCell className='tableCell' sx={{fontSize: "1.7vmin"}}>{row.endDate}</TableCell>
+                <TableCell className='tableCell' sx={{fontSize: "1.7vmin"}}>{row.method}</TableCell>
+                <TableCell className='tableCell' sx={{fontSize: "1.7vmin"}}>{row.earnings}</TableCell>
                 </TableRow>
             ))}
             </TableBody>
