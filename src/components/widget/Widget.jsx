@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import FactoryOutlinedIcon from '@mui/icons-material/FactoryOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
+import {collection, query, where, getDoc, getDocs} from "firebase/firestore";
+import { db } from '../../firebase';
 import "./widget.scss";
 
 const Widget = ({ type }) => {
 
+    const [amount, setAmount] = useState(null);
+    const [diff, setDiff] = useState(null);
+
     let data;
-    const amount = 100;
 
     switch(type) {
         case "truck":
@@ -19,6 +23,7 @@ const Widget = ({ type }) => {
                 isMoney: false,
                 link: "All trucks",
                 url: "/trucks",
+                query: "trucks",
                 icon: (
                     <LocalShippingOutlinedIcon
                         className="icon" 
@@ -36,6 +41,7 @@ const Widget = ({ type }) => {
                 isMoney: false,
                 link: "All trips",
                 url: "/trips",
+                query: "trips",
                 icon: (
                     <MapOutlinedIcon 
                         className="icon" 
@@ -53,6 +59,7 @@ const Widget = ({ type }) => {
                 isMoney: false,
                 link: "All facilities",
                 url: '/facilities',
+                query: "facilities",
                 icon: (
                     <FactoryOutlinedIcon
                         className="icon" 
@@ -70,6 +77,7 @@ const Widget = ({ type }) => {
                 isMoney: true,
                 link: "All earnings",
                 url: "",
+                query: "trips",
                 icon: (
                     <MonetizationOnOutlinedIcon
                         className="icon" 
@@ -84,6 +92,43 @@ const Widget = ({ type }) => {
         default:
             break;
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const today = new Date();
+            const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
+            const previousMonth = new Date(new Date().setMonth(today.getMonth() - 2));
+
+            const totalQuery = query(
+                collection(db, data.query)
+            )
+            
+            console.log(totalQuery)
+
+            const lastMonthQuery = query(
+                collection(db, data.query), 
+                where("timeStamp", "<=", today), 
+                where("timeStamp", ">", lastMonth)
+            )
+
+            const previousMonthQuery = query(
+                collection(db, data.query), 
+                where("timeStamp", "<=", lastMonth), 
+                where("timeStamp", ">", previousMonth)
+            );
+
+            const totalQueryData = await getDocs(totalQuery);
+            const lastMonthData = await getDocs(lastMonthQuery);
+            const prevMonthData = await getDocs(previousMonthQuery);
+
+            setAmount(totalQueryData.docs.length);
+            setDiff((((lastMonthData.docs.length - prevMonthData.docs.length) / prevMonthData.docs.length) * 100).toFixed(0))
+        }
+
+        fetchData();
+    }, [])
+
+
 
     return (
         <div className='widget'>

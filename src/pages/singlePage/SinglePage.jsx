@@ -3,7 +3,6 @@ import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Chart from '../../components/chart/Chart'
 import ListTable from '../../components/listTable/ListTable'
-import { truckRows, tripRows, facilityRows } from '../../dataTableSource';
 import './singlePage.scss'
 import { useParams } from 'react-router-dom'
 import { db } from '../../firebase';
