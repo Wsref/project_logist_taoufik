@@ -96,51 +96,8 @@
                 }
 
                 .chart {
-                    height: 100% !important;
-                    width: auto !important;
                     display: flex;
-                    align-items: center;
                     padding: 2% !important;
-                    justify-content: space-between;
-                }
-
-                .recharts-responsive-container {
-                    max-width: 90% !important;
-                    max-height: 100% !important;
-                    background-color: transparent;
-                }
-
-                .recharts-surface {
-                    max-height: 30vh !important;
-                    max-width: 35vw !important;
-                    position: relative;
-                    background-color: transparent;
-                }
-
-                .recharts-curve {
-                    min-width: 100% !important;
-                    min-height: 100% !important;
-                }
-
-                .recharts-area-area {
-                    width: 100% !important;
-                    background-color: transparent;
-                }
-
-                .recharts-wrapper {
-                    max-height: 100% !important;
-                    height: fit-content !important;
-                    min-width: 100% !important;
-                    background-color: transparent;
-                }
-
-                .recharts-wrapper {
-                    min-width: 100% !important;
-                    max-height: 100% !important;
-                    justify-self: center !important;
-                    max-height: max-content;
-                    max-width: max-content;
-                    background-color: transparent;
                 }
             }
         }

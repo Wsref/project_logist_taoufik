@@ -30,9 +30,6 @@
             flex: 1;
 
             .featured {
-                display: flex;
-                flex-direction: column;
-                padding: auto;
                 height: 95%;
             }
 
@@ -41,58 +38,7 @@
             }
 
             .chart {
-                height: 50vh !important;
-                max-height: 95% !important;
-                max-width: 40vw !important;
-                width: auto !important;
-                display: flex;
-                align-items: center;
-                padding: 1% !important;
-                justify-content: space-between;
-
-                .top {
-                    padding: 1%;
-                    height: auto;
-                    margin-bottom: 5%;
-
-                    .toggle {
-                        height: 3vmin;
-                        width: 5vmin;
-                    }
-                }
-
-                .recharts-responsive-container {
-                    max-width: 100% !important;
-                    height: 100% !important;
-                }
-
-                .recharts-surface {
-                    max-height: 40vh !important;
-                    position: relative;
-                }
-
-                .recharts-curve {
-                    min-width: 100% !important;
-                    min-height: 100% !important;
-                }
-
-                .recharts-area-area {
-                    width: 100% !important;
-                }
-
-                .recharts-wrapper {
-                    max-height: 100% !important;
-                    height: fit-content !important;
-                    min-width: 100% !important;
-                }
-
-                .recharts-wrapper {
-                    min-width: 100% !important;
-                    max-height: 100% !important;
-                    justify-self: center !important;
-                    max-height: max-content;
-                    max-width: max-content;
-                }
+                height: 95%;
             }
         }
 
