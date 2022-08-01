@@ -95,34 +95,68 @@ const Widget = ({ type }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const today = new Date();
-            const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
-            const previousMonth = new Date(new Date().setMonth(today.getMonth() - 2));
+            if (type !== "earning") {
+                const today = new Date();
+                const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
+                const previousMonth = new Date(new Date().setMonth(today.getMonth() - 2));
 
-            const totalQuery = query(
-                collection(db, data.query)
-            )
-            
-            console.log(totalQuery)
+                const totalQuery = query(
+                    collection(db, data.query)
+                )
 
-            const lastMonthQuery = query(
-                collection(db, data.query), 
-                where("timeStamp", "<=", today), 
-                where("timeStamp", ">", lastMonth)
-            )
+                const lastMonthQuery = query(
+                    collection(db, data.query), 
+                    where("timeStamp", "<=", today), 
+                    where("timeStamp", ">", lastMonth)
+                )
 
-            const previousMonthQuery = query(
-                collection(db, data.query), 
-                where("timeStamp", "<=", lastMonth), 
-                where("timeStamp", ">", previousMonth)
-            );
+                const previousMonthQuery = query(
+                    collection(db, data.query), 
+                    where("timeStamp", "<=", lastMonth), 
+                    where("timeStamp", ">", previousMonth)
+                );
 
-            const totalQueryData = await getDocs(totalQuery);
-            const lastMonthData = await getDocs(lastMonthQuery);
-            const prevMonthData = await getDocs(previousMonthQuery);
+                const totalQueryData = await getDocs(totalQuery);
+                const lastMonthData = await getDocs(lastMonthQuery);
+                const prevMonthData = await getDocs(previousMonthQuery);
 
-            setAmount(totalQueryData.docs.length);
-            setDiff((((lastMonthData.docs.length - prevMonthData.docs.length) / prevMonthData.docs.length) * 100).toFixed(0))
+                setAmount(totalQueryData.docs.length);
+                setDiff((((lastMonthData.docs.length - prevMonthData.docs.length) / prevMonthData.docs.length) * 100).toFixed(0))
+            } else {
+                const today = new Date();
+                const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
+                const previousMonth = new Date(new Date().setMonth(today.getMonth() - 2));
+
+                const totalQuery = query(
+                    collection(db, "trips")
+                )
+
+                const lastMonthQuery = query(
+                    collection(db, "trips"), 
+                    where("timeStamp", "<=", today), 
+                    where("timeStamp", ">", lastMonth)
+                )
+
+                const previousMonthQuery = query(
+                    collection(db, "trips"), 
+                    where("timeStamp", "<=", lastMonth), 
+                    where("timeStamp", ">", previousMonth)
+                );
+
+                const totalQueryData = await getDocs(totalQuery);
+                const lastMonthData = await getDocs(lastMonthQuery);
+                const prevMonthData = await getDocs(previousMonthQuery);
+
+                let sum = 0;
+
+                totalQueryData.docs.forEach(doc => {
+                    let docData = doc.data();
+
+                    sum += docData.earnings 
+                })
+
+                setAmount(sum);
+            }
         }
 
         fetchData();
