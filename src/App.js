@@ -21,7 +21,6 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/">
-                        <Route path="login" element={<Login />} />
                         <Route
                             index
                             element={
@@ -30,6 +29,7 @@ function App() {
                                 </RequireAuth>
                             }
                         />
+                        <Route path="login" element={<Login />} />
                         <Route path="trucks">
                             <Route
                                 index

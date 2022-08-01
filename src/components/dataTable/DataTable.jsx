@@ -10,29 +10,54 @@ import {
     facilityColumns, 
     facilityRows 
 } from '../../dataTableSource';
+import { db } from '../../firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 const DataTable = ({ resource, title }) => {
 
-    const [data, setData] = useState(truckRows)
+    const [data, setData] = useState([]);
     const [fields, setFields] = useState(truckColumns)
 
     useEffect(() => {
         switch(resource) {
-        case "trucks":
-            setData(truckRows);
-            setFields(truckColumns);
-            break;
-        case "facilities":
-            setData(facilityRows);
-            setFields(facilityColumns);
-            break;
-        case "trips":
-            setData(tripRows);
-            setFields(tripColumns);
-            break;
-        default:
-            break;
-    }
+            case "trucks":
+                setFields(truckColumns);
+                break;
+            case "facilities":
+                setFields(facilityColumns);
+                break;
+            case "trips":
+                setFields(tripColumns);
+                break;
+            default:
+                break;
+        }
+
+        const fetchData = async () => {
+            let list = [];
+
+            try {
+                const querySnapshot = await getDocs(collection(db, resource));
+                querySnapshot.forEach((doc) => {
+                    let docData = doc.data();
+
+                    if (resource === "trips") {
+                        docData.startDate = docData.startDate.toDate().toLocaleString();
+                        docData.endDate = docData.endDate.toDate().toLocaleString();
+                    }
+
+                    list.push({id: doc.id, ...docData});
+                });
+
+                console.log(list)
+                
+                setData(list);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchData();
     }, [resource])
 
     const handleDelete = (id) => {

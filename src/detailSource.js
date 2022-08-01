@@ -1,7 +1,7 @@
 export const truckDetails = [
     {
         id: 1,
-        field: "driver",
+        field: "driver_name",
         label: "Driver Name",
     },
     {
@@ -9,11 +9,11 @@ export const truckDetails = [
         field: "capacity",
         label: "Capacity",
     },
-    {
-        id: 3,
-        field: "tripCount",
-        label: "Trips",
-    },
+    // {
+    //     id: 3,
+    //     field: "tripCount",
+    //     label: "Trips",
+    // },
     {
         id: 4,
         field: "registration",

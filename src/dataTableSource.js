@@ -1,16 +1,11 @@
 export const truckColumns = [
     {
-        field: "id",
-        headerName: "ID",
-        flex: 0.25,
-    },
-    {
         field: "license",
         headerName: "License",
         flex: 1,
     },
     {
-        field: "driver",
+        field: "driver_name",
         headerName: "Driver Name",
         flex: 1,
     },
@@ -140,11 +135,6 @@ export const truckRows = [
 
 export const facilityColumns = [
     {
-        field: "id",
-        headerName: "ID",
-        flex: 0.5,
-    },
-    {
         field: "facilityName",
         headerName: "Facility Name",
         flex: 1,
@@ -247,11 +237,6 @@ export const facilityRows = [
 ];
 
 export const tripColumns = [
-    {
-        field: "id",
-        headerName: "ID",
-        flex: 0.5,
-    },
     {
         field: "truck",
         headerName: "Truck",

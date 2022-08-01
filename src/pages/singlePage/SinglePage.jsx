@@ -6,29 +6,29 @@ import ListTable from '../../components/listTable/ListTable'
 import { truckRows, tripRows, facilityRows } from '../../dataTableSource';
 import './singlePage.scss'
 import { useParams } from 'react-router-dom'
+import { db } from '../../firebase';
+import { doc, getDoc } from "firebase/firestore";
 
 const SinglePage = ({ resource, details }) => {
     const { id } = useParams();
-
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        switch(resource) {
-        case "trucks":
-            const truckData = truckRows.filter(truck => truck.id === (id * 1))[0]; 
-            setData(truckData);
-            break;
-        case "trips":
-            const tripData = tripRows.filter(trip => trip.id === (id * 1))[0];
-            setData(tripData);
-            break;
-        case "facilities":
-            const facilityData = facilityRows.filter(facility => facility.id === (id * 1))[0]
-            setData(facilityData);
-            break;
-        default: 
-            break; 
-    }
+        const fetchData = async () => {
+            const docRef = doc(db, resource, id);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const docData = docSnap.data();
+
+                if (resource === "trips") {
+                    docData.startDate = docData.startDate.toDate().toLocaleString();
+                    docData.endDate = docData.endDate.toDate().toLocaleString();             
+                }
+                setData(docData);
+            }
+        }
+        fetchData();
     }, [])
 
     return (
