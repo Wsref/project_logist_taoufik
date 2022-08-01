@@ -30,6 +30,19 @@ const SinglePage = ({ resource, details }) => {
         fetchData();
     }, [])
 
+    const convertResource = (res) => {
+        switch(res) {
+            case "trucks":
+                return "Truck";
+            case "trips":
+                return "Trip";
+            case "facilities":
+                return "Facility"
+            default:
+                return "";
+        }
+    }
+
     return (
         <div className='singlePage'>
             <Sidebar />
@@ -37,29 +50,30 @@ const SinglePage = ({ resource, details }) => {
                 <Navbar />
                 <div className="top">
                     <div className="left">
-                        <div className="editButton">Edit</div>
-                            <h1 className="title">Information</h1>
-                            <div className="item">
-                                <div className="portrait-view">
-                                    <img
-                                        src="https://images.pexels.com/photos/93398/pexels-photo-93398.jpeg?cs=srgb&dl=pexels-photoscom-93398.jpg&fm=jpg"
-                                        alt=""
-                                        className="itemImg"
-                                    />
-                                </div>
-                                <div className="details">
-                                    <h1 className="itemTitle">{}</h1>
-                                    {
-                                        details.map(detail => (
-                                            <div className="detailItem">
-                                                <span className="itemKey">{detail.label}</span>
-                                                <span className="itemValue">{data[detail.field]}</span>
-                                            </div>
-                                        ))
-                                    }
+                        <div className="detail-card">
+                            <div className="bio">
+                                <img
+                                    src="https://images.pexels.com/photos/93398/pexels-photo-93398.jpeg?cs=srgb&dl=pexels-photoscom-93398.jpg&fm=jpg"
+                                    alt=""
+                                    className="itemImg"
+                                />
+                                <div className="identifier">
+                                    {convertResource(resource)}:
+                                    <h1 className="itemTitle">{id}</h1>
                                 </div>
                             </div>
+                            <div className="info">
+                                {
+                                    details.map(detail => (
+                                        <div className="detailItem">
+                                            <span className="itemKey">{detail.label}</span>
+                                            <span className="itemValue">{data[detail.field]}</span>
+                                        </div>
+                                    ))
+                                }
+                            </div>
                         </div>
+                    </div>
                     <div className="right">
                         <Chart aspect={2} title="User Spending (Last 6 months)" />
                     </div>
