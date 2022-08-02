@@ -8,6 +8,7 @@ import { truckDetails, tripDetails, facilityDetails } from "./detailSource";
 import Login from "./pages/login/Login";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import NewTrip from "./pages/newTrip/NewTrip";
 
 function App() {
     const { currentUser } = useContext(AuthContext);
@@ -93,7 +94,7 @@ function App() {
                                 path="new"
                                 element={
                                     <RequireAuth>
-                                        <New
+                                        <NewTrip
                                             resource="trips"
                                             title="Add New Trip"
                                             inputs={tripInputs}
