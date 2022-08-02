@@ -152,7 +152,7 @@ const Widget = ({ type }) => {
                 totalQueryData.docs.forEach(doc => {
                     let docData = doc.data();
 
-                    sum += docData.earnings 
+                    sum += parseInt(docData.earnings) 
                 })
 
                 setAmount(sum);

@@ -1,57 +1,63 @@
 export const truckInputs = [
     {
-        id: 1,
+        id: "license",
         label: "License",
         type: "text",
         placeholder: "ABCD123",
     },
     {
-        id: 2,
+        id: "driver_name",
         label: "Driver's Name",
         type: "text",
         placeholder: "John Doe",
     },
     {
-        id: 3,
+        id: "capacity",
         label: "Capacity",
         type: "number",
         placeholder: "12345",
+    },
+    {
+        id: "registration",
+        label: "Registration",
+        type: "text",
+        placeholder: "valid",
     },
 ];
 
 export const tripInputs = [
     {
-        id: 1,
+        id: "truck",
         label: "Truck",
         type: "text",
         placeholder: "ABCD123",
     },
     {
-        id: 2,
+        id: "originFacility",
         label: "Origin Facility",
         type: "text",
         placeholder: "Warehouse 1",
     },
     {
-        id: 3,
+        id: "destinationFacility",
         label: "Destination Facility",
         type: "text",
         placeholder: "Warehouse 2",
     },
     {
-        id: 4,
+        id: "startDate",
         label: "Start Date",
-        type: "text",
-        placeholder: "01/01/1970 00:00:00",
+        type: "datetime-local",
+        // placeholder: "01/01/1970 00:00:00",
     },
     {
-        id: 5,
+        id: "endDate",
         label: "End Date",
-        type: "text",
-        placeholder: "01/01/1970 00:00:00",
+        type: "datetime-local",
+        // placeholder: "01/01/1970 00:00:00",
     },
     {
-        id: 6,
+        id: "earnings",
         label: "Earnings",
         type: "number",
         placeholder: 1234,
@@ -60,31 +66,31 @@ export const tripInputs = [
 
 export const facilityInputs = [
     {
-        id: 1,
+        id: "facilityName",
         label: "Facility Name",
         type: "text",
         placeholder: "Warehouse 1",
     },
     {
-        id: 2,
+        id: "address",
         label: "Address",
         type: "text",
         placeholder: "123 Sesame St",
     },
     {
-        id: 3,
+        id: "facilityCity",
         label: "City",
         type: "text",
         placeholder: "New York City",
     },
     {
-        id: 4,
+        id: "facilityState",
         label: "State",
         type: "text",
         placeholder: "NY",
     },
     {
-        id: 5,
+        id: "zipCode",
         label: "ZIP Code",
         type: "text",
         placeholder: "12345",

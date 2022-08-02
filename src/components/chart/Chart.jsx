@@ -20,61 +20,6 @@ const Chart = ({aspect, title}) => {
         setIsArea(!isArea);
     }
 
-    // return (
-    //     <div className='chart'>
-    //         <div className="top">
-    //             <div className="title">{title}</div>
-    //             <div onClick={handleToggle}><span className="btnText">{isArea ? <AssessmentIcon /> : <CropOriginalIcon />}</span></div>
-    //         </div>
-    //         <ResponsiveContainer className="bottom" maxWidth={"60%"} height={"auto"} aspect={aspect}>
-    //             {isArea ? <AreaChart 
-    //                 width="100%"
-    //                 height="100%"
-    //                 data={data}
-    //                 margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-    //             >
-    //                 <defs>
-    //                     <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
-    //                     <stop offset="5%" stopColor="#0C0268" stopOpacity={0.8}/>
-    //                     <stop offset="95%" stopColor="#b5e2bb" stopOpacity={0}/>
-    //                     </linearGradient>
-    //                 </defs>
-    //                 <XAxis dataKey="name" stroke="gray"/>
-    //                 <YAxis />
-    //                 <CartesianGrid strokeDasharray="3 3" />
-    //                 <Tooltip />
-    //                 <Area 
-    //                     type="monotone" 
-    //                     dataKey="Total" 
-    //                     stroke="#0C0268"
-    //                     fillOpacity={1} 
-    //                     fill="url(#total)" 
-    //                 />
-    //             </AreaChart>
-    //             : 
-    //             <BarChart
-    //                 width={500}
-    //                 height={300}
-    //                 data={data}
-    //                 margin={{
-    //                     top: 5,
-    //                     right: 30,
-    //                     left: 20,
-    //                     bottom: 5,
-    //                 }}
-    //                 >
-    //                 <CartesianGrid strokeDasharray="3 3" />
-    //                 <XAxis dataKey="name" />
-    //                 <YAxis />
-    //                 <Tooltip />
-    //                 <Bar dataKey="Total" fill="#0C0268" />
-    //             </BarChart>
-    //         } 
-    //         </ResponsiveContainer>
-    //     </div>
-    // )
-
-
     return (
         <div className="chart">
             <div className="top">
