@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Navbar from '../../components/navbar/Navbar'
 import Widget from '../../components/widget/Widget'
 import './home.scss'
-import ListTable from '../../components/listTable/ListTable'
 import Chart from '../../components/chart/Chart'
 import Featured from '../../components/featured/Featured'
+import { tripColumns } from '../../dataTableSource'
+import { DataGrid } from '@mui/x-data-grid';
+import { db } from '../../firebase';
+import {collection, query, where, doc, getDoc, getDocs} from "firebase/firestore";
 
 
 const Home = () => {
+    const [fields, setFields] = useState(tripColumns)
+    const [data, setData] = useState([]);
+
     const rows = [
             {
                 id: 1143155,
@@ -40,6 +46,41 @@ const Home = () => {
         ];
 
 
+    useEffect(() => {
+
+        const fetchData = async () => {
+            let list = [];
+
+            try {
+                const querySnapshot = await getDocs(collection(db, "trips"));
+                querySnapshot.forEach((doc) => {
+                    let docData = doc.data();
+
+                    docData.startDate = docData.startDate.toDate()
+                    docData.endDate = docData.endDate.toDate().toLocaleString();
+                    
+
+                    list.push({id: doc.id, ...docData});
+                });
+                
+                list.sort((a,b) => b.startDate - a.startDate)
+
+                list.forEach((document) => { 
+                    document.startDate = document.startDate.toLocaleString();
+                })
+
+
+                setData(list.slice(0,5));
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchData();
+    }, [])
+
+
+
     return (
         <div className='home'>
             <Sidebar />
@@ -57,7 +98,16 @@ const Home = () => {
                 </div>
                 <div className="listContainer">
                     <div className="listTitle">Latest Trips</div>
-                    <ListTable data={rows} />
+                    <DataGrid
+                        rows={data}
+                        columns={fields}
+                        autoHeight={true}
+                        pageSize={10}
+                        rowsPerPageOptions={[10]}
+                        checkboxSelection
+                        className='datagrid'
+                        getRowHeight={() => 'auto'}
+                    />
                 </div>
             </div>
         </div>

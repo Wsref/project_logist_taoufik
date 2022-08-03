@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Chart from '../../components/chart/Chart'
-import ListTable from '../../components/listTable/ListTable'
 import './truckDetails.scss'
 import { useParams } from 'react-router-dom'
 import { db } from '../../firebase';
@@ -54,39 +53,6 @@ const TruckDetails = ({ resource, details }) => {
 
         fetchData();
     }, [data])
-
-
-
-    const rows = [
-            {
-                id: 1143155,
-                truck: "AE19FI2",
-                originFacility: "Central Logistics",
-                destinationFacility: "A1 Fulfillment",
-                endDate: "7-28-2022 12:30:00",
-                method: "7-31-2022 06:45:00",
-                earnings: "$6000.00",
-            },
-            {
-                id: 3756485,
-                truck: "1J4GZ58S",
-                originFacility: "Lakeview Shipping",
-                destinationFacility: "Redwood Distribution",
-                endDate: "8-14-2022 0:15:00",
-                method: "8-14-2022 21:00:00",
-                earnings: "$1000.00",
-            },
-            {
-                id: 5635289,
-                truck: "WBAAM334",
-                originFacility: "Keystone Packaging",
-                destinationFacility: "Ladybug Retail",
-                endDate: "7-21-2022 08:00:00",
-                method: "7-23-2022 12:45:00",
-                earnings: "$5000.00",
-            }
-        ];
-
 
     return (
         <div className='truckDetails'>
