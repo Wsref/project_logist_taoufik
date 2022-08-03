@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import NewTrip from "./pages/newTrip/NewTrip";
 import TruckDetails from "./pages/truckDetails/TruckDetails";
+import FacilityDetails from "./pages/facilityDetails/FacilityDetails";
 
 function App() {
     const { currentUser } = useContext(AuthContext);
@@ -120,7 +121,7 @@ function App() {
                                 path=":id"
                                 element={
                                     <RequireAuth>
-                                        <SinglePage
+                                        <FacilityDetails
                                             resource={"facilities"}
                                             details={facilityDetails}
                                         />

@@ -95,6 +95,7 @@ const SinglePage = ({ resource, details }) => {
                                     <h1 className="itemTitle">{id}</h1>
                                 </div>
                             </div>
+                            <hr />
                             <div className="info">
                                 {
                                     details.map(detail => (

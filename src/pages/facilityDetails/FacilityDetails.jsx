@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Chart from '../../components/chart/Chart'
-import './truckDetails.scss'
 import { useParams } from 'react-router-dom'
 import { db } from '../../firebase';
+import './facilityDetails.scss'
 import {collection, query, where, doc, getDoc, getDocs} from "firebase/firestore";
 import { tripColumns } from '../../dataTableSource'
 import { DataGrid } from '@mui/x-data-grid';
 
-const TruckDetails = ({ resource, details }) => {
+const FacilityDetails = ({ resource, details }) => {
     const { id } = useParams();
     const [data, setData] = useState([]);
     const [trips, setTrips] = useState([]);
@@ -32,20 +32,38 @@ const TruckDetails = ({ resource, details }) => {
         const fetchData = async () => {
             let list = [];
 
-            const tripQuery = query(
+            const originQuery = query(
                     collection(db, "trips"), 
-                    where("truck", "==", data.license)
+                    where("originFacility", "==", data.facilityName),
+                    
             )
 
-            const tripData = await getDocs(tripQuery);
+            const originData = await getDocs(originQuery);
             
-            tripData.forEach((document) => { 
-                let docData = document.data();
+            originData.forEach((document) => { 
+                let originDocData = document.data();
 
-                docData.startDate = docData.startDate.toDate().toLocaleString();
-                docData.endDate = docData.endDate.toDate().toLocaleString();
+                originDocData.startDate = originDocData.startDate.toDate().toLocaleString();
+                originDocData.endDate = originDocData.endDate.toDate().toLocaleString();
 
-                list.push({id: document.id, ...docData})
+                list.push({id: document.id, ...originDocData})
+            })
+
+            const destinationQuery = query(
+                    collection(db, "trips"), 
+                    where("destinationFacility", "==", data.facilityName),
+                    
+            )
+
+            const destinationData = await getDocs(destinationQuery);
+            
+            destinationData.forEach((document) => { 
+                let destinationDocData = document.data();
+
+                destinationDocData.startDate = destinationDocData.startDate.toDate().toLocaleString();
+                destinationDocData.endDate = destinationDocData.endDate.toDate().toLocaleString();
+
+                list.push({id: document.id, ...destinationDocData})
             })
 
             setTrips(list)
@@ -69,7 +87,7 @@ const TruckDetails = ({ resource, details }) => {
                                     className="itemImg"
                                 />
                                 <div className="identifier">
-                                    Truck:
+                                    <span>Facility:</span>
                                     <h1 className="itemTitle">{id}</h1>
                                 </div>
                             </div>
@@ -109,4 +127,4 @@ const TruckDetails = ({ resource, details }) => {
     )
 }
 
-export default TruckDetails
+export default FacilityDetails
