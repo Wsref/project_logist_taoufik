@@ -8,6 +8,10 @@ import { db } from '../../firebase';
 import {collection, query, where, doc, getDoc, getDocs} from "firebase/firestore";
 import { tripColumns } from '../../dataTableSource'
 import { DataGrid } from '@mui/x-data-grid';
+import InfoCard from '../../components/infoCard/InfoCard'
+import PersonIcon from '@mui/icons-material/Person';
+import ScaleIcon from '@mui/icons-material/Scale';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
 const TruckDetails = ({ resource, details }) => {
     const { id } = useParams();
@@ -72,17 +76,46 @@ const TruckDetails = ({ resource, details }) => {
                                     Truck:
                                     <h1 className="itemTitle">{id}</h1>
                                 </div>
+                                
                             </div>
                             <div className="info">
-                                {
-                                    details.map(detail => (
-                                        <div className="detailItem">
-                                            <span className="itemKey">{detail.label}</span>
-                                            <span className="itemValue">{data[detail.field]}</span>
-                                        </div>
-                                    ))
-                                }
+                                <div className="infoGroup">
+                                    <label>License</label>
+                                    <InfoCard icon={<LocalShippingIcon className="icon" />} value={data.license} />
+                                </div>
+                                <div className="infoGroup">
+                                    <label>Driver</label>
+                                    <InfoCard icon={<PersonIcon className="icon" />} value={data.driver_name} />
+                                </div>
+                                <div className="infoGroup">
+                                    <label>Capacity</label>
+                                    <InfoCard icon={<ScaleIcon className="icon" />} value={data.capacity} />
+                                </div>
                             </div>
+
+                            {
+                            // <div className="bio">
+                            //     <img
+                            //         src="https://images.pexels.com/photos/93398/pexels-photo-93398.jpeg?cs=srgb&dl=pexels-photoscom-93398.jpg&fm=jpg"
+                            //         alt=""
+                            //         className="itemImg"
+                            //     />
+                            //     <div className="identifier">
+                            //         Truck:
+                            //         <h1 className="itemTitle">{id}</h1>
+                            //     </div>
+                            // </div>
+                            // <div className="info">
+                            //     {
+                            //         details.map(detail => (
+                            //             <div className="detailItem">
+                            //                 <span className="itemKey">{detail.label}</span>
+                            //                 <span className="itemValue">{data[detail.field]}</span>
+                            //             </div>
+                            //         ))
+                            //     }
+                            // </div>
+                            }
                         </div>
                     </div>
                     <div className="right">
