@@ -7,6 +7,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db, storage } from '../../firebase';
 import Sidebar from '../../components/sidebar/Sidebar' 
 import Navbar from '../../components/navbar/Navbar'
+import Select from '../../components/select/Select';
 
 const NewTrip = ({ resource, title }) => {
 
@@ -17,6 +18,10 @@ const NewTrip = ({ resource, title }) => {
 
     const [truckData, setTruckData] = useState([])
     const [facilityData, setFacilityData] = useState([])
+
+    const [truckChoice, setTruckChoice] = useState("")
+    const [facilityOne, setFacilityOne] = useState("");
+    const [facilityTwo, setFacilityTwo] = useState("");
 
 
     useEffect(() => {
@@ -32,7 +37,11 @@ const NewTrip = ({ resource, title }) => {
                     truckList.push({id: doc.id, ...docData});
                 });
                 
-                setTruckData(truckList.map(truck => ({license: truck.license})));
+                setTruckData(truckList.map(truck => ({
+                    license: truck.license,
+                    driverName: truck.driver_name,   
+                    capacity: truck.capacity
+                })));
             } catch (error) {
                 console.log(error);
             }
@@ -45,7 +54,13 @@ const NewTrip = ({ resource, title }) => {
                     facilityList.push({id: doc.id, ...docData});
                 });
                 
-                setFacilityData(facilityList.map(facility => ({facilityName: facility.facilityName})));
+                setFacilityData(facilityList.map(facility => ({
+                    facilityName: facility.facilityName, 
+                    city: facility.city, 
+                    facilityState: facility.facilityState, 
+                    zipCode: facility.zipCode
+                }
+            )));
             } catch (error) {
                 console.log(error);
             }
@@ -103,6 +118,16 @@ const NewTrip = ({ resource, title }) => {
         console.log(value)
     }
 
+    useEffect(() => {
+        setData({
+            ...data, 
+            truck: truckChoice, 
+            originFacility: facilityOne, 
+            destinationFacility: facilityTwo
+        })
+    }, [truckChoice, facilityOne, facilityTwo])
+
+
     const handleAdd = async (e) => {
         e.preventDefault();
         try {
@@ -145,42 +170,40 @@ const NewTrip = ({ resource, title }) => {
                             </div>
                             <div className="formInput">
                                 <label>Truck</label>
-                                <select name="truck" id="truck" onChange={handleInput}>
-                                    <option value="none" selected disabled hidden>Select a Truck</option>
-                                    {
-                                        truckData.map((truck) => 
-                                            (
-                                                <option value={truck.license}>{truck.license}</option>
-                                            )
-                                        )
-                                    }
-                                </select>
+                            <Select 
+                                    className="custom-select" 
+                                    defaultText={"Select a Truck"} 
+                                    id="secondTruck"
+                                    setter={setTruckChoice}
+                                    data={truckData}
+                                    label="license"
+                                    resource="trucks"
+
+                                />
                             </div>
                             <div className="formInput">
                                 <label>Origin Facility</label>
-                                <select name="originFacility" id="originFacility" onChange={handleInput}>
-                                    <option value="none" selected disabled hidden>Select a Facility</option>
-                                    {
-                                        facilityData.map((facility) => 
-                                            (
-                                                <option value={facility.facilityName}>{facility.facilityName}</option>
-                                            )
-                                        )
-                                    }
-                                </select>
+                                <Select 
+                                        className="custom-select" 
+                                        defaultText={"Select a Facility"}
+                                        setter={setFacilityOne}
+                                        data={facilityData}
+                                        label="facilityName"
+                                        resource="facilities"
+
+                                    />
                             </div>
                             <div className="formInput">
                                 <label>Destination Facility</label>
-                                 <select name="destinationFacility" id="destinationFacility" onChange={handleInput}>
-                                    <option value="none" selected disabled hidden>Select a Facility</option>
-                                    {
-                                        facilityData.map((facility) => 
-                                            (
-                                                <option value={facility.facilityName}>{facility.facilityName}</option>
-                                            )
-                                        )
-                                    }
-                                </select>
+                                <Select 
+                                    className="custom-select" 
+                                    defaultText={"Select a Facility"} 
+                                    setter={setFacilityTwo}
+                                    data={facilityData}
+                                    label="facilityName"
+                                    resource="facilities"
+
+                                />
                             </div>
                             <div className="formInput">
                                 <label>Start Date</label>
