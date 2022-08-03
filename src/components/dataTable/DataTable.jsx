@@ -4,11 +4,8 @@ import { Link } from 'react-router-dom'
 import { DataGrid } from '@mui/x-data-grid';
 import { 
     truckColumns, 
-    truckRows, 
     tripColumns, 
-    tripRows, 
     facilityColumns, 
-    facilityRows 
 } from '../../dataTableSource';
 import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
