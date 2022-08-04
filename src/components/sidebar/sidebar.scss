@@ -67,6 +67,18 @@
                     margin-left: 4%;
                 }
             }
+
+            .disabled {
+                cursor: not-allowed;
+
+                &:hover {
+                    background-color: white;
+
+                    span {
+                        color: gray;
+                    }
+                }
+            }
         }
     }
 

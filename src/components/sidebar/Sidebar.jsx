@@ -56,19 +56,19 @@ const Sidebar = () => {
                         </li>                    
                     </Link>
                     <div className="title">TOOLS</div>
-                    <li>
+                    <li className='disabled'>
                         <CalendarMonthOutlinedIcon className="icon" />
                         <span>Calendar</span>
                     </li>
-                    <li>
+                    <li className='disabled'>
                         <CompareArrowsOutlinedIcon className="icon" />
                         <span>Compare</span>
                     </li>
-                    <li>
+                    <li className='disabled'>
                         <AssessmentOutlinedIcon className="icon" />
                         <span>Generate Report</span>
                     </li>
-                    <li>
+                    <li className='disabled'> 
                         <SettingsOutlinedIcon className="icon" />
                         <span>Settings</span>
                     </li>
