@@ -1,5 +1,5 @@
 import './chart.scss'
-import { AreaChart, BarChart, Legend, Bar, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, BarChart, Bar, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import React, { useState } from 'react'
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import CropOriginalIcon from '@mui/icons-material/CropOriginal';
@@ -13,7 +13,7 @@ const data = [
     {name: "July", Total: 11000},
 ]
 
-const Chart = ({aspect, title}) => {
+const Chart = ({ title }) => {
     const [isArea, setIsArea] = useState(true);
 
     const handleToggle = () => {
@@ -23,7 +23,7 @@ const Chart = ({aspect, title}) => {
     return (
         <div className="chart">
             <div className="top">
-                <h1 className='title'>Total Revenue (Last 6 Months)</h1>
+                <h1 className='title'>{title}</h1>
                 <div onClick={handleToggle}>
                     <span className="btnText">{isArea ? <AssessmentIcon /> : <CropOriginalIcon />}</span>
                 </div>

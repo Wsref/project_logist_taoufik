@@ -11,6 +11,7 @@ import { AuthContext } from "./context/AuthContext";
 import NewTrip from "./pages/newTrip/NewTrip";
 import TruckDetails from "./pages/truckDetails/TruckDetails";
 import FacilityDetails from "./pages/facilityDetails/FacilityDetails";
+import TripDetails from "./pages/tripDetails/TripDetails";
 
 function App() {
     const { currentUser } = useContext(AuthContext);

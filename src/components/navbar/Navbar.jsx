@@ -1,4 +1,3 @@
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined"
 import LanguageIcon from '@mui/icons-material/Language';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
