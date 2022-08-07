@@ -3,12 +3,13 @@ import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Chart from '../../components/chart/Chart'
 import './tripDetails.scss'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { db } from '../../firebase';
 import TabView from '../../components/tabView/TabView'
 import {collection, query, where, getDocs, doc, getDoc} from "firebase/firestore";
 import { truckDetails, tripDetails, facilityDetails } from "../../detailSource"
 import Map from '../../components/map/Map'
+import CustomCalendar from '../../components/customCalendar/CustomCalendar'
 
 const TripDetails = ({ resource, details }) => {
     const { id } = useParams();
@@ -68,6 +69,8 @@ const TripDetails = ({ resource, details }) => {
                     docData.endDate = docData.endDate.toDate().toLocaleString();             
                 }
                 setData(docData);
+            } else {
+                return <Navigate to="/404"/>
             }
         }
         fetchData();
@@ -114,67 +117,13 @@ const TripDetails = ({ resource, details }) => {
                             <Map />
                         </div>
                         <div className="right-bottom">
-                            Right Bottom
+                            <CustomCalendar />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     )
-
-
-    // return (
-    //     <div className='tripDetails'>
-    //         <Sidebar />
-    //         <div className="tripContainer">
-    //             <Navbar />
-    //             <div className="top">
-    //                 <div className="left">
-    //                     <div className="detail-card">
-    //                         <div className="bio">
-    //                             <img
-    //                                 src="https://images.pexels.com/photos/93398/pexels-photo-93398.jpeg?cs=srgb&dl=pexels-photoscom-93398.jpg&fm=jpg"
-    //                                 alt=""
-    //                                 className="itemImg"
-    //                             />
-    //                             <div className="identifier">
-    //                                 {convertResource(resource)}:
-    //                                 <h1 className="itemTitle">{id}</h1>
-    //                             </div>
-    //                         </div>
-    //                         <hr />
-    //                         <div className="info">
-    //                             {
-    //                                 details.map(detail => (
-    //                                     <div className="detailItem">
-    //                                         <span className="itemKey">{detail.label}</span>
-    //                                         <span className="itemValue">{data[detail.field]}</span>
-    //                                     </div>
-    //                                 ))
-    //                             }
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //                 <div className="right">
-    //                     <Chart aspect={2} title="User Spending (Last 6 months)" />
-    //                 </div>
-    //             </div>
-    //             <div className="bottom">
-    //                 <TabView 
-    //                     className="tabSection"
-    //                     title={"Details"}
-    //                     tabs={
-    //                         [
-    //                             {name: "Truck", content: truckInfo},
-    //                             {name: "Origin", content: "Hello Hello"},
-    //                             {name: "Destination", content: "Hello Hello"}
-    //                         ]
-    //                     }
-    //                 />
-    //             </div>
-    //         </div>
-    //     </div>
-    // )
 }
 
-export default TripDetails
+export default TripDetails;

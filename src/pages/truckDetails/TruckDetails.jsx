@@ -3,7 +3,7 @@ import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Chart from '../../components/chart/Chart'
 import './truckDetails.scss'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { db } from '../../firebase';
 import {collection, query, where, doc, getDoc, getDocs} from "firebase/firestore";
 import { tripColumns } from '../../dataTableSource'
@@ -15,14 +15,17 @@ const TruckDetails = ({ resource, details }) => {
     const [trips, setTrips] = useState([]);
     const [fields, setFields] = useState(tripColumns)
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchData = async () => {
             const docRef = doc(db, resource, id);
             const docSnap = await getDoc(docRef);
-
             if (docSnap.exists()) {
                 const docData = docSnap.data();
                 setData(docData);
+            } else if (docSnap.exists() === false) {
+                navigate("/404");
             }
         }
         fetchData();
@@ -63,11 +66,7 @@ const TruckDetails = ({ resource, details }) => {
                     <div className="left">
                         <div className="detail-card">
                             <div className="bio">
-                                <img
-                                    src="https://images.pexels.com/photos/93398/pexels-photo-93398.jpeg?cs=srgb&dl=pexels-photoscom-93398.jpg&fm=jpg"
-                                    alt=""
-                                    className="itemImg"
-                                />
+                                <img src={'/semi-truck.jpg'} alt="" className='itemImg'/>
                                 <div className="identifier">
                                     Truck:
                                     <h1 className="itemTitle">{id}</h1>

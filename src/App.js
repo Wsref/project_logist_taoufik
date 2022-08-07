@@ -12,6 +12,7 @@ import NewTrip from "./pages/newTrip/NewTrip";
 import TruckDetails from "./pages/truckDetails/TruckDetails";
 import FacilityDetails from "./pages/facilityDetails/FacilityDetails";
 import TripDetails from "./pages/tripDetails/TripDetails";
+import PageNotFound from "./pages/pageNotFound/PageNotFound";
 
 function App() {
     const { currentUser } = useContext(AuthContext);
@@ -86,7 +87,7 @@ function App() {
                                 path=":id"
                                 element={
                                     <RequireAuth>
-                                        <SinglePage
+                                        <TripDetails
                                             resource={"trips"}
                                             details={tripDetails}
                                         />
@@ -143,6 +144,7 @@ function App() {
                             />
                         </Route>
                     </Route>
+                    <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </BrowserRouter>
         </div>
