@@ -17,7 +17,7 @@ const CustomCalendar = () => {
             events={myEventsList}
             startAccessor="start"
             endAccessor="end"
-            style={{ height: 500 }}
+            style={{ minHeight: "300px" }}
             defaultView="month"
             views={['month']}
             components={{toolbar: CalendarToolbar}}

@@ -10,6 +10,8 @@ import {collection, query, where, getDocs, doc, getDoc} from "firebase/firestore
 import { truckDetails, tripDetails, facilityDetails } from "../../detailSource"
 import Map from '../../components/map/Map'
 import CustomCalendar from '../../components/customCalendar/CustomCalendar'
+import InfoCard from '../../components/infoCard/InfoCard'
+import DateCard from '../../components/dateCard/DateCard'
 
 const TripDetails = ({ resource, details }) => {
     const { id } = useParams();
@@ -22,39 +24,6 @@ const TripDetails = ({ resource, details }) => {
     })
     const [originFacilityData, setOriginFacilityData] = useState([]); 
     const [destinationFacilityData, setDestinationFacilityData] = useState([]); 
-
-    const rows = [
-            {
-                id: 1143155,
-                truck: "AE19FI2",
-                originFacility: "Central Logistics",
-                destinationFacility: "A1 Fulfillment",
-                startDate: "7-28-2022 12:30:00",
-                endDate: "7-31-2022 06:45:00",
-                earnings: "$6000.00",
-            },
-            {
-                id: 3756485,
-                truck: "1J4GZ58S",
-                originFacility: "Lakeview Shipping",
-                destinationFacility: "Redwood Distribution",
-                startDate: "8-14-2022 0:15:00",
-                endDate: "8-14-2022 21:00:00",
-                earnings: "$1000.00",
-            },
-            {
-                id: 5635289,
-                truck: "WBAAM334",
-                originFacility: "Keystone Packaging",
-                destinationFacility: "Ladybug Retail",
-                startDate: "7-21-2022 08:00:00",
-                endDate: "7-23-2022 12:45:00",
-                earnings: "$5000.00",
-            }
-        ];
-
-
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -76,21 +45,6 @@ const TripDetails = ({ resource, details }) => {
         fetchData();
     }, [])
 
-
-    const convertResource = (res) => {
-        switch(res) {
-            case "trucks":
-                return "Truck";
-            case "trips":
-                return "Trip";
-            case "facilities":
-                return "Facility"
-            default:
-                return "";
-        }
-    }
-
-
     const truckInfo = (
                         <div className="info">
                             {
@@ -111,7 +65,32 @@ const TripDetails = ({ resource, details }) => {
             <div className="tripContainer">
                 <Navbar />
                 <div className="tripView">
-                    <div className="left">Left</div>
+                    <div className="left">
+                        <div className="left-top">
+                            <div className="tripSummary">
+                                <div className="path">
+                                    <div className="facility originFacility">{data.originFacility}</div>
+                                    <span>to</span>
+                                    <div className="facility originFacility">{data.destinationFacility}</div>
+                                </div>
+                                <div className="dates">
+                                    <div className="date startDate">{data.startDate}</div>
+                                    <span>to</span>
+                                    <div className="date endDate">{data.endDate}</div>
+                                </div>
+                                <div className="summary">
+                                    {`26.3 hours, $${data.earnings}`}
+                                </div>
+                            </div>
+                            <hr />
+                        </div>
+                        
+                        <div className="left-bottom">
+                            <InfoCard resource="truck" heading="Truck" />
+                            <InfoCard resource="facility" heading="Origin Facility"/>
+                            <InfoCard resource="facility" heading="Destination Facility"/>
+                        </div>
+                    </div>
                     <div className="right">
                         <div className="right-top">
                             <Map />
