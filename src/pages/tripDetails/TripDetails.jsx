@@ -49,7 +49,7 @@ const TripDetails = ({ resource, details }) => {
                         <div className="info">
                             {
                                 truckDetails.map(detail => (
-                                    <div className="detailItem">
+                                    <div className="detailItem" key={detail.id}>
                                         <span className="itemKey">{detail.label}: </span>
                                         <span className="itemValue">{truckData[detail.field]}</span>
                                     </div>

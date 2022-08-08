@@ -45,8 +45,6 @@ const DataTable = ({ resource, title }) => {
 
                     list.push({id: doc.id, ...docData});
                 });
-
-                console.log(list)
                 
                 setData(list);
             } catch (error) {

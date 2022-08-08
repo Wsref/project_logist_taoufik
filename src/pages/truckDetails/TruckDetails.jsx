@@ -78,7 +78,7 @@ const TruckDetails = ({ resource, details }) => {
                             <div className="info">
                                 {
                                     details.map(detail => (
-                                        <div className="detailItem">
+                                        <div className="detailItem" key={detail.id}>
                                             <span className="itemKey">{detail.label}</span>
                                             <span className="itemValue">{data[detail.field]}</span>
                                         </div>

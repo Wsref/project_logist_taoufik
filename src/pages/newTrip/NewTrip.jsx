@@ -75,7 +75,6 @@ const NewTrip = ({ resource, title }) => {
         const value = e.target.value;
 
         setData({ ...data, [id]: value })
-        console.log(value)
     }
 
     useEffect(() => {

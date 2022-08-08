@@ -20,7 +20,6 @@ const New = ({ resource, title, inputs }) => {
         const value = e.target.value;
 
         setData({ ...data, [id]: value })
-        console.log(value)
     }
 
     const handleAdd = async (e) => {
