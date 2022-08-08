@@ -8,6 +8,7 @@ import './facilityDetails.scss'
 import {collection, query, where, doc, getDoc, getDocs} from "firebase/firestore";
 import { tripColumns } from '../../dataTableSource'
 import { DataGrid } from '@mui/x-data-grid';
+import EditIcon from '@mui/icons-material/Edit';
 
 const FacilityDetails = ({ resource, details }) => {
     const { id } = useParams();
@@ -73,7 +74,7 @@ const FacilityDetails = ({ resource, details }) => {
     }, [data])
 
     return (
-        <div className='truckDetails'>
+        <div className='facilityDetails'>
             <Sidebar />
             <div className="singleContainer">
                 <Navbar />
@@ -81,14 +82,11 @@ const FacilityDetails = ({ resource, details }) => {
                     <div className="left">
                         <div className="detail-card">
                             <div className="bio">
-                                <img
-                                    src="https://images.pexels.com/photos/93398/pexels-photo-93398.jpeg?cs=srgb&dl=pexels-photoscom-93398.jpg&fm=jpg"
-                                    alt=""
-                                    className="itemImg"
-                                />
-                                <div className="identifier">
-                                    <span>Facility:</span>
-                                    <h1 className="itemTitle">{id}</h1>
+                                <div className="resourceImg">
+                                    <img src={'/warehouse.png'} alt="" className='itemImg'/>
+                                </div>      
+                                <div className="editBtn">
+                                    <span>Edit</span><EditIcon className='icon'/>
                                 </div>
                             </div>
                             <hr />

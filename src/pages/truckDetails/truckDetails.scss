@@ -17,6 +17,7 @@
 
             .title {
                 font-size: 2vmin;
+                color: #555e66;
             }
 
             .chart {
@@ -39,21 +40,39 @@
                     padding-bottom: 2%;
 
                     .bio {
-                        height: 30%;
-                        padding: 4%;
+                        height: 50%;
+                        margin: 4%;
                         display: flex;
-                        align-items: center;
-                        gap: 5%;
+                        gap: 10%;
                         max-width: 100%;
 
-                        .itemImg {
-                            height: 10vmin;
+                        .resourceImg {
+                            flex: 4;
+                            .itemImg {
+                                max-height: auto;
+                                max-width: 100%;
+                            }
                         }
 
-                        .itemTitle {
-                            color: gray;
-                            font-size: 1.5vmin;
-                            margin-left: 5%;
+                        .editBtn {
+                            flex: 1;
+                            min-height: 100%;
+                            color: #555e66;
+                            display: flex;
+                            justify-content: right;
+                            font-size: 2vmin;
+                            gap: 2%;
+
+                            span {
+                                font-size: 1.8vmin;
+                            }
+
+                            span,
+                            .icon {
+                                margin-top: 0;
+                                margin-bottom: auto;
+                                cursor: pointer;
+                            }
                         }
                     }
 
@@ -67,7 +86,7 @@
                     }
 
                     .info {
-                        height: 80%;
+                        height: 50%;
                         padding: 4%;
                         display: flex;
                         flex-direction: column;
@@ -104,7 +123,7 @@
                 margin-right: 2%;
 
                 .chart {
-                    color: gray;
+                    color: #555e66;
                     background-color: white;
                     max-width: 98%;
                     height: 100%;
@@ -118,7 +137,7 @@
                         width: 100%;
                         display: flex;
                         justify-content: space-between;
-                        color: gray;
+                        color: #555e66;
                         font-size: 2vmin;
 
                         .title {
@@ -147,7 +166,7 @@
                 font-size: 2vmin;
                 margin-bottom: 1%;
                 font-weight: 500;
-                color: gray;
+                color: #555e66;
                 font-size: 2vmin;
             }
         }

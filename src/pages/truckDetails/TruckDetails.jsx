@@ -8,6 +8,7 @@ import { db } from '../../firebase';
 import {collection, query, where, doc, getDoc, getDocs} from "firebase/firestore";
 import { tripColumns } from '../../dataTableSource'
 import { DataGrid } from '@mui/x-data-grid';
+import EditIcon from '@mui/icons-material/Edit';
 
 const TruckDetails = ({ resource, details }) => {
     const { id } = useParams();
@@ -66,10 +67,11 @@ const TruckDetails = ({ resource, details }) => {
                     <div className="left">
                         <div className="detail-card">
                             <div className="bio">
-                                <img src={'/semi-truck.jpg'} alt="" className='itemImg'/>
-                                <div className="identifier">
-                                    Truck:
-                                    <h1 className="itemTitle">{id}</h1>
+                                <div className="resourceImg">
+                                    <img src={'/semi-truck.png'} alt="" className='itemImg'/>
+                                </div>      
+                                <div className="editBtn">
+                                    <span>Edit</span><EditIcon className='icon'/>
                                 </div>
                             </div>
                             <hr />
