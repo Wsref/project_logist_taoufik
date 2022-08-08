@@ -7,7 +7,7 @@ const InfoCard = ({resource, heading}) => {
     const resName = resource === "truck" ? "ABCD123" : "Central Logistics";
     const resourceData1 = resource === "truck" ? "Driver: Barbara Phillips" : "123 Sesame Street";
     const resourceData2 = resource === "truck" ? "Truck Capacity: 35000 lbs" : "New York, NY 12345"
-    const resourceImg = resource === "truck" ? '/semi-truck.jpg' : '/warehouse.jpg';
+    const resourceImg = resource === "truck" ? '/semi-truck.png' : '/warehouse.png';
 
     return (
         <div className='cardContainer'>

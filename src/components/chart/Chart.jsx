@@ -46,7 +46,7 @@ const Chart = ({ title }) => {
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
-                    <Area type="monotone" dataKey="Total" stroke="#0C0268" fill="#0C0268" />
+                    <Area type="monotone" dataKey="Total" stroke="#807dbd" fill="#807dbd" />
                     </AreaChart>
                 :
                     <BarChart
@@ -64,7 +64,7 @@ const Chart = ({ title }) => {
                         <XAxis dataKey="name" />
                         <YAxis />
                         <Tooltip />
-                        <Bar dataKey="Total" fill="#0C0268" />
+                        <Bar dataKey="Total" fill="#807dbd" />
                     </BarChart>
                 }
                 </ResponsiveContainer>

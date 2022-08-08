@@ -14,7 +14,7 @@
         .logo {
             font-size: 1.5vmax;
             font-weight: bold;
-            color: rgb(12, 2, 104);
+            color: #262538;
         }
     }
 
@@ -35,7 +35,7 @@
             .title {
                 font-size: 1.4vmin;
                 font-weight: bold;
-                color: #999;
+                color: #555e66;
                 margin-top: 8%;
                 margin-bottom: 2%;
             }
@@ -48,7 +48,7 @@
                 width: 98%;
 
                 &:hover {
-                    background-color: rgb(131, 118, 250);
+                    background-color: #807dbd;
 
                     span {
                         color: #fff;
@@ -57,13 +57,13 @@
 
                 .icon {
                     font-size: 2.5vmin;
-                    color: rgb(12, 2, 104);
+                    color: #262538;
                 }
 
                 span {
                     font-size: 1.75vmin;
                     font-weight: 600;
-                    color: #888;
+                    color: #555e66;
                     margin-left: 4%;
                 }
             }

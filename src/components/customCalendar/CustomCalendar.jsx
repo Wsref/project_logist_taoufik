@@ -6,7 +6,7 @@ import CalendarToolbar from "./CalendarToolbar";
 
 const localizer = momentLocalizer(moment);
 const myEventsList = [
-    { start: new Date(), end: new Date('August 10, 2022 12:20:30'), title: "Central Logistics to Keystone Packaging" },
+    { start: new Date('August 14, 2022 15:15:00'), end: new Date('August 20, 2022 05:00:00'), title: "Lakeview Shipping to Keystone Packaging" },
 ];
 
 const CustomCalendar = () => {
