@@ -11,50 +11,9 @@ import Navbar from '../../components/navbar/Navbar'
 
 const New = ({ resource, title, inputs }) => {
 
-    const [file, setFile] = useState("")
     const [data, setData] = useState({});
-    const [per, setPer] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const uploadFile = () => {
-
-            const name = new Date().getTime() + file.name;
-            const storageRef = ref(storage, name);
-
-            const uploadTask = uploadBytesResumable(storageRef, file);
-
-
-            uploadTask.on(
-                'state_changed', 
-                (snapshot) => {
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
-                    setPer(progress)
-                    switch (snapshot.state) {
-                    case 'paused':
-                        console.log('Upload is paused');
-                        break;
-                    case 'running':
-                        console.log('Upload is running');
-                        break;
-                    default:
-                        break;
-                    }
-                }, 
-            (error) => {
-                console.log(error)
-            }, 
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    setData((prev) => ({...prev, img: downloadURL}));
-                });
-            }
-            );
-        }
-
-        file && uploadFile();
-    }, [file])
 
     const handleInput = (e) => {
         const id = e.target.id;
@@ -76,10 +35,14 @@ const New = ({ resource, title, inputs }) => {
                 ...data,
                 timeStamp: serverTimestamp(),
             });
-            navigate(-1)
+            navigate(`/${resource}`)
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const goBack = () => {
+        navigate(`/${resource}`);
     }
 
 
@@ -92,18 +55,8 @@ const New = ({ resource, title, inputs }) => {
                     <h1>{title}</h1>
                 </div>
                 <div className="bottom">
-                    <div className="left">
-                        <img 
-                            src={file ? URL.createObjectURL(file) : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"} 
-                            alt="" 
-                        />
-                    </div>
                     <div className="right">
-                        <form onSubmit={handleAdd}>
-                            <div className="formInput">
-                                Image <label htmlFor="file"><DriveFolderUploadOutlinedIcon className='icon'/></label>
-                                <input type="file" id="file" onChange={e => setFile(e.target.files[0])} style={{display: "none"}}/>
-                            </div>
+                        <form>
                             {
                                 inputs.map((input) => (
                                     <div className="formInput" key={input.id}>
@@ -117,7 +70,10 @@ const New = ({ resource, title, inputs }) => {
                                     </div>
                                 ))
                             }
-                            <button disabled={per !== null && per < 100} type="submit">Send</button>
+                            <div className="btn-row">
+                                <button onClick={goBack} className="cancelBtn">Cancel</button>
+                                <button onClick={handleAdd} className='submitBtn'>Send</button>
+                            </div>
                         </form>
                     </div>
                 </div>

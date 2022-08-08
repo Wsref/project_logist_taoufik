@@ -70,46 +70,6 @@ const NewTrip = ({ resource, title }) => {
     }, [])
 
 
-    useEffect(() => {
-        const uploadFile = () => {
-
-            const name = new Date().getTime() + file.name;
-            const storageRef = ref(storage, name);
-
-            const uploadTask = uploadBytesResumable(storageRef, file);
-
-
-            uploadTask.on(
-                'state_changed', 
-                (snapshot) => {
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
-                    setPer(progress)
-                    switch (snapshot.state) {
-                    case 'paused':
-                        console.log('Upload is paused');
-                        break;
-                    case 'running':
-                        console.log('Upload is running');
-                        break;
-                    default:
-                        break;
-                    }
-                }, 
-            (error) => {
-                console.log(error)
-            }, 
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    setData((prev) => ({...prev, img: downloadURL}));
-                });
-            }
-            );
-        }
-
-        file && uploadFile();
-    }, [file])
-
     const handleInput = (e) => {
         const id = e.target.id;
         const value = e.target.value;
@@ -130,6 +90,8 @@ const NewTrip = ({ resource, title }) => {
 
     const handleAdd = async (e) => {
         e.preventDefault();
+
+
         try {
             if (resource === "trips") {
                     data.earnings = parseInt(data.earnings);
@@ -146,6 +108,10 @@ const NewTrip = ({ resource, title }) => {
         }
     }
 
+    const goBack = () => {
+        navigate(`/trips`);
+    }
+
 
     return (
         <div className='new'>
@@ -156,18 +122,8 @@ const NewTrip = ({ resource, title }) => {
                     <h1>{title}</h1>
                 </div>
                 <div className="bottom">
-                    <div className="left">
-                        <img 
-                            src={file ? URL.createObjectURL(file) : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"} 
-                            alt="" 
-                        />
-                    </div>
                     <div className="right">
-                        <form onSubmit={handleAdd}>
-                            <div className="formInput">
-                                Image <label htmlFor="file"><DriveFolderUploadOutlinedIcon className='icon'/></label>
-                                <input type="file" id="file" onChange={e => setFile(e.target.files[0])} style={{display: "none"}}/>
-                            </div>
+                        <form>
                             <div className="formInput">
                                 <label>Truck</label>
                             <Select 
@@ -230,7 +186,10 @@ const NewTrip = ({ resource, title }) => {
                                     onChange={handleInput} 
                                 />
                             </div>
-                            <button disabled={per !== null && per < 100} type="submit">Send</button>
+                            <div className="btn-row">
+                                <button onClick={goBack} className="cancelBtn">Cancel</button>
+                                <button onClick={handleAdd} className='submitBtn'>Send</button>
+                            </div>
                         </form>
                     </div>
                 </div>
