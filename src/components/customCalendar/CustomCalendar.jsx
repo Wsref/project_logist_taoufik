@@ -5,16 +5,14 @@ import "./customCalendar.scss";
 import CalendarToolbar from "./CalendarToolbar";
 
 const localizer = momentLocalizer(moment);
-const myEventsList = [
-    { start: new Date('August 14, 2022 15:15:00'), end: new Date('August 20, 2022 05:00:00'), title: "Lakeview Shipping to Keystone Packaging" },
-];
 
-const CustomCalendar = () => {
+const CustomCalendar = ({ dateRange }) => {
+
     return (
         <div className="customCalendar">
         <Calendar
             localizer={localizer}
-            events={myEventsList}
+            events={dateRange}
             startAccessor="start"
             endAccessor="end"
             style={{ minHeight: "300px" }}

@@ -29,6 +29,8 @@ const TripDetails = () => {
     }, [])
 
     useEffect(() => {
+        
+
         const tripTruck = truckData.filter(truck => truck.license === data.truck)[0];
         setTruckInfo(tripTruck);
 
@@ -38,6 +40,41 @@ const TripDetails = () => {
         const tripDestinationFacility = facilityData.filter(facility => facility.facilityName === data.destinationFacility)[0];
         setDestinationFacilityInfo(tripDestinationFacility);
     }, [data])
+
+    const timeDiffCalc = () => {
+        let diffInMilliSeconds = Math.abs(new Date(data.endDate) - new Date(data.startDate)) / 1000;
+
+        // calculate days
+        const days = Math.floor(diffInMilliSeconds / 86400);
+        diffInMilliSeconds -= days * 86400;
+
+        // calculate hours
+        const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+        diffInMilliSeconds -= hours * 3600;
+
+        // calculate minutes
+        const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+
+        let difference = '';
+        
+        if (days > 0) {
+            difference += (days === 1) ? `${days} day, ` : `${days} days, `;
+        }
+
+        if (hours > 0) {
+            difference += (hours === 1) ? `${hours} hour, ` : `${hours} hours, `;
+        }
+
+        if (minutes > 0) {
+            difference += (minutes === 1) ? `${minutes} minute` : `${minutes} minutes,`;
+        }
+         
+        if (days === 0 && hours === 0 && minutes === 0) {
+            difference += "No time"
+        }
+
+        return difference;
+    }
 
     return (
         <div className="tripDetails">
@@ -59,7 +96,7 @@ const TripDetails = () => {
                                     <div className="date endDate">{data.endDate}</div>
                                 </div>
                                 <div className="summary">
-                                    {`26.3 hours, $${data.earnings}`}
+                                    {`${timeDiffCalc()} $${data.earnings}`}
                                 </div>
                             </div>
                             <hr />
@@ -78,7 +115,11 @@ const TripDetails = () => {
                             <Map />
                         </div>
                         <div className="right-bottom">
-                            <CustomCalendar />
+                            <CustomCalendar dateRange={[{
+                                start: new Date(data.startDate),
+                                end: new Date(data.endDate),
+                                title: `${data.originFacility} to ${data.destinationFacility}`
+                            }]}/>
                         </div>
                     </div>
                 </div>
