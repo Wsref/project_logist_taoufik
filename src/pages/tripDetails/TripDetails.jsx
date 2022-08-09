@@ -1,63 +1,43 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
-import Chart from '../../components/chart/Chart'
 import './tripDetails.scss'
-import { Navigate, useParams } from 'react-router-dom'
-import { db } from '../../firebase';
-import TabView from '../../components/tabView/TabView'
-import {collection, query, where, getDocs, doc, getDoc} from "firebase/firestore";
-import { truckDetails, tripDetails, facilityDetails } from "../../detailSource"
+import { useNavigate, useParams } from 'react-router-dom'
 import Map from '../../components/map/Map'
 import CustomCalendar from '../../components/customCalendar/CustomCalendar'
 import InfoCard from '../../components/infoCard/InfoCard'
-import DateCard from '../../components/dateCard/DateCard'
+import { AppContext } from '../../App'
 
-const TripDetails = ({ resource, details }) => {
+const TripDetails = () => {
     const { id } = useParams();
     const [data, setData] = useState([]);
-    const [truckData, setTruckData] = useState({
-        driver_name: "John Doe",
-        capacity: 24000,
-        license: "ABCD123",
-        registration: "valid"
-    })
-    const [originFacilityData, setOriginFacilityData] = useState([]); 
-    const [destinationFacilityData, setDestinationFacilityData] = useState([]); 
+    const [truckInfo, setTruckInfo] = useState([]);
+    const [originFacilityInfo, setOriginFacilityInfo] = useState([]); 
+    const [destinationFacilityInfo, setDestinationFacilityInfo] = useState([]); 
+    const { facilityData, truckData, tripData } = useContext(AppContext);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchData = async () => {
-            const docRef = doc(db, resource, id);
-            const docSnap = await getDoc(docRef);
+        const idResults = tripData.filter(trip => trip.id === id);
 
-            if (docSnap.exists()) {
-                const docData = docSnap.data();
-
-                if (resource === "trips") {
-                    docData.startDate = docData.startDate.toDate().toLocaleString();
-                    docData.endDate = docData.endDate.toDate().toLocaleString();             
-                }
-                setData(docData);
-            } else {
-                return <Navigate to="/404"/>
-            }
+        if (idResults.length > 0) {
+            setData(idResults[0]);
+        } else {
+            navigate("/404");
         }
-        fetchData();
     }, [])
 
-    const truckInfo = (
-                        <div className="info">
-                            {
-                                truckDetails.map(detail => (
-                                    <div className="detailItem" key={detail.id}>
-                                        <span className="itemKey">{detail.label}: </span>
-                                        <span className="itemValue">{truckData[detail.field]}</span>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                    )
+    useEffect(() => {
+        const tripTruck = truckData.filter(truck => truck.license === data.truck)[0];
+        setTruckInfo(tripTruck)
 
+        const tripOriginFacility = facilityData.filter(facility => facility.facilityName === data.originFacility)[0];
+        setOriginFacilityInfo(tripOriginFacility)
+
+        const tripDestinationFacility = facilityData.filter(facility => facility.facilityName === data.destinationFacility)[0];
+        setDestinationFacilityInfo(tripDestinationFacility)
+    }, [data, facilityData, truckData, tripData])
 
     return (
         <div className="tripDetails">
@@ -86,9 +66,9 @@ const TripDetails = ({ resource, details }) => {
                         </div>
                         
                         <div className="left-bottom">
-                            <InfoCard resource="truck" heading="Truck" />
-                            <InfoCard resource="facility" heading="Origin Facility"/>
-                            <InfoCard resource="facility" heading="Destination Facility"/>
+                            <InfoCard resource="truck" heading="Truck" data={truckInfo} />
+                            <InfoCard resource="facility" heading="Origin Facility" data={originFacilityInfo} />
+                            <InfoCard resource="facility" heading="Destination Facility" data={destinationFacilityInfo} />
                         </div>
                     </div>
                     <div className="right">

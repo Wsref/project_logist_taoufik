@@ -1,77 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Chart from '../../components/chart/Chart'
-import { useParams } from 'react-router-dom'
-import { db } from '../../firebase';
+import { useNavigate, useParams } from 'react-router-dom'
 import './facilityDetails.scss'
-import {collection, query, where, doc, getDoc, getDocs} from "firebase/firestore";
 import { tripColumns } from '../../dataTableSource'
 import { DataGrid } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
+import { AppContext } from '../../App'
 
-const FacilityDetails = ({ resource, details }) => {
+const FacilityDetails = ({ details }) => {
     const { id } = useParams();
     const [data, setData] = useState([]);
     const [trips, setTrips] = useState([]);
-    const [fields, setFields] = useState(tripColumns)
+    const [fields] = useState(tripColumns)
+    const { facilityData, tripData } = useContext(AppContext);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchData = async () => {
-            const docRef = doc(db, resource, id);
-            const docSnap = await getDoc(docRef);
+        const idResults = facilityData.filter(facility => facility.id === id);
 
-            if (docSnap.exists()) {
-                const docData = docSnap.data();
-                setData(docData);
-            }
+        if (idResults.length > 0) {
+            setData(idResults[0]);
+        } else {
+            navigate("/404")
         }
-        fetchData();
     }, [])
 
     useEffect(() => {
-        const fetchData = async () => {
-            let list = [];
-
-            const originQuery = query(
-                    collection(db, "trips"), 
-                    where("originFacility", "==", data.facilityName),
-                    
-            )
-
-            const originData = await getDocs(originQuery);
-            
-            originData.forEach((document) => { 
-                let originDocData = document.data();
-
-                originDocData.startDate = originDocData.startDate.toDate().toLocaleString();
-                originDocData.endDate = originDocData.endDate.toDate().toLocaleString();
-
-                list.push({id: document.id, ...originDocData})
-            })
-
-            const destinationQuery = query(
-                    collection(db, "trips"), 
-                    where("destinationFacility", "==", data.facilityName),
-                    
-            )
-
-            const destinationData = await getDocs(destinationQuery);
-            
-            destinationData.forEach((document) => { 
-                let destinationDocData = document.data();
-
-                destinationDocData.startDate = destinationDocData.startDate.toDate().toLocaleString();
-                destinationDocData.endDate = destinationDocData.endDate.toDate().toLocaleString();
-
-                list.push({id: document.id, ...destinationDocData})
-            })
-
-            setTrips(list)
-        }
-
-        fetchData();
-    }, [data])
+        const facilityTrips = tripData.filter(trip => (
+            (trip.destinationFacility === data.facilityName) || 
+            (trip.originFacility === data.facilityName)
+        ));
+        setTrips(facilityTrips);
+    }, [data, tripData])
 
     return (
         <div className='facilityDetails'>

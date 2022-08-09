@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './infoCard.scss'
 
-const InfoCard = ({resource, heading}) => {
-    const [data, setData] = useState([]);
+const InfoCard = ({resource, heading, data}) => {
 
-    const resName = resource === "truck" ? "ABCD123" : "Central Logistics";
-    const resourceData1 = resource === "truck" ? "Driver: Barbara Phillips" : "123 Sesame Street";
-    const resourceData2 = resource === "truck" ? "Truck Capacity: 35000 lbs" : "New York, NY 12345"
+    const resName = resource === "truck" ? data.license : data.facilityName;
+    const resourceData1 = resource === "truck" ? `Driver: ${data.driver_name}` : data.address;
+    const resourceData2 = resource === "truck" ? `Truck Capacity: ${data.capacity} lbs` : `${data.city}, ${data.facilityState} ${data.zipCode}`
     const resourceImg = resource === "truck" ? '/semi-truck.png' : '/warehouse.png';
 
     return (

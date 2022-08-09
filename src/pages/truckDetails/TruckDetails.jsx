@@ -1,62 +1,37 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Chart from '../../components/chart/Chart'
 import './truckDetails.scss'
 import { useNavigate, useParams } from 'react-router-dom'
-import { db } from '../../firebase';
-import {collection, query, where, doc, getDoc, getDocs} from "firebase/firestore";
 import { tripColumns } from '../../dataTableSource'
 import { DataGrid } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
-
-const TruckDetails = ({ resource, details }) => {
+import { AppContext } from '../../App'
+ 
+const TruckDetails = ({ details }) => {
     const { id } = useParams();
     const [data, setData] = useState([]);
     const [trips, setTrips] = useState([]);
-    const [fields, setFields] = useState(tripColumns)
+    const [fields] = useState(tripColumns)
+    const { truckData, tripData } = useContext(AppContext);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchData = async () => {
-            const docRef = doc(db, resource, id);
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                const docData = docSnap.data();
-                setData(docData);
-            } else if (docSnap.exists() === false) {
-                navigate("/404");
-            }
+        const idResults = truckData.filter(truck => truck.id === id);
+
+        if (idResults.length > 0) {
+            setData(idResults[0]);
+        } else {
+            navigate("/404")
         }
-        fetchData();
     }, [])
 
     useEffect(() => {
-        const fetchData = async () => {
-            let list = [];
-
-            const tripQuery = query(
-                    collection(db, "trips"), 
-                    where("truck", "==", data.license)
-            )
-
-            const tripData = await getDocs(tripQuery);
-            
-            tripData.forEach((document) => { 
-                let docData = document.data();
-
-                docData.startDate = docData.startDate.toDate().toLocaleString();
-                docData.endDate = docData.endDate.toDate().toLocaleString();
-
-                list.push({id: document.id, ...docData})
-            })
-
-            setTrips(list)
-        }
-
-        fetchData();
-    }, [data])
+        const truckTrips = tripData.filter(trip => trip.truck === data.license);
+        setTrips(truckTrips);
+    }, [data, tripData])
 
     return (
         <div className='truckDetails'>
