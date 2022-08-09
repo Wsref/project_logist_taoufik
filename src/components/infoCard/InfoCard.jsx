@@ -1,12 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './infoCard.scss'
 
 const InfoCard = ({resource, heading, data}) => {
 
-    const resName = resource === "truck" ? data.license : data.facilityName;
-    const resourceData1 = resource === "truck" ? `Driver: ${data.driver_name}` : data.address;
-    const resourceData2 = resource === "truck" ? `Truck Capacity: ${data.capacity} lbs` : `${data.city}, ${data.facilityState} ${data.zipCode}`
-    const resourceImg = resource === "truck" ? '/semi-truck.png' : '/warehouse.png';
+    const [resData, setResData] = useState([]);
+
+    useEffect(() => {
+        if (resource === "truck") {
+            setResData({
+                resName: data.license,
+                resourceData1: `Driver: ${data.driver_name}`,
+                resourceData2: `Truck Capacity: ${data.capacity} lbs`,
+                resourceImg: '/semi-truck.png'
+            })
+        } else if (resource === "facility") {
+            setResData({
+                resName: data.facilityName,
+                resourceData1: data.address,
+                resourceData2: `${data.city}, ${data.facilityState} ${data.zipCode}`,
+                resourceImg: '/warehouse.png'
+            })
+        }
+    }, [data, resource])
+
+    const {resName, resourceData1, resourceData2, resourceImg} = resData;
 
     return (
         <div className='cardContainer'>

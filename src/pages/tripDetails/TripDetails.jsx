@@ -30,14 +30,14 @@ const TripDetails = () => {
 
     useEffect(() => {
         const tripTruck = truckData.filter(truck => truck.license === data.truck)[0];
-        setTruckInfo(tripTruck)
+        setTruckInfo(tripTruck);
 
         const tripOriginFacility = facilityData.filter(facility => facility.facilityName === data.originFacility)[0];
-        setOriginFacilityInfo(tripOriginFacility)
+        setOriginFacilityInfo(tripOriginFacility);
 
         const tripDestinationFacility = facilityData.filter(facility => facility.facilityName === data.destinationFacility)[0];
-        setDestinationFacilityInfo(tripDestinationFacility)
-    }, [data, facilityData, truckData, tripData])
+        setDestinationFacilityInfo(tripDestinationFacility);
+    }, [data])
 
     return (
         <div className="tripDetails">
@@ -64,12 +64,14 @@ const TripDetails = () => {
                             </div>
                             <hr />
                         </div>
-                        
-                        <div className="left-bottom">
-                            <InfoCard resource="truck" heading="Truck" data={truckInfo} />
-                            <InfoCard resource="facility" heading="Origin Facility" data={originFacilityInfo} />
-                            <InfoCard resource="facility" heading="Destination Facility" data={destinationFacilityInfo} />
-                        </div>
+                        {
+                            (truckInfo && originFacilityInfo && destinationFacilityInfo) &&
+                            <div className="left-bottom">
+                                <InfoCard resource="truck" heading="Truck" data={truckInfo} />
+                                <InfoCard resource="facility" heading="Origin Facility" data={originFacilityInfo} />
+                                <InfoCard resource="facility" heading="Destination Facility" data={destinationFacilityInfo} />
+                            </div>
+                        }
                     </div>
                     <div className="right">
                         <div className="right-top">
