@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
@@ -8,11 +8,13 @@ import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlin
 import {collection, query, where, getDoc, getDocs} from "firebase/firestore";
 import { db } from '../../firebase';
 import "./widget.scss";
+import { AppContext } from '../../App';
 
 const Widget = ({ type }) => {
 
     const [amount, setAmount] = useState(null);
     const [diff, setDiff] = useState(null);
+    const { truckData, tripData, facilityData } = useContext(AppContext)
 
     let data;
 
@@ -94,75 +96,62 @@ const Widget = ({ type }) => {
     }
 
     useEffect(() => {
-        const fetchData = async () => {
-            if (type !== "earning") {
-                const today = new Date();
-                const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
-                const previousMonth = new Date(new Date().setMonth(today.getMonth() - 2));
+        const today = new Date();
+        const lastMonthToDate = new Date(new Date().setMonth(today.getMonth() - 1));
+        const previousMonth = new Date(new Date().setMonth(today.getMonth() - 2));
 
-                const totalQuery = query(
-                    collection(db, data.query)
-                )
+        if (type !== "earning") {
+            if (data.query === "trucks") {
+                const thisMonthTrucks = truckData.filter((truck) => ((truck.timeStamp.seconds * 1000 <= today.getTime()) && (truck.timeStamp.seconds * 1000 > lastMonthToDate.getTime())));
+                const previousMonthTrucks = truckData.filter((truck) => (truck.timeStamp.seconds * 1000 <= lastMonthToDate.getTime()) && (truck.timeStamp.seconds * 1000 > previousMonth.getTime()));
 
-                const lastMonthQuery = query(
-                    collection(db, data.query), 
-                    where("timeStamp", "<=", today), 
-                    where("timeStamp", ">", lastMonth)
-                )
+                setAmount(truckData.length);
 
-                const previousMonthQuery = query(
-                    collection(db, data.query), 
-                    where("timeStamp", "<=", lastMonth), 
-                    where("timeStamp", ">", previousMonth)
-                );
+                const changeOverMonth = ((thisMonthTrucks.length - previousMonthTrucks.length) / previousMonthTrucks.length) * 100;
 
-                const totalQueryData = await getDocs(totalQuery);
-                const lastMonthData = await getDocs(lastMonthQuery);
-                const prevMonthData = await getDocs(previousMonthQuery);
+                setDiff(changeOverMonth.toFixed(1))
 
-                setAmount(totalQueryData.docs.length);
-                setDiff((((lastMonthData.docs.length - prevMonthData.docs.length) / prevMonthData.docs.length) * 100).toFixed(0))
-            } else {
-                const today = new Date();
-                const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
-                const previousMonth = new Date(new Date().setMonth(today.getMonth() - 2));
+            } 
+            else if (data.query === "trips") {
+                const thisMonthTrips = tripData.filter((trip) => ((trip.timeStamp.seconds * 1000 <= today.getTime()) && (trip.timeStamp.seconds * 1000 > lastMonthToDate.getTime())));
+                const previousMonthTrips = tripData.filter((trip) => (trip.timeStamp.seconds * 1000 <= lastMonthToDate.getTime()) && (trip.timeStamp.seconds * 1000 > previousMonth.getTime()));
 
-                const totalQuery = query(
-                    collection(db, "trips")
-                )
+                setAmount(tripData.length);
 
-                const lastMonthQuery = query(
-                    collection(db, "trips"), 
-                    where("timeStamp", "<=", today), 
-                    where("timeStamp", ">", lastMonth)
-                )
+                const changeOverMonth = ((thisMonthTrips.length - previousMonthTrips.length) / previousMonthTrips.length) * 100;
 
-                const previousMonthQuery = query(
-                    collection(db, "trips"), 
-                    where("timeStamp", "<=", lastMonth), 
-                    where("timeStamp", ">", previousMonth)
-                );
+                setDiff(changeOverMonth.toFixed(0))
 
-                const totalQueryData = await getDocs(totalQuery);
-                const lastMonthData = await getDocs(lastMonthQuery);
-                const prevMonthData = await getDocs(previousMonthQuery);
-
-                let sum = 0;
-
-                totalQueryData.docs.forEach(doc => {
-                    let docData = doc.data();
-
-                    sum += parseInt(docData.earnings) 
-                })
-
-                setAmount(sum);
             }
+            else if (data.query === "facilities") {
+                const thisMonthFacilities = facilityData.filter((facility) => ((facility.timeStamp.seconds * 1000 <= today.getTime()) && (facility.timeStamp.seconds * 1000 > lastMonthToDate.getTime())));
+                const previousMonthFacilities = facilityData.filter((facility) => (facility.timeStamp.seconds * 1000 <= lastMonthToDate.getTime()) && (facility.timeStamp.seconds * 1000 > previousMonth.getTime()));
+
+                setAmount(facilityData.length);
+
+                const changeOverMonth = ((thisMonthFacilities.length - previousMonthFacilities.length) / previousMonthFacilities.length) * 100;
+
+                setDiff(changeOverMonth.toFixed(0))
+
+            }
+            else {
+                setAmount(0);
+            }
+        } else {
+            const thisMonthTrips = tripData.filter((trip) => ((trip.timeStamp.seconds * 1000 <= today.getTime()) && (trip.timeStamp.seconds * 1000 > lastMonthToDate.getTime())));
+            const previousMonthTrips = tripData.filter((trip) => (trip.timeStamp.seconds * 1000 <= lastMonthToDate.getTime()) && (trip.timeStamp.seconds * 1000 > previousMonth.getTime()));
+
+            const totalEarnings =  tripData.map(trip => trip.earnings).reduce((previousVal, currentVal) => previousVal + currentVal, 0);
+            const thisMonthEarnings = thisMonthTrips.map(trip => trip.earnings).reduce((previousVal, currentVal) => previousVal + currentVal, 0);
+            const previousMonthEarnings = previousMonthTrips.map(trip => trip.earnings).reduce((previousVal, currentVal) => previousVal + currentVal, 0);
+
+            setAmount(totalEarnings);
+
+            const changeOverMonth = ((thisMonthEarnings - previousMonthEarnings) / previousMonthEarnings) * 100;
+
+            setDiff(changeOverMonth.toFixed(0))
         }
-
-        fetchData();
-    }, [])
-
-
+    })
 
     return (
         <div className='widget'>
@@ -176,7 +165,7 @@ const Widget = ({ type }) => {
             <div className="right">
                 <div className="percentage positive">
                     <KeyboardArrowUpIcon />
-                        10%
+                        {diff}%
                 </div>
                 {data.icon}
             </div>
