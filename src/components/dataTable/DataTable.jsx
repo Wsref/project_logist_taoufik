@@ -1,5 +1,5 @@
 import './dataTable.scss'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DataGrid } from '@mui/x-data-grid';
 import { 
@@ -7,10 +7,11 @@ import {
     tripColumns, 
     facilityColumns, 
 } from '../../dataTableSource';
-import { db } from '../../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { AppContext } from '../../App';
 
 const DataTable = ({ resource, title }) => {
+
+    const { truckData, facilityData, tripData } = useContext(AppContext)
 
     const [data, setData] = useState([]);
     const [fields, setFields] = useState(truckColumns)
@@ -30,29 +31,13 @@ const DataTable = ({ resource, title }) => {
                 break;
         }
 
-        const fetchData = async () => {
-            let list = [];
-
-            try {
-                const querySnapshot = await getDocs(collection(db, resource));
-                querySnapshot.forEach((doc) => {
-                    let docData = doc.data();
-
-                    if (resource === "trips") {
-                        docData.startDate = docData.startDate.toDate().toLocaleString();
-                        docData.endDate = docData.endDate.toDate().toLocaleString();
-                    }
-
-                    list.push({id: doc.id, ...docData});
-                });
-                
-                setData(list);
-            } catch (error) {
-                console.log(error);
-            }
+        if (resource === "trucks") {
+            return setData(truckData);
+        } else if (resource === "facilities") {
+            return setData(facilityData)
+        } else if (resource === "trips") {
+            return setData(tripData);
         }
-
-        fetchData();
     }, [resource])
 
     const handleDelete = (id) => {
