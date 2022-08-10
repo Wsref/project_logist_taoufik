@@ -166,7 +166,7 @@
                                 flex: 2;
 
                                 .title {
-                                    font-size: 80% !important;
+                                    font-size: 1.7vmin !important;
                                 }
 
                                 .amount {
@@ -196,14 +196,20 @@
 
                             .item {
                                 flex: 1 !important;
-                                width: 90% !important;
+                                width: 80% !important;
                                 display: flex !important;
                                 justify-content: space-between !important;
                                 flex-direction: row;
                                 align-items: center !important;
+                                margin-left: 10% !important;
+
+                                .itemTitle {
+                                    font-size: 1.7vmin !important;
+                                }
 
                                 .itemResult {
                                     margin-right: 0 !important;
+                                    font-size: 1.7vmin;
 
                                     .resultAmount {
                                         font-size: 80% !important;

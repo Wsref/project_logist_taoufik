@@ -36,11 +36,16 @@
             flex-direction: column;
             gap: 5%;
 
-            .CircularProgressbar {
-                height: 60%;
+            .chartDiv {
+                flex: 4;
+                height: 50%;
+                .CircularProgressbar {
+                    height: 100%;
+                }
             }
 
             .info {
+                flex: 3;
                 height: 35%;
                 display: flex;
                 flex-direction: column;
@@ -48,7 +53,7 @@
 
                 .title {
                     font-weight: 500;
-                    font-size: 100%;
+                    font-size: 2vmin;
                     color: gray;
                 }
 
@@ -85,7 +90,7 @@
                 align-items: center;
 
                 .itemTitle {
-                    font-size: 1rem;
+                    font-size: 2vmin;
                     text-align: center;
                     color: gray;
                 }
@@ -93,7 +98,7 @@
                 .itemResult {
                     justify-content: center;
                     display: flex;
-                    font-size: 1rem;
+                    font-size: 2vmin;
                     margin-left: auto;
                     margin-right: auto;
 
