@@ -1,10 +1,7 @@
 import './new.scss'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
 import { doc, addDoc, serverTimestamp, collection, Timestamp } from "firebase/firestore"; 
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from '../../firebase';
 import Sidebar from '../../components/sidebar/Sidebar'
 import Navbar from '../../components/navbar/Navbar'

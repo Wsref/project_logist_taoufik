@@ -17,7 +17,7 @@ const Select = ({ resource, defaultText, id, setter, data, label }) => {
             case "facilities":
                 return `${data.city}, ${data.facilityState} ${data.zipCode}`;
             case "trucks":
-                return `${data.driverName}, ${data.capacity} lbs`;
+                return `${data.driver_name}, ${data.capacity} lbs`;
             default:
                 return;
         }
@@ -36,7 +36,7 @@ const Select = ({ resource, defaultText, id, setter, data, label }) => {
                         {
                             data.map((option) => {
                                 return (
-                                    <div className="resultOption" onClick={() => handleClick(option[label])}>
+                                    <div className="resultOption" onClick={() => handleClick(option[label])} key={option.id}>
                                         <div className="top">{option[label]}</div>
                                         <div className="bottom">{detailBuilder(option)}</div>
                                     </div>

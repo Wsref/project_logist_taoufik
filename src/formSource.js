@@ -48,13 +48,11 @@ export const tripInputs = [
         id: "startDate",
         label: "Start Date",
         type: "datetime-local",
-        // placeholder: "01/01/1970 00:00:00",
     },
     {
         id: "endDate",
         label: "End Date",
         type: "datetime-local",
-        // placeholder: "01/01/1970 00:00:00",
     },
     {
         id: "earnings",
@@ -78,7 +76,7 @@ export const facilityInputs = [
         placeholder: "123 Sesame St",
     },
     {
-        id: "facilityCity",
+        id: "city",
         label: "City",
         type: "text",
         placeholder: "New York City",

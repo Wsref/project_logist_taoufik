@@ -1,74 +1,23 @@
 import './newTrip.scss'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
-import { addDoc, serverTimestamp, collection, Timestamp, getDocs } from "firebase/firestore";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { db, storage } from '../../firebase';
+import { addDoc, serverTimestamp, collection, Timestamp } from "firebase/firestore";
+import { db } from '../../firebase';
 import Sidebar from '../../components/sidebar/Sidebar' 
 import Navbar from '../../components/navbar/Navbar'
 import Select from '../../components/select/Select';
+import { AppContext } from '../../App';
 
 const NewTrip = ({ resource, title }) => {
 
-    const [file, setFile] = useState("")
     const [data, setData] = useState({});
-    const [per, setPer] = useState(null);
     const navigate = useNavigate();
 
-    const [truckData, setTruckData] = useState([])
-    const [facilityData, setFacilityData] = useState([])
+    const { truckData, facilityData } = useContext(AppContext);
 
     const [truckChoice, setTruckChoice] = useState("")
     const [facilityOne, setFacilityOne] = useState("");
     const [facilityTwo, setFacilityTwo] = useState("");
-
-
-    useEffect(() => {
-        const fetchData = async () => {
-            let truckList = [];
-            let facilityList = [];
-
-            try {
-                const querySnapshot = await getDocs(collection(db, "trucks"));
-                querySnapshot.forEach((doc) => {
-                    let docData = doc.data();
-
-                    truckList.push({id: doc.id, ...docData});
-                });
-                
-                setTruckData(truckList.map(truck => ({
-                    license: truck.license,
-                    driverName: truck.driver_name,   
-                    capacity: truck.capacity
-                })));
-            } catch (error) {
-                console.log(error);
-            }
-
-            try {
-                const querySnapshot = await getDocs(collection(db, "facilities"));
-                querySnapshot.forEach((doc) => {
-                    let docData = doc.data();
-
-                    facilityList.push({id: doc.id, ...docData});
-                });
-                
-                setFacilityData(facilityList.map(facility => ({
-                    facilityName: facility.facilityName, 
-                    city: facility.city, 
-                    facilityState: facility.facilityState, 
-                    zipCode: facility.zipCode
-                }
-            )));
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
-        fetchData();
-    }, [])
-
 
     const handleInput = (e) => {
         const id = e.target.id;

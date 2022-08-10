@@ -9,26 +9,52 @@ import { AppContext } from '../../App';
 
 const Featured = () => {
     const { tripData } = useContext(AppContext)
-    const [targetRevenue, setTargetRevenue] = useState(20000);
+    const [targetRevenue] = useState(100000);
     const [thisMonthRevenue, setThisMonthRevenue] = useState(0);
     const [lastMonthRevenue, setLastMonthRevenue] = useState(0);
+    const [thisYearRevenue, setThisYearRevenue] = useState(0);
+    const [lastYearRevenue, setLastYearRevenue] = useState(0);
     const [percent, setPercent] = useState(0);
 
     useEffect(() => {
-        const today = new Date();
-        const lastMonthToDate = new Date(new Date().setMonth(today.getMonth() - 1));
-        const previousMonth = new Date(new Date().setMonth(today.getMonth() - 2));
+        /*
+            Featured has four metrics to track:
 
-        const thisMonthTrips = tripData.filter((trip) => ((trip.timeStamp.seconds * 1000 <= today.getTime()) && (trip.timeStamp.seconds * 1000 > lastMonthToDate.getTime())));
-        const previousMonthTrips = tripData.filter((trip) => (trip.timeStamp.seconds * 1000 <= lastMonthToDate.getTime()) && (trip.timeStamp.seconds * 1000 > previousMonth.getTime()));
+            - Current revenue for the month — the revenue earned from trips that started between midnight on the first of current month and now
+            - Target revenue — the current month's revenue (midnight on the first to now) compared to the month's goal
+            - vs. Last Month — the current month's revenue (midnight on the first to now) compared to the previous month's revenue (midnight on the first to 11:59 of the last ("<" first of current month))
+            - vs. YTD — the current year's revenue (midnight on 1/1 to today) compared to last year's revenue (1/1 to 12/31)
+        */
+
+
+        const today = new Date();
+        let firstOfThisMonth = new Date(new Date().setDate(1))
+        firstOfThisMonth = new Date(firstOfThisMonth.setHours(0, 0, 0, 0))
+        const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
+        let firstOfLastMonth = new Date(new Date(lastMonth).setDate(1))
+        firstOfLastMonth = new Date(firstOfLastMonth.setHours(0, 0, 0, 0))
+        const firstOfThisYear = new Date("January 1, 2022 00:00:00");
+        const firstOfLastYear = new Date("January 1, 2021 00:00:00"); 
+
+        const thisMonthTrips = tripData.filter((trip) => (((new Date(trip.startDate)).getTime() <= today.getTime()) && ((new Date(trip.startDate)).getTime() >= firstOfThisMonth.getTime())));
+        const lastMonthTrips = tripData.filter((trip) => (((new Date(trip.startDate)).getTime() < firstOfThisMonth.getTime()) && ((new Date(trip.startDate)).getTime() >= firstOfLastMonth.getTime())));
+        const thisYearTrips = tripData.filter((trip) => (((new Date(trip.startDate)).getTime() <= today.getTime()) && ((new Date(trip.startDate)).getTime() >= firstOfThisYear.getTime())));
+        const lastYearTrips = tripData.filter((trip) => (((new Date(trip.startDate)).getTime() < firstOfThisYear.getTime()) && ((new Date(trip.startDate)).getTime() >= firstOfLastYear.getTime())));
 
         const thisMonthEarnings = thisMonthTrips.map(trip => trip.earnings).reduce((previousVal, currentVal) => previousVal + currentVal, 0);
-        const previousMonthEarnings = previousMonthTrips.map(trip => trip.earnings).reduce((previousVal, currentVal) => previousVal + currentVal, 0);
+        const lastMonthEarnings = lastMonthTrips.map(trip => trip.earnings).reduce((previousVal, currentVal) => previousVal + currentVal, 0);
+        const thisYearEarnings = thisYearTrips.map(trip => trip.earnings).reduce((previousVal, currentVal) => previousVal + currentVal, 0);
+        const lastYearEarnings = lastYearTrips.map(trip => trip.earnings).reduce((previousVal, currentVal) => previousVal + currentVal, 0);
 
         setThisMonthRevenue(thisMonthEarnings);
-        setLastMonthRevenue(previousMonthEarnings);
-        setPercent((thisMonthEarnings / targetRevenue) * 100);
+        setLastMonthRevenue(lastMonthEarnings);
+        setThisYearRevenue(thisYearEarnings);
+        setLastYearRevenue(lastYearEarnings);
+        setPercent(((thisMonthEarnings / targetRevenue) * 100).toFixed(1));
+
     }, [])
+
+    
 
 
     return (
@@ -86,11 +112,20 @@ const Featured = () => {
                         }
                     </div>
                     <div className="item">
-                        <div className="itemTitle">Year To Date</div>
-                        <div className="itemResult negative">
-                            <KeyboardArrowDownOutlinedIcon fontSize='small'/>
-                            <div className="resultAmount">$12.4k</div>
-                        </div>
+                        <div className="itemTitle">YTD</div>
+                        {
+                            thisYearRevenue > lastYearRevenue ? (
+                                <div className="itemResult positive">
+                                    <KeyboardArrowUpOutlinedIcon fontSize='small'/>
+                                    <div className="resultAmount">${thisYearRevenue - lastYearRevenue}</div>
+                                </div>
+                            ) : (
+                                <div className="itemResult negative">
+                                    <KeyboardArrowDownOutlinedIcon fontSize='small'/>
+                                    <div className="resultAmount">${lastYearRevenue - thisYearRevenue}</div>
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
             </div>
