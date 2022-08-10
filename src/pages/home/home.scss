@@ -106,18 +106,31 @@
                     height: 60%;
                     max-width: 25% !important;
                     display: flex !important;
-                    gap: 4% !important;
-                    padding: 2% !important;
+                    gap: 2% !important;
+                    padding: 1% !important;
 
                     .left {
+                        width: 50% !important;
+                        flex: 1 !important;
+
+                        .title {
+                            font-size: 1.5vmin;
+                        }
+
                         .counter {
                             font-size: 2vmin !important;
+                        }
+
+                        .link {
+                            font-size: 1.3vmin;
                         }
                     }
 
                     .right {
+                        flex: 1 !important;
                         .percentage {
-                            font-size: 1.5vmin !important;
+                            font-size: 1.3vmin !important;
+                            align-self: flex-end !important;
                         }
                     }
                 }
@@ -265,7 +278,7 @@
                 }
 
                 .datagrid {
-                    font-size: 0.6rem !important;
+                    font-size: 0.5rem !important;
                 }
 
                 .listTitle {
