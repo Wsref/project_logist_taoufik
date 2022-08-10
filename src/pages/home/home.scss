@@ -98,6 +98,7 @@
                 align-items: center;
                 justify-content: center;
                 height: 15%;
+                max-width: 100% !important;
 
                 .widget {
                     height: 60%;
@@ -130,7 +131,9 @@
 
                     .middle {
                         height: 100% !important;
-                        width: 100%;
+                        max-height: 100% !important;
+                        min-width: 63% !important;
+                        width: 100% !important;
                         display: flex !important;
                         justify-content: center !important;
                         align-items: center !important;
@@ -148,6 +151,7 @@
                             }
 
                             .info {
+                                min-height: 100% !important;
                                 height: 100% !important;
                                 display: flex !important;
                                 flex-direction: column !important;
@@ -155,7 +159,15 @@
                                 justify-content: center !important;
 
                                 .title {
-                                    font-size: 90%;
+                                    font-size: 80% !important;
+                                }
+
+                                .amount {
+                                    font-size: 100% !important;
+                                }
+
+                                .desc {
+                                    font-size: 60% !important;
                                 }
                             }
                         }
