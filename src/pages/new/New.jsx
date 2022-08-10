@@ -1,8 +1,8 @@
 import './new.scss'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { doc, addDoc, serverTimestamp, collection, Timestamp } from "firebase/firestore"; 
-import { auth, db, storage } from '../../firebase';
+import { addDoc, serverTimestamp, collection, Timestamp } from "firebase/firestore"; 
+import { db } from '../../firebase';
 import Sidebar from '../../components/sidebar/Sidebar'
 import Navbar from '../../components/navbar/Navbar'
 

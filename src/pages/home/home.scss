@@ -73,3 +73,155 @@
         }
     }
 }
+
+@media (max-width: 800px) {
+    .home {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+
+        .homeContainer {
+            flex: 4;
+            background-color: #f5f5f5;
+
+            .widgets,
+            .charts {
+                display: flex;
+                gap: 1vmin;
+                margin-left: 2%;
+                margin-right: 2%;
+            }
+
+            .widgets {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 15%;
+
+                .widget {
+                    height: 60%;
+                }
+            }
+
+            .charts {
+                padding: 1.5%;
+                gap: 5%;
+                height: 35%;
+                margin-bottom: 1%;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+
+                .featured {
+                    height: 25% !important;
+                    display: flex !important;
+                    flex-direction: row !important;
+                    width: 100% !important;
+                    gap: 2% !important;
+
+                    .top {
+                        height: 0 !important;
+                        width: 0 !important;
+                        display: flex !important;
+                        justify-content: space-between !important;
+                        visibility: hidden !important;
+                    }
+
+                    .middle {
+                        height: 100% !important;
+                        width: 100%;
+                        display: flex !important;
+                        justify-content: center !important;
+                        align-items: center !important;
+                        flex: 7 !important;
+
+                        .featuredChart {
+                            width: 100% !important;
+                            height: 100% !important;
+                            display: flex !important;
+                            flex-direction: row-reverse !important;
+                            align-items: center !important;
+
+                            .CircularProgressbar {
+                                height: 80% !important;
+                            }
+
+                            .info {
+                                height: 100% !important;
+                                display: flex !important;
+                                flex-direction: column !important;
+                                align-items: center !important;
+                                justify-content: center !important;
+
+                                .title {
+                                    font-size: 90%;
+                                }
+                            }
+                        }
+                    }
+
+                    .bottom {
+                        height: 100% !important;
+                        min-width: auto !important;
+                        display: flex !important;
+                        flex: 4 !important;
+                        flex-direction: column !important;
+
+                        .summary {
+                            display: flex !important;
+                            justify-content: center !important;
+                            height: 100% !important;
+                            flex-direction: column !important;
+
+                            .item {
+                                flex: 1 !important;
+                                display: flex !important;
+                                justify-content: center !important;
+                                flex-direction: row;
+                                align-items: center !important;
+                            }
+                        }
+                    }
+                }
+
+                .title {
+                    font-size: 2vmin;
+                }
+
+                .chart {
+                    height: 95%;
+                }
+            }
+
+            .listContainer {
+                padding: 1%;
+                -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.6);
+                box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.6);
+                margin-left: calc(2% + 1.5%); // padding + padding
+                margin-right: calc(2%); // gap minus padding (2% - 1.5%)
+                flex: 1;
+                background-color: white;
+
+                .table {
+                    width: 95%;
+                    margin: auto;
+                    padding: auto;
+                    margin-bottom: 1%;
+                    font-size: 0.5rem !important;
+                }
+
+                .datagrid {
+                    font-size: 0.6rem !important;
+                }
+
+                .listTitle {
+                    font-size: 2vmin;
+                    font-weight: 500;
+                    color: gray;
+                    margin-bottom: 2%;
+                }
+            }
+        }
+    }
+}
