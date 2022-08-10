@@ -7,44 +7,24 @@ import Chart from '../../components/chart/Chart'
 import Featured from '../../components/featured/Featured'
 import { tripColumns } from '../../dataTableSource'
 import { DataGrid } from '@mui/x-data-grid';
-import { db } from '../../firebase';
-import {collection, getDocs} from "firebase/firestore";
 import { AppContext } from '../../App'
 
 
 const Home = () => {
-    const [fields, setFields] = useState(tripColumns)
+    const [fields] = useState(tripColumns)
     const [data, setData] = useState([]);
     const { tripData } = useContext(AppContext)
 
     useEffect(() => {
 
         const fetchData = async () => {
-            let list = [];
-
-            try {
-                const querySnapshot = await getDocs(collection(db, "trips"));
-                querySnapshot.forEach((doc) => {
-                    let docData = doc.data();
-
-                    docData.startDate = docData.startDate.toDate()
-                    docData.endDate = docData.endDate.toDate().toLocaleString();
-                    
-
-                    list.push({id: doc.id, ...docData});
-                });
-                
-                list.sort((a,b) => b.startDate - a.startDate)
-
-                list.forEach((document) => { 
-                    document.startDate = document.startDate.toLocaleString();
-                })
-
-
-                setData(list.slice(0,5));
-            } catch (error) {
-                console.log(error);
-            }
+            const sortedTrips = tripData.sort((a, b) =>  b.startDate - a.startDate).slice(0, 5);
+            
+            setData(sortedTrips.map(trip => {return {
+                ...trip, 
+                startDate: new Date(trip.startDate).toLocaleString(),
+                endDate: new Date(trip.endDate).toLocaleString()
+            }}))
         }
 
         fetchData();

@@ -34,12 +34,8 @@ function App() {
                     let docData = doc.data();
 
                     if (resource === "trips") {
-                        docData.startDate = docData.startDate
-                            .toDate()
-                            .toLocaleString();
-                        docData.endDate = docData.endDate
-                            .toDate()
-                            .toLocaleString();
+                        docData.startDate = docData.startDate.toDate();
+                        docData.endDate = docData.endDate.toDate();
                     }
 
                     list.push({ id: doc.id, ...docData });
