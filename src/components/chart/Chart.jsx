@@ -3,24 +3,10 @@ import { AreaChart, BarChart, Bar, Area, XAxis, YAxis, CartesianGrid, Tooltip, R
 import React, { useState, useContext, useEffect } from 'react'
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import CropOriginalIcon from '@mui/icons-material/CropOriginal';
-import { AppContext } from '../../App'
 
-const data = [
-    {name: "February", Total: 9000},
-    {name: "March", Total: 18750},
-    {name: "April", Total: 32000},
-    {name: "May", Total: 21000},
-    {name: "June", Total: 26000},
-    {name: "July", Total: 11000},
-]
-
-
-
-const Chart = ({ title }) => {
+const Chart = ({ title, tripsData }) => {
     const [isArea, setIsArea] = useState(true);
-    const { tripData } = useContext(AppContext);
     const [ earningData, setEarningData ] = useState([]);
-    const [lastSixMonths, setLastSixMonths] = useState([]);
     
     const toMonthName = (monthNumber) => {
         const date = new Date();
@@ -34,7 +20,7 @@ const Chart = ({ title }) => {
 
     useEffect(() => {
         const today = new Date();
-        const thisMonthIndex = today.getMonth();
+        const thisMonthIndex = today.getMonth()
 
         const populateDates = () => {
             setEarningData([]);
@@ -43,7 +29,7 @@ const Chart = ({ title }) => {
                     setEarningData(prev => [...prev, {
                         "name": toMonthName(thisMonthIndex + 1 - i), 
                         "Total": (
-                                    tripData.filter(trip => ( new Date(new Date(trip.startDate)).getMonth() === (thisMonthIndex + 1 - i)) && ( new Date(trip.startDate)).getTime() <= today.getTime()
+                                    tripsData.filter(trip => ( new Date(new Date(trip.startDate)).getMonth() === (thisMonthIndex + 1 - i)) && ( new Date(trip.startDate)).getTime() <= today.getTime()
                                     ).map(
                                         trip => trip.earnings
                                     ).reduce(

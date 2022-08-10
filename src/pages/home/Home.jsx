@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Navbar from '../../components/navbar/Navbar'
 import Widget from '../../components/widget/Widget'
@@ -9,11 +9,13 @@ import { tripColumns } from '../../dataTableSource'
 import { DataGrid } from '@mui/x-data-grid';
 import { db } from '../../firebase';
 import {collection, getDocs} from "firebase/firestore";
+import { AppContext } from '../../App'
 
 
 const Home = () => {
     const [fields, setFields] = useState(tripColumns)
     const [data, setData] = useState([]);
+    const { tripData } = useContext(AppContext)
 
     useEffect(() => {
 
@@ -63,7 +65,7 @@ const Home = () => {
                 </div>
                 <div className="charts">
                     <Featured />
-                    <Chart title="Total Revenue (Last 6 months)" aspect={1.75} />
+                    <Chart title="Total Revenue (Last 6 months)" aspect={1.75} tripsData={tripData} />
                 </div>
                 <div className="listContainer">
                     <div className="listTitle">Latest Trips</div>

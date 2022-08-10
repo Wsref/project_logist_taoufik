@@ -15,23 +15,31 @@ const TruckDetails = ({ details }) => {
     const [trips, setTrips] = useState([]);
     const [fields] = useState(tripColumns)
     const { truckData, tripData } = useContext(AppContext);
+    const [chartData, setChartData] = useState(null);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        const idResults = truckData.filter(truck => truck.id === id);
+        const getData = () => {
+            const idResults = truckData.filter(truck => truck.id === id);
 
-        if (idResults.length > 0) {
-            setData(idResults[0]);
-        } else {
-            navigate("/404")
+            if (idResults.length > 0) {
+                const truck = idResults[0]
+                setData(truck);
+            } else {
+                navigate("/404")
+            }
         }
+        getData()
     }, [])
 
     useEffect(() => {
         const truckTrips = tripData.filter(trip => trip.truck === data.license);
         setTrips(truckTrips);
-    }, [data, tripData])
+        setChartData(truckTrips)
+    }, [data])
+
+    
 
     return (
         <div className='truckDetails'>
@@ -64,7 +72,10 @@ const TruckDetails = ({ details }) => {
                         </div>
                     </div>
                     <div className="right">
-                        <Chart aspect={2} title="User Spending (Last 6 months)" />
+                        {
+                            chartData &&
+                            <Chart aspect={2} title="Truck Revenue (Last 6 months)" tripsData={tripData.filter(trip => trip.truck === data.license)} />
+                        }
                     </div>
                 </div>
                 <div className="bottom">

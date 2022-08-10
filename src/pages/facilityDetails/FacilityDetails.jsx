@@ -15,6 +15,7 @@ const FacilityDetails = ({ details }) => {
     const [trips, setTrips] = useState([]);
     const [fields] = useState(tripColumns)
     const { facilityData, tripData } = useContext(AppContext);
+    const [chartData, setChartData] = useState(null);
 
     const navigate = useNavigate();
 
@@ -35,6 +36,10 @@ const FacilityDetails = ({ details }) => {
         ));
         setTrips(facilityTrips);
     }, [data, tripData])
+
+    useEffect(() => {
+        setChartData(trips)
+    }, [trips])
 
     return (
         <div className='facilityDetails'>
@@ -67,7 +72,13 @@ const FacilityDetails = ({ details }) => {
                         </div>
                     </div>
                     <div className="right">
-                        <Chart aspect={2} title="User Spending (Last 6 months)" />
+                        {
+                            chartData &&
+                            <Chart aspect={2} title="Facility Revenue (Last 6 months)" tripsData={tripData.filter(trip => (
+                                (trip.destinationFacility === data.facilityName) || 
+                                (trip.originFacility === data.facilityName)
+                            ))} />
+                        }
                     </div>
                 </div>
                 <div className="bottom">
