@@ -65,11 +65,13 @@ const Featured = () => {
             </div>
             <div className="middle">
                 <div className="featuredChart">
-                    <CircularProgressbar 
-                        value={percent} 
-                        text={`${percent}%`} 
-                        strokeWidth={5} 
-                    />
+                    <div className="chartDiv">
+                        <CircularProgressbar 
+                            value={percent} 
+                            text={`${percent}%`} 
+                            strokeWidth={5} 
+                        />
+                    </div>
                     <div className="info">
                         <p className="title">Total revenue this month:</p>
                         <p className="amount">${thisMonthRevenue}</p>

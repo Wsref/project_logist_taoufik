@@ -108,7 +108,7 @@
             .charts {
                 padding: 1.5%;
                 gap: 5%;
-                height: 35%;
+                height: 40%;
                 margin-bottom: 1%;
                 flex: 1;
                 display: flex;
@@ -146,8 +146,13 @@
                             flex-direction: row-reverse !important;
                             align-items: center !important;
 
-                            .CircularProgressbar {
-                                height: 80% !important;
+                            .chartDiv {
+                                height: 100%;
+                                flex: 1;
+
+                                .CircularProgressbar {
+                                    height: 100% !important;
+                                }
                             }
 
                             .info {
@@ -157,6 +162,8 @@
                                 flex-direction: column !important;
                                 align-items: center !important;
                                 justify-content: center !important;
+                                width: 100%;
+                                flex: 2;
 
                                 .title {
                                     font-size: 80% !important;
@@ -197,6 +204,10 @@
 
                                 .itemResult {
                                     margin-right: 0 !important;
+
+                                    .resultAmount {
+                                        font-size: 80% !important;
+                                    }
                                 }
                             }
                         }
