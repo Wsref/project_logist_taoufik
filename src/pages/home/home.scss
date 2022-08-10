@@ -172,14 +172,20 @@
                             display: flex !important;
                             justify-content: center !important;
                             height: 100% !important;
+                            width: 100% !important;
                             flex-direction: column !important;
 
                             .item {
                                 flex: 1 !important;
+                                width: 90% !important;
                                 display: flex !important;
-                                justify-content: center !important;
+                                justify-content: space-between !important;
                                 flex-direction: row;
                                 align-items: center !important;
+
+                                .itemResult {
+                                    margin-right: 0 !important;
+                                }
                             }
                         }
                     }
