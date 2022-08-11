@@ -30,7 +30,11 @@ const FacilityDetails = ({ details }) => {
     }, [])
 
     useEffect(() => {
-        const facilityTrips = tripData.filter(trip => (
+        const facilityTrips = tripData.map(trip => {return {
+                                    ...trip, 
+                                    startDate: new Date(trip.startDate).toLocaleString(),
+                                    endDate: new Date(trip.endDate).toLocaleString()
+                                }}).filter(trip => (
             (trip.destinationFacility === data.facilityName) || 
             (trip.originFacility === data.facilityName)
         ));

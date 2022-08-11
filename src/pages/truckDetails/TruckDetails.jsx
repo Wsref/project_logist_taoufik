@@ -34,7 +34,11 @@ const TruckDetails = ({ details }) => {
     }, [])
 
     useEffect(() => {
-        const truckTrips = tripData.filter(trip => trip.truck === data.license);
+        const truckTrips = tripData.map(trip => {return {
+                                    ...trip, 
+                                    startDate: new Date(trip.startDate).toLocaleString(),
+                                    endDate: new Date(trip.endDate).toLocaleString()
+                                }}).filter(trip => trip.truck === data.license);
         setTrips(truckTrips);
         setChartData(truckTrips)
     }, [data])
@@ -74,7 +78,9 @@ const TruckDetails = ({ details }) => {
                     <div className="right">
                         {
                             chartData &&
-                            <Chart aspect={2} title="Truck Revenue (Last 6 months)" tripsData={tripData.filter(trip => trip.truck === data.license)} />
+                            <Chart aspect={2} title="Truck Revenue (Last 6 months)" tripsData={
+                                tripData.filter(trip => trip.truck === data.license)
+                            } />
                         }
                     </div>
                 </div>
@@ -94,77 +100,6 @@ const TruckDetails = ({ details }) => {
             </div>
         </div>
     )
-    // return (
-    //     <div className='truckDetails'>
-    //         <Sidebar />
-    //         <div className="singleContainer">
-    //             <Navbar />
-    //             <div className="top">
-    //                 <div className="left">
-    //                     <div className="detail-card">
-    //                         <div className="bio">
-    //                             <div className="resourceImg">
-    //                                 <img src={'/semi-truck.png'} alt="" className='itemImg'/>
-    //                             </div>      
-    //                             <div className="editBtn">
-    //                                 <span>Edit</span><EditIcon className='icon'/>
-    //                             </div>
-    //                         </div>
-    //                         <hr />
-    //                         <div className="info">
-    //                             {
-    //                                 details.map(detail => (
-    //                                     <div className="detailItem" key={detail.id}>
-    //                                         <span className="itemKey">{detail.label}</span>
-    //                                         <span className="itemValue">{data[detail.field]}</span>
-    //                                     </div>
-    //                                 ))
-    //                             }
-    //                         </div>
-                            
-    //                     </div>
-    //                 </div>
-    //                 <div className="left">
-    //                     <div className="detail-card">
-    //                         <div className="bio">
-    //                             <div className="resourceImg">
-    //                                 <img src={'/semi-truck.png'} alt="" className='itemImg'/>
-    //                             </div>      
-    //                             <div className="editBtn">
-    //                                 <span>Edit</span><EditIcon className='icon'/>
-    //                             </div>
-    //                         </div>
-    //                         <hr />
-    //                         <div className="info">
-    //                             {
-    //                                 details.map(detail => (
-    //                                     <div className="detailItem" key={detail.id}>
-    //                                         <span className="itemKey">{detail.label}</span>
-    //                                         <span className="itemValue">{data[detail.field]}</span>
-    //                                     </div>
-    //                                 ))
-    //                             }
-    //                         </div>
-                            
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //             <div className="bottom">
-    //                 <h1 className="title">Last Trips</h1>
-    //                 <DataGrid
-    //                     rows={trips}
-    //                     columns={fields}
-    //                     autoHeight={true}
-    //                     pageSize={10}
-    //                     rowsPerPageOptions={[10]}
-    //                     checkboxSelection
-    //                     className='datagrid'
-    //                     getRowHeight={() => 'auto'}
-    //                 />
-    //             </div>
-    //         </div>
-    //     </div>
-    // )
 }
 
 export default TruckDetails
