@@ -18,7 +18,8 @@ const Home = () => {
     useEffect(() => {
 
         const fetchData = async () => {
-            const sortedTrips = tripData.sort((a, b) =>  b.startDate - a.startDate).slice(0, 5);
+            const arrToSort = [...tripData]
+            const sortedTrips = arrToSort.sort((a, b) =>  b.startDate - a.startDate).slice(0, 5);
             
             setData(sortedTrips.map(trip => {return {
                 ...trip, 

@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
-import SinglePage from "./pages/singlePage/SinglePage";
 import New from "./pages/new/New";
 import { facilityInputs, tripInputs, truckInputs } from "./formSource";
 import { truckDetails, tripDetails, facilityDetails } from "./detailSource";

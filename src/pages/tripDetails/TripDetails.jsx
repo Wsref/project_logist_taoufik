@@ -91,9 +91,9 @@ const TripDetails = () => {
                                     <div className="facility originFacility">{data.destinationFacility}</div>
                                 </div>
                                 <div className="dates">
-                                    <div className="date startDate">{data.startDate}</div>
+                                    <div className="date startDate">{new Date(data.startDate).toLocaleString()}</div>
                                     <span>to</span>
-                                    <div className="date endDate">{data.endDate}</div>
+                                    <div className="date endDate">{new Date(data.startDate).toLocaleString()}</div>
                                 </div>
                                 <div className="summary">
                                     {`${timeDiffCalc()} $${data.earnings}`}
