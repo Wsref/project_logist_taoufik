@@ -75,11 +75,17 @@ export const tripColumns = [
     {
         field: "startDate",
         headerName: "Start Date",
+        sortComparator: (v1, v2, param1, param2) =>
+            new Date(param1.api.getCellValue(param1.id, "startDate")) -
+            new Date(param2.api.getCellValue(param2.id, "startDate")),
         flex: 1,
     },
     {
         field: "endDate",
         headerName: "End Date",
+        sortComparator: (v1, v2, param1, param2) =>
+            new Date(param1.api.getCellValue(param1.id, "endDate")) -
+            new Date(param2.api.getCellValue(param2.id, "endDate")),
         flex: 1,
     },
     {

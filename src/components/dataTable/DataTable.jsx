@@ -36,7 +36,13 @@ const DataTable = ({ resource, title }) => {
         } else if (resource === "facilities") {
             return setData(facilityData)
         } else if (resource === "trips") {
-            return setData(tripData);
+            const tripsData = tripData.map(trip => {return {
+                ...trip, 
+                startDate: new Date(trip.startDate).toLocaleString(),
+                endDate: new Date(trip.endDate).toLocaleString()
+            }})
+
+            return setData(tripsData);
         }
     }, [resource])
 
