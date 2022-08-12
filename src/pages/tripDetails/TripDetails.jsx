@@ -3,10 +3,11 @@ import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import './tripDetails.scss'
 import { useNavigate, useParams } from 'react-router-dom'
-import Map from '../../components/map/Map'
+import LocationMap from '../../components/locationMap/LocationMap'
 import CustomCalendar from '../../components/customCalendar/CustomCalendar'
 import InfoCard from '../../components/infoCard/InfoCard'
 import { AppContext } from '../../App'
+import axios from 'axios'
 
 const TripDetails = () => {
     const { id } = useParams();
@@ -15,6 +16,10 @@ const TripDetails = () => {
     const [originFacilityInfo, setOriginFacilityInfo] = useState([]); 
     const [destinationFacilityInfo, setDestinationFacilityInfo] = useState([]); 
     const { facilityData, truckData, tripData } = useContext(AppContext);
+    const { originCoords, setOriginCoords } = useState([]);
+    const {locationArray, setLocationArray} = useState([]);
+
+    const locationArr = [{latitude: 39.1404477, longitude: -121.6169108}, {latitude: 33.570499, longitude: -86.765783}];
 
     const navigate = useNavigate();
 
@@ -29,8 +34,6 @@ const TripDetails = () => {
     }, [])
 
     useEffect(() => {
-        
-
         const tripTruck = truckData.filter(truck => truck.license === data.truck)[0];
         setTruckInfo(tripTruck);
 
@@ -40,6 +43,8 @@ const TripDetails = () => {
         const tripDestinationFacility = facilityData.filter(facility => facility.facilityName === data.destinationFacility)[0];
         setDestinationFacilityInfo(tripDestinationFacility);
     }, [data])
+
+
 
     const timeDiffCalc = () => {
         let diffInMilliSeconds = Math.abs(new Date(data.endDate) - new Date(data.startDate)) / 1000;
@@ -112,7 +117,7 @@ const TripDetails = () => {
                     </div>
                     <div className="right">
                         <div className="right-top">
-                            <Map />
+                            <LocationMap locationArray={locationArr}/>
                         </div>
                         <div className="right-bottom">
                             <CustomCalendar dateRange={[{
