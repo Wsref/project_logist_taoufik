@@ -52,7 +52,7 @@ const TruckDetails = ({ details }) => {
                                     <img src={'/semi-truck.png'} alt="" className='itemImg'/>
                                 </div>      
                                 <div className="editBtn">
-                                    <span>Edit</span><EditIcon className='icon'/>
+                                    <span>Edit</span><EditIcon className='icon' onClick={() => navigate(`/trucks/edit/${id}`)}/>
                                 </div>
                             </div>
                             <hr />
