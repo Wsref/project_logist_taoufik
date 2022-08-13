@@ -7,7 +7,7 @@ import LocationMap from '../../components/locationMap/LocationMap'
 import CustomCalendar from '../../components/customCalendar/CustomCalendar'
 import InfoCard from '../../components/infoCard/InfoCard'
 import { AppContext } from '../../App'
-import axios from 'axios'
+import EditIcon from '@mui/icons-material/Edit';
 
 const TripDetails = () => {
     const { id } = useParams();
@@ -85,6 +85,7 @@ const TripDetails = () => {
                 <div className="tripView">
                     <div className="left">
                         <div className="left-top">
+                        <div className="left-left">
                             <div className="tripSummary">
                                 <div className="path">
                                     <div className="facility originFacility">{data.originFacility}</div>
@@ -100,8 +101,15 @@ const TripDetails = () => {
                                     {`${timeDiffCalc()} $${data.earnings}`}
                                 </div>
                             </div>
-                            <hr />
                         </div>
+                        
+                        <div className="left-right">
+                            <div className="editBtn">
+                                    <span>Edit</span><EditIcon className='icon' onClick={() => navigate(`/trips/edit/${id}`)}/>
+                                </div>
+                        </div>
+                        </div>
+                        <hr />
                         {
                             (truckInfo && originFacilityInfo && destinationFacilityInfo) &&
                             <div className="left-bottom">

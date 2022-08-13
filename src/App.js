@@ -15,6 +15,7 @@ import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 import Edit from "./pages/edit/Edit";
+import EditTrip from "./pages/editTrip/EditTrip";
 
 export const AppContext = createContext();
 
@@ -158,6 +159,18 @@ function App() {
                                             <NewTrip
                                                 resource="trips"
                                                 title="Add New Trip"
+                                                inputs={tripInputs}
+                                            />
+                                        </RequireAuth>
+                                    }
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={
+                                        <RequireAuth>
+                                            <EditTrip
+                                                resource="trips"
+                                                title="Edit Trip"
                                                 inputs={tripInputs}
                                             />
                                         </RequireAuth>

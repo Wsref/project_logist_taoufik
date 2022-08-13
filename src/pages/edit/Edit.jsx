@@ -28,6 +28,8 @@ const Edit = ({ resource, title, inputs }) => {
                 setData(facility);
             }
         }
+
+        
         
     }, [])
 
