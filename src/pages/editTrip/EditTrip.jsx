@@ -1,7 +1,7 @@
 import './editTrip.scss'
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { addDoc, serverTimestamp, collection, Timestamp } from "firebase/firestore";
+import { addDoc, serverTimestamp, collection, Timestamp, setDoc, doc } from "firebase/firestore";
 import { db } from '../../firebase';
 import Sidebar from '../../components/sidebar/Sidebar' 
 import Navbar from '../../components/navbar/Navbar'
@@ -19,6 +19,9 @@ const EditTrip = ({ resource, title }) => {
     const [truckChoice, setTruckChoice] = useState("")
     const [facilityOne, setFacilityOne] = useState("");
     const [facilityTwo, setFacilityTwo] = useState("");
+    const [originDate, setOriginDate] = useState("")
+    const [destinationDate, setDestinationDate] = useState("")
+    const [tripEarnings, setTripEarnings] = useState("")
 
     const handleInput = (e) => {
         const id = e.target.id;
@@ -35,9 +38,13 @@ const EditTrip = ({ resource, title }) => {
                 const trip = idResults[0]
                 setData(trip);
                 setTruckChoice(trip.truck)
+                setFacilityOne(trip.originFacility)
+                setFacilityTwo(trip.destinationFacility)
+                setOriginDate(trip.startDate)
+                setDestinationDate(trip.endDate)
+                setTripEarnings(trip.earnings)
             }
         }
-
         fetchData();
     }, [])
 
@@ -46,14 +53,16 @@ const EditTrip = ({ resource, title }) => {
             ...data, 
             truck: truckChoice, 
             originFacility: facilityOne, 
-            destinationFacility: facilityTwo
+            destinationFacility: facilityTwo,
+            startDate: originDate,
+            endDate: destinationDate,
+            earnings: tripEarnings
         })
-    }, [truckChoice, facilityOne, facilityTwo])
+    }, [truckChoice, facilityOne, facilityTwo, originDate, destinationDate, tripEarnings])
 
 
-    const handleAdd = async (e) => {
+    const handleUpdate = async (e) => {
         e.preventDefault();
-
 
         try {
             if (resource === "trips") {
@@ -61,11 +70,11 @@ const EditTrip = ({ resource, title }) => {
                     data.startDate = Timestamp.fromDate(new Date(data.startDate));
                     data.endDate = Timestamp.fromDate(new Date(data.endDate));      
                 }
-            await addDoc(collection(db, resource), {
+            await setDoc(doc(db, resource, id), {
                 ...data,
                 timeStamp: serverTimestamp(),
             });
-            navigate(-1)
+            navigate(`/${resource}`)
         } catch (error) {
             console.log(error)
         }
@@ -86,7 +95,7 @@ const EditTrip = ({ resource, title }) => {
                 </div>
                 <div className="bottom">
                     <div className="right">
-                        {data &&
+                        {data && truckChoice && facilityOne && facilityTwo && originDate && destinationDate && 
                         <form>
                             <div className="formInput">
                                 <label>Truck</label>
@@ -105,7 +114,7 @@ const EditTrip = ({ resource, title }) => {
                                 <label>Origin Facility</label>
                                 <Select 
                                         className="custom-select" 
-                                        defaultText={"Select a Facility"}
+                                        defaultText={facilityOne}
                                         setter={setFacilityOne}
                                         data={facilityData}
                                         label="facilityName"
@@ -117,7 +126,7 @@ const EditTrip = ({ resource, title }) => {
                                 <label>Destination Facility</label>
                                 <Select 
                                     className="custom-select" 
-                                    defaultText={"Select a Facility"} 
+                                    defaultText={facilityTwo} 
                                     setter={setFacilityTwo}
                                     data={facilityData}
                                     label="facilityName"
@@ -131,7 +140,7 @@ const EditTrip = ({ resource, title }) => {
                                     id={"startDate"}
                                     type={"datetime-local"}
                                     onChange={handleInput} 
-                                    value={data.startDate}
+                                    defaultValue={new Date(originDate).toISOString().substr(0, 16)}
                                 />
                             </div>
                             <div className="formInput">
@@ -140,20 +149,22 @@ const EditTrip = ({ resource, title }) => {
                                     id={"endDate"}
                                     type={"datetime-local"}
                                     onChange={handleInput} 
+                                    defaultValue={new Date(destinationDate).toISOString().substr(0, 16)}
                                 />
                             </div>
                             <div className="formInput">
                                 <label>Earnings</label>
                                 <input 
                                     id={"earnings"}
-                                    type={"text"} 
-                                    placeholder={"1234.56"} 
-                                    onChange={handleInput} 
+                                    type={"number"}
+                                    onChange={(e) => setTripEarnings(e.target.value)} 
+                                    value={tripEarnings}
+                                    defaultValue={0}
                                 />
                             </div>
                             <div className="btn-row">
                                 <button onClick={goBack} className="cancelBtn">Cancel</button>
-                                <button onClick={handleAdd} className='submitBtn'>Send</button>
+                                <button onClick={handleUpdate} className='submitBtn'>Send</button>
                             </div>
                         </form>}
                     </div>

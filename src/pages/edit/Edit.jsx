@@ -1,7 +1,7 @@
 import './edit.scss'
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { addDoc, serverTimestamp, collection, Timestamp, setDoc, doc } from "firebase/firestore"; 
+import { serverTimestamp, setDoc, doc } from "firebase/firestore"; 
 import { db } from '../../firebase';
 import Sidebar from '../../components/sidebar/Sidebar'
 import Navbar from '../../components/navbar/Navbar'
@@ -29,7 +29,7 @@ const Edit = ({ resource, title, inputs }) => {
             }
         }
 
-        
+
         
     }, [])
 
@@ -44,7 +44,7 @@ const Edit = ({ resource, title, inputs }) => {
         navigate(`/${resource}`);
     }
 
-    const handleUodates = async (e) => {
+    const handleUpdates = async (e) => {
         e.preventDefault();
         try {
             await setDoc(doc(db, resource, id), {
@@ -85,7 +85,7 @@ const Edit = ({ resource, title, inputs }) => {
                             }
                             <div className="btn-row">
                                 <button onClick={goBack} className="cancelBtn">Cancel</button>
-                                <button onClick={handleUodates} className='submitBtn'>Send</button>
+                                <button onClick={handleUpdates} className='submitBtn'>Send</button>
                             </div>
                         </form>
                     </div>
