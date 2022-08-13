@@ -14,6 +14,7 @@ import TripDetails from "./pages/tripDetails/TripDetails";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
+import Edit from "./pages/edit/Edit";
 
 export const AppContext = createContext();
 
@@ -62,6 +63,9 @@ function App() {
                     truckData,
                     facilityData,
                     tripData,
+                    setTruckData,
+                    setFacilityData,
+                    setTripData,
                 }}
             >
                 <BrowserRouter>
@@ -106,6 +110,18 @@ function App() {
                                             <New
                                                 resource={"trucks"}
                                                 title="Add New Truck"
+                                                inputs={truckInputs}
+                                            />
+                                        </RequireAuth>
+                                    }
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={
+                                        <RequireAuth>
+                                            <Edit
+                                                resource={"trucks"}
+                                                title="Edit Truck"
                                                 inputs={truckInputs}
                                             />
                                         </RequireAuth>
@@ -178,6 +194,18 @@ function App() {
                                             <New
                                                 resource={"facilities"}
                                                 title="Add New Facility"
+                                                inputs={facilityInputs}
+                                            />
+                                        </RequireAuth>
+                                    }
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={
+                                        <RequireAuth>
+                                            <Edit
+                                                resource={"facilities"}
+                                                title="Edit Facility"
                                                 inputs={facilityInputs}
                                             />
                                         </RequireAuth>
