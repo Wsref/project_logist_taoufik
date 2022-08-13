@@ -24,8 +24,6 @@ const FacilityDetails = ({ details }) => {
 
         if (idResults.length > 0) {
             setData(idResults[0]);
-        } else {
-            navigate("/404")
         }
     }, [])
 

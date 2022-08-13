@@ -16,8 +16,6 @@ const TripDetails = () => {
     const [originFacilityInfo, setOriginFacilityInfo] = useState([]); 
     const [destinationFacilityInfo, setDestinationFacilityInfo] = useState([]); 
     const { facilityData, truckData, tripData } = useContext(AppContext);
-    const { originCoords, setOriginCoords } = useState([]);
-    const {locationArray, setLocationArray} = useState([]);
 
     const locationArr = [{latitude: 39.1404477, longitude: -121.6169108}, {latitude: 33.570499, longitude: -86.765783}];
 
@@ -28,9 +26,7 @@ const TripDetails = () => {
 
         if (idResults.length > 0) {
             setData(idResults[0]);
-        } else {
-            navigate("/404");
-        }
+        } 
     }, [])
 
     useEffect(() => {

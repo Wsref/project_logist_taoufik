@@ -20,18 +20,12 @@ const TruckDetails = ({ details }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const getData = () => {
-            const idResults = truckData.filter(truck => truck.id === id);
-
-            if (idResults.length > 0) {
-                const truck = idResults[0]
-                setData(truck);
-            } else {
-                navigate("/404")
-            }
+        const idResults = truckData.filter(truck => truck.id === id);
+        if (idResults.length > 0) {
+            const truck = idResults[0]
+            setData(truck);
         }
-        getData()
-    }, [])
+    }, [id])
 
     useEffect(() => {
         const truckTrips = tripData.map(trip => {return {
@@ -48,7 +42,7 @@ const TruckDetails = ({ details }) => {
     return (
         <div className='truckDetails'>
             <Sidebar />
-            <div className="singleContainer">
+            {id && <div className="singleContainer">
                 <Navbar />
                 <div className="top">
                     <div className="left">
@@ -97,7 +91,7 @@ const TruckDetails = ({ details }) => {
                         getRowHeight={() => 'auto'}
                     />
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }
