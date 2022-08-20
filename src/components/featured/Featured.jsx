@@ -26,7 +26,6 @@ const Featured = () => {
             - vs. YTD — the current year's revenue (midnight on 1/1 to today) compared to last year's revenue (1/1 to 12/31)
         */
 
-
         const today = new Date();
         let firstOfThisMonth = new Date(new Date().setDate(1))
         firstOfThisMonth = new Date(firstOfThisMonth.setHours(0, 0, 0, 0))
@@ -36,6 +35,7 @@ const Featured = () => {
         const firstOfThisYear = new Date("January 1, 2022 00:00:00");
         const firstOfLastYear = new Date("January 1, 2021 00:00:00"); 
 
+        // filter trips by period (before today and after first second of the time period)
         const thisMonthTrips = tripData.filter((trip) => (((new Date(trip.startDate)).getTime() <= today.getTime()) && ((new Date(trip.startDate)).getTime() >= firstOfThisMonth.getTime())));
         const lastMonthTrips = tripData.filter((trip) => (((new Date(trip.startDate)).getTime() < firstOfThisMonth.getTime()) && ((new Date(trip.startDate)).getTime() >= firstOfLastMonth.getTime())));
         const thisYearTrips = tripData.filter((trip) => (((new Date(trip.startDate)).getTime() <= today.getTime()) && ((new Date(trip.startDate)).getTime() >= firstOfThisYear.getTime())));
@@ -53,9 +53,6 @@ const Featured = () => {
         setPercent(((thisMonthEarnings / targetRevenue) * 100).toFixed(1));
 
     }, [])
-
-    
-
 
     return (
         <div className="featured">
