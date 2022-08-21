@@ -112,24 +112,11 @@
                     .left {
                         width: 50% !important;
                         flex: 1 !important;
-
-                        .title {
-                            // font-size: 1.5vmin;
-                        }
-
-                        .counter {
-                            // font-size: 2vmin !important;
-                        }
-
-                        .link {
-                            // font-size: 1.3vmin;
-                        }
                     }
 
                     .right {
                         flex: 1 !important;
                         .percentage {
-                            // font-size: 1.3vmin !important;
                             align-self: flex-end !important;
                         }
                     }
@@ -144,112 +131,6 @@
                 flex: 1;
                 display: flex;
                 flex-direction: column;
-
-                .featured {
-                    height: 25% !important;
-                    display: flex !important;
-                    flex-direction: row !important;
-                    width: 100% !important;
-                    gap: 2% !important;
-
-                    .top {
-                        height: 0 !important;
-                        width: 0 !important;
-                        display: flex !important;
-                        justify-content: space-between !important;
-                        visibility: hidden !important;
-                    }
-
-                    .middle {
-                        height: 100% !important;
-                        max-height: 100% !important;
-                        min-width: 63% !important;
-                        width: 100% !important;
-                        display: flex !important;
-                        justify-content: center !important;
-                        align-items: center !important;
-                        flex: 7 !important;
-
-                        .featuredChart {
-                            width: 100% !important;
-                            height: 100% !important;
-                            display: flex !important;
-                            flex-direction: row-reverse !important;
-                            align-items: center !important;
-
-                            .chartDiv {
-                                height: 100%;
-                                flex: 1;
-
-                                .CircularProgressbar {
-                                    height: 100% !important;
-                                }
-                            }
-
-                            .info {
-                                min-height: 100% !important;
-                                height: 100% !important;
-                                display: flex !important;
-                                flex-direction: column !important;
-                                align-items: center !important;
-                                justify-content: center !important;
-                                width: 100%;
-                                flex: 2;
-
-                                .title {
-                                    font-size: 1.7vmin !important;
-                                }
-
-                                .amount {
-                                    // font-size: 100% !important;
-                                }
-
-                                .desc {
-                                    // font-size: 60% !important;
-                                }
-                            }
-                        }
-                    }
-
-                    .bottom {
-                        height: 100% !important;
-                        min-width: auto !important;
-                        display: flex !important;
-                        flex: 4 !important;
-                        flex-direction: column !important;
-
-                        .summary {
-                            display: flex !important;
-                            justify-content: center !important;
-                            height: 100% !important;
-                            width: 100% !important;
-                            flex-direction: column !important;
-
-                            .item {
-                                flex: 1 !important;
-                                width: 80% !important;
-                                display: flex !important;
-                                justify-content: space-between !important;
-                                flex-direction: row;
-                                align-items: center !important;
-                                margin-left: 10% !important;
-
-                                .itemTitle {
-                                    // font-size: 1.7vmin !important;
-                                }
-
-                                .itemResult {
-                                    margin-right: 0 !important;
-                                    // font-size: 1.7vmin;
-
-                                    .resultAmount {
-                                        // font-size: 80% !important;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
 
                 .title {
                     font-size: 2vmin;
