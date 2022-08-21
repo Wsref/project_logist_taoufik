@@ -48,9 +48,9 @@
         }
 
         .icon {
-            font-size: 2.5vmin;
-            padding: 0.75vmin;
-            border-radius: 0.75vmin;
+            font-size: 1.5em;
+            padding: 0.4em;
+            border-radius: 0.4em;
             align-self: flex-end;
         }
     }
@@ -75,6 +75,13 @@
             .percentage {
                 font-size: 0.6em !important;
             }
+
+            .icon {
+                font-size: 1.2em;
+                padding: 0.3em;
+                border-radius: 0.3em;
+                align-self: flex-end;
+            }
         }
     }
 }
@@ -97,6 +104,13 @@
 
             .percentage {
                 font-size: 0.35em !important;
+            }
+
+            .icon {
+                font-size: 1.2em;
+                padding: 0.3em;
+                border-radius: 0.3em;
+                align-self: flex-end;
             }
         }
     }

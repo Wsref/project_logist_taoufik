@@ -6,7 +6,7 @@
 
     .datatableTitle {
         width: 100%;
-        font-size: 1.8rem;
+        font-size: 1.8em;
         color: #555e66;
         margin-bottom: 1%;
         display: flex;
@@ -16,11 +16,11 @@
         .link {
             text-decoration: none;
             color: green;
-            font-size: 1rem;
+            font-size: 1em;
             font-weight: 400;
             border: 1px solid green;
-            padding: 0.4rem 0.8rem;
-            border-radius: 0.5rem;
+            padding: 0.4em 0.8em;
+            border-radius: 0.5em;
             cursor: pointer;
         }
     }
@@ -67,8 +67,8 @@
 
         .viewButton,
         .deleteButton {
-            padding: 0.3rem 0.6rem;
-            border-radius: 0.5rem;
+            padding: 0.3em 0.6em;
+            border-radius: 0.5em;
             cursor: pointer;
         }
 
@@ -86,19 +86,18 @@
 @media (max-width: 1200px) {
     .dataTable {
         .datatableTitle {
-            font-size: 1rem;
-            color: #555e66;
+            font-size: 1em;
 
             .link {
-                font-size: 0.8rem;
+                font-size: 0.8em;
             }
         }
 
         .cellAction {
             .viewButton,
             .deleteButton {
-                padding: 0.1rem 0.2rem;
-                border-radius: 0.3rem;
+                padding: 0.1em 0.2em;
+                border-radius: 0.3em;
             }
         }
     }
