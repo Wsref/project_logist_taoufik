@@ -117,11 +117,11 @@
 
 @media (max-width: 1200px) {
     .featured {
-        height: 25%;
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        gap: 2%;
+        height: 25% !important;
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        gap: 2% !important;
 
         .top {
             height: 0;
