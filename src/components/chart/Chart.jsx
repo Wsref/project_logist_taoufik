@@ -73,8 +73,16 @@ const Chart = ({ title, tripsData }) => {
                     }}
                     >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
+                    <XAxis dataKey="name" 
+                        style={{
+                            fontSize: '.7em'
+                        }}
+                    />
+                    <YAxis 
+                        style={{
+                            fontSize: '.7em'
+                        }}
+                    />
                     <Tooltip />
                     <Area type="monotone" dataKey="Total" stroke="#807dbd" fill="#807dbd" />
                     </AreaChart>
