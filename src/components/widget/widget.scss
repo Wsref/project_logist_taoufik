@@ -61,19 +61,19 @@
         .left,
         .right {
             .title {
-                font-size: 0.8em;
+                font-size: 1em;
             }
 
             .counter {
-                font-size: 1.1em;
+                font-size: 1.5em;
             }
 
             .link {
-                font-size: 0.7em !important;
+                font-size: 0.75em !important;
             }
 
             .percentage {
-                font-size: 0.6em !important;
+                font-size: 0.7em !important;
             }
 
             .icon {
@@ -86,7 +86,7 @@
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 800px) {
     .widget {
         .left,
         .right {
@@ -104,11 +104,15 @@
 
             .percentage {
                 font-size: 0.35em !important;
+
+                .pct-icon {
+                    font-size: 1.5em;
+                }
             }
 
             .icon {
-                font-size: 1.2em;
-                padding: 0.3em;
+                font-size: 0.8em;
+                padding: 0.2em;
                 border-radius: 0.3em;
                 align-self: flex-end;
             }

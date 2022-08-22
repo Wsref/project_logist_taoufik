@@ -164,7 +164,7 @@ const Widget = ({ type }) => {
             </div>
             <div className="right">
                 <div className="percentage positive">
-                    <KeyboardArrowUpIcon />
+                    <KeyboardArrowUpIcon className="pct-icon"/>
                         {diff}%
                 </div>
                 {data.icon}
