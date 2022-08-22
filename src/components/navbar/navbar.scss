@@ -71,9 +71,9 @@
                     }
 
                     .counter {
-                        width: 2em;
-                        height: 2em;
-                        font-size: 0.4em;
+                        width: 1.8em;
+                        height: 1.8em;
+                        font-size: 0.3em;
                         top: -0.5em;
                         right: -0.5em;
                     }
@@ -83,7 +83,7 @@
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 800px) {
     .navbar {
         font-size: 0.7em;
 
@@ -99,9 +99,9 @@
                     }
 
                     .counter {
-                        width: 2em;
-                        height: 2em;
-                        font-size: 0.4em;
+                        width: 1.3em;
+                        height: 1.3em;
+                        font-size: 0.2em;
                         top: -0.7em;
                         right: -0.7em;
                     }

@@ -93,6 +93,40 @@
             }
         }
 
+        .datagrid {
+            min-height: auto;
+            max-height: fit-content;
+            max-width: 100%;
+            font-size: 1.8vmin;
+        }
+
+        .cellAction {
+            .viewButton,
+            .deleteButton {
+                padding: 0.1em 0.2em;
+                border-radius: 0.3em;
+            }
+        }
+    }
+}
+
+@media (max-width: 750px) {
+    .dataTable {
+        .datatableTitle {
+            font-size: 1em;
+
+            .link {
+                font-size: 0.8em;
+            }
+        }
+
+        .datagrid {
+            min-height: auto;
+            max-height: fit-content;
+            max-width: 100%;
+            font-size: 2vmin;
+        }
+
         .cellAction {
             .viewButton,
             .deleteButton {
