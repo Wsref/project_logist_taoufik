@@ -18,8 +18,8 @@ Data tables contain the information for trucks, trips, and facilities. Material 
 
 Users can view every individual resource in further detail by clicking on "View" on its respective data table. Trucks and facilities "details" page show information regarding related trips, including a data table and a chart detailing revenue from the trips. 
 
-### Calendars and Maps
-
 ![image](https://user-images.githubusercontent.com/59290280/186199203-1edda6ba-4464-4576-83eb-c1070727839d.png)
+
+### Calendars and Maps
 
 On the trip "details" page, libraries provide users with incredible functionality through fully interactive maps and calendars. Leaflet's map component plots the origin and destination facilities, showing users the scale of a given trip. React Big Calendar serves to plan the trip dates on a calendar, allowing users to strategize around service availability depending on days of the week or holidays. 
