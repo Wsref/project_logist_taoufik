@@ -1,10 +1,12 @@
+@import "../../../src/variables";
+
 .edit {
     width: 100%;
     display: flex;
 
     .editContainer {
         flex: 6;
-        background-color: #f5f5f5;
+        background-color: $app-bg;
 
         .bottom {
             gap: 20%;
@@ -13,14 +15,14 @@
         .top,
         .bottom {
             padding: 10px;
-            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+            -webkit-box-shadow: $box-shadow-dark;
+            box-shadow: $box-shadow-light;
             margin: 20px;
             display: flex;
-            background-color: white;
+            background-color: $primary-light-bg;
 
             h1 {
-                color: lightgray;
+                color: $primary-med-text;
                 font-size: 20px;
             }
 
@@ -52,7 +54,7 @@
                             width: 100%;
                             padding: 5px;
                             border: none;
-                            border-bottom: 1px solid gray;
+                            border-bottom: 1px solid $border-color;
                             outline: none;
                         }
                     }
@@ -68,20 +70,19 @@
                             font-weight: bold;
                             cursor: pointer;
                             margin-top: 10px;
-                            -webkit-box-shadow: 2px 4px 10px 1px
-                                rgba(0, 0, 0, 0.47);
-                            box-shadow: 2px 4px 10px 1px
-                                rgba(201, 201, 201, 0.47);
+                            -webkit-box-shadow: $box-shadow-dark;
+                            box-shadow: $box-shadow-light;
+                            border-radius: 0.6rem;
                         }
 
                         .cancelBtn {
-                            background-color: #f5f5f5;
-                            color: black;
+                            background-color: $app-bg;
+                            color: $primary-dark;
                         }
 
                         .submitBtn {
-                            background-color: #262538;
-                            color: white;
+                            background-color: $primary-dark;
+                            color: $app-bg;
                         }
                     }
                 }

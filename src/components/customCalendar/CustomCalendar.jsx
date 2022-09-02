@@ -17,6 +17,7 @@ const CustomCalendar = ({ dateRange }) => {
             endAccessor="end"
             style={{ minHeight: "300px" }}
             defaultView="month"
+            defaultDate={dateRange.start}
             views={['month']}
             components={{toolbar: CalendarToolbar}}
         />

@@ -1,17 +1,19 @@
+@import "../../../src/variables";
+
 .cardContainer {
     height: 100%;
     padding: 2%;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+    -webkit-box-shadow: $box-shadow-dark;
+    box-shadow: $box-shadow-light;
     display: flex;
     flex-direction: column;
     gap: 5%;
 
     .header {
-        color: #555e66;
+        color: $secondary-dark;
         font-size: 1.6em;
     }
 
@@ -22,7 +24,7 @@
             flex: 1;
             .information {
                 padding-left: 4%;
-                color: #555e66;
+                color: $secondary-dark;
                 font-size: 1em;
             }
         }

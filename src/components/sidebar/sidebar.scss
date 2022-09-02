@@ -1,6 +1,8 @@
+@import "../../../src/variables";
+
 .sidebar {
     flex: 1;
-    border-right: 0.5px solid rgb(230, 227, 227);
+    border-right: 0.5px solid $border-color;
     min-height: 100vh;
     min-width: 15vw;
     background-color: white;
@@ -16,13 +18,13 @@
             width: 100%;
             text-align: center;
             font-weight: bold;
-            color: #262538;
+            color: $primary-dark;
         }
     }
 
     hr {
         height: 0;
-        border: 0.5px solid rgb(230, 227, 227);
+        border: 0.5px solid $border-color;
     }
 
     .center {
@@ -37,7 +39,7 @@
             .title {
                 font-size: 1.4vmin;
                 font-weight: bold;
-                color: #555e66;
+                color: $secondary-dark;
                 margin-top: 12%;
                 margin-bottom: 2%;
             }
@@ -52,22 +54,26 @@
                 width: 98%;
 
                 &:hover {
-                    background-color: #807dbd;
+                    background-color: $hover-bg;
 
                     span {
-                        color: #fff;
+                        color: $hover-text;
+                    }
+
+                    .icon {
+                        color: $hover-text !important;
                     }
                 }
 
                 .icon {
                     font-size: 2.5vmin;
-                    color: #262538;
+                    color: $primary-dark;
                 }
 
                 span {
                     font-size: 1.75vmin;
                     font-weight: 600;
-                    color: #555e66;
+                    color: $secondary-dark;
                     margin-left: 4%;
                 }
             }
@@ -76,22 +82,18 @@
                 cursor: not-allowed;
 
                 &:hover {
-                    background-color: white;
-<<<<<<< HEAD
+                    background-color: $disabled-hover;
 
                     .icon {
-                        color: gray;
+                        color: $disabled-text;
                     }
 
-=======
-                    
                     icon {
-                        color: gray;
+                        color: $disabled-text;
                     }
-                    
->>>>>>> c014a40a6321b82e1b5ff6afce4469696db90082
+
                     span {
-                        color: gray;
+                        color: $disabled-text;
                     }
                 }
             }

@@ -1,12 +1,14 @@
+@import "../../../src/variables";
+
 .widget {
     display: flex;
     justify-content: space-between;
     flex: 1;
     padding: 10px;
-    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.6);
-    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.6);
+    -webkit-box-shadow: $box-shadow-dark;
+    box-shadow: $box-shadow-light;
     border-radius: 10px;
-    background-color: white;
+    background-color: $primary-light-bg;
 
     .left,
     .right {
@@ -17,20 +19,20 @@
         .title {
             font-weight: bold;
             font-size: 0.9em;
-            color: rgb(160, 160, 160);
+            color: $primary-med-text;
         }
 
         .counter {
             font-size: 1.8em;
             font-weight: 300;
-            color: #555e66;
+            color: $secondary-dark;
         }
 
         .link {
             width: max-content;
             font-size: 1em;
             border-bottom: 1px solid gray;
-            color: #555e66;
+            color: $secondary-dark;
         }
 
         .percentage {
@@ -39,11 +41,11 @@
             font-size: 1.7vmin;
 
             &.positive {
-                color: green;
+                color: $success-text;
             }
 
             &.negative {
-                color: red;
+                color: $warning-text;
             }
         }
 

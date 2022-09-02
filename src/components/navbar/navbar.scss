@@ -1,11 +1,13 @@
+@import "../../../src/variables";
+
 .navbar {
     height: 5%;
-    border-bottom: 2px solid rgb(231, 228, 228);
+    border-bottom: 2px solid $border-color;
     display: flex;
     align-items: center;
     font-size: 1.2em;
-    color: #555;
-    background-color: white;
+    color: $secondary-dark;
+    background-color: $primary-light-bg;
 
     .wrapper {
         padding: 1em;
@@ -38,9 +40,9 @@
                 .counter {
                     width: 1.8em;
                     height: 1.8em;
-                    background-color: red;
+                    background-color: $notification-bg;
                     border-radius: 50%;
-                    color: #fff;
+                    color: $notification-text;
                     display: flex;
                     align-items: center;
                     justify-content: center;
