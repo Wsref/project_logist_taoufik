@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import FactoryOutlinedIcon from '@mui/icons-material/FactoryOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
-import {collection, query, where, getDoc, getDocs} from "firebase/firestore";
-import { db } from '../../firebase';
 import "./widget.scss";
 import { AppContext } from '../../App';
 
@@ -151,7 +150,7 @@ const Widget = ({ type }) => {
 
             setDiff(changeOverMonth.toFixed(0))
         }
-    })
+    }, [])
 
     return (
         <div className='widget'>
@@ -163,9 +162,9 @@ const Widget = ({ type }) => {
                 </Link>
             </div>
             <div className="right">
-                <div className="percentage positive">
-                    <KeyboardArrowUpIcon className="pct-icon"/>
-                        {diff}%
+                <div className={diff >= 0 ? "percentage positive": "percentage negative"}>
+                    {diff >= 0 ? <KeyboardArrowUpIcon className="pct-icon"/> : <KeyboardArrowDownIcon className="pct-icon"/>}
+                        {Math.abs(diff)}%
                 </div>
                 {data.icon}
             </div>
