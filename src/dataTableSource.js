@@ -87,6 +87,25 @@ export const tripColumns = [
             new Date(param1.api.getCellValue(param1.id, "endDate")) -
             new Date(param2.api.getCellValue(param2.id, "endDate")),
         flex: 1,
+        renderCell: (params) => {
+            return (
+                <div className={`cellWithStatus ${params.row.status}`}>
+                    {params.row.endDate}
+                </div>
+            );
+        },
+    },
+    {
+        field: "status",
+        headerName: "Status",
+        flex: 0.5,
+        renderCell: (params) => {
+            return (
+                <div className={`cellWithStatus ${params.row.status}`}>
+                    {params.row.status}
+                </div>
+            );
+        }
     },
     {
         field: "earnings",
@@ -94,3 +113,50 @@ export const tripColumns = [
         flex: 0.5,
     },
 ];
+
+
+
+export const tripColumnsHist = [
+    {
+        field: "truck",
+        headerName: "Truck",
+        flex: 1,
+    },
+    {
+        field: "originFacility",
+        headerName: "Origin Facility",
+        flex: 1,
+    },
+    {
+        field: "destinationFacility",
+        headerName: "Destination Facility",
+        flex: 1,
+    },
+    {
+        field: "startDate",
+        headerName: "Start Date",
+        sortComparator: (v1, v2, param1, param2) =>
+            new Date(param1.api.getCellValue(param1.id, "startDate")) -
+            new Date(param2.api.getCellValue(param2.id, "startDate")),
+        flex: 1,
+    },
+    {
+        field: "endDate",
+        headerName: "End Date",
+        sortComparator: (v1, v2, param1, param2) =>
+            new Date(param1.api.getCellValue(param1.id, "endDate")) -
+            new Date(param2.api.getCellValue(param2.id, "endDate")),
+        flex: 1,
+    },
+    {
+        field: "status",
+        headerName: "Status",
+        flex: 0.5,
+    },
+    {
+        field: "earnings",
+        headerName: "Earnings",
+        flex: 0.5,
+    },
+];
+

@@ -10,6 +10,7 @@ import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import logo from '../../mainImgs/entreprise.png'
 
 import './sidebar.scss'
 
@@ -24,7 +25,14 @@ const Sidebar = () => {
     return (
         <div className='sidebar'>
             <div className="top">
-                <span className="logo">Logistics Manager</span>
+             
+             <span className="logo">
+             <img
+                src={logo}
+                alt=""
+                className="avatar"
+             />
+             </span>
             </div>
             <hr />
             <div className="center">
@@ -56,31 +64,25 @@ const Sidebar = () => {
                         </li>                    
                     </Link>
                     <div className="title">TOOLS</div>
-                    <li className='disabled'>
-                        <CalendarMonthOutlinedIcon className="icon" />
-                        <span>Calendar</span>
-                    </li>
-                    <li className='disabled'>
-                        <CompareArrowsOutlinedIcon className="icon" />
-                        <span>Compare</span>
-                    </li>
-                    <li className='disabled'>
-                        <AssessmentOutlinedIcon className="icon" />
-                        <span>Generate Report</span>
-                    </li>
+                    <Link to="/trips" style={{textDecoration: "none"}}>
+                        <li>
+                            <AssessmentOutlinedIcon className="icon" />
+                            <span>Generate Rapport</span>
+                        </li>
+                    </Link>
                     <li className='disabled'> 
                         <SettingsOutlinedIcon className="icon" />
                         <span>Settings</span>
                     </li>
-                    <div className="title">ACCOUNT</div>
+                    <div className="title">COMPTE</div>
                     <li onClick={handleLogout}>
                         <LogoutOutlinedIcon className="icon" />
-                        <span>Logout</span>
+                        <span>Sign Out</span>
                     </li>
                 </ul>
             </div>
             <div className="bottom">
-                <span>All Rights Reserved, 2022</span>
+                <span>All Rights Reserved, 2025</span>
             </div>
         </div>
     )

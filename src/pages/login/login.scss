@@ -1,5 +1,6 @@
 .login {
     .top {
+        margin-top: 3%;
         display: flex;
         min-height: 50%;
         height: 50%;
@@ -36,11 +37,11 @@
                 h2 {
                     color: rgb(12, 2, 104);
                     font-size: 4vmin;
-                    margin-bottom: 5%;
+                    margin-bottom: 1%;
                 }
 
                 span {
-                    margin-bottom: 5%;
+                    margin-bottom: 1%;
                     color: gray;
                     font-size: 2vmin;
                 }
@@ -88,7 +89,7 @@
         align-items: center;
 
         h2 {
-            margin: 2.5% auto;
+            margin-top: 0.5%;
             color: rgb(12, 2, 104);
         }
 
@@ -104,6 +105,7 @@
                 align-items: center;
 
                 img {
+                    margin-top: -11%;
                     height: 70%;
                     width: 70%;
                 }

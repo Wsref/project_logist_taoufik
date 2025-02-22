@@ -13,12 +13,36 @@ import { AppContext } from '../../App'
 const Home = () => {
     const [fields] = useState(tripColumns)
     const [data, setData] = useState([]);
-    const { tripData } = useContext(AppContext)
-
+    const { tripData } = useContext(AppContext);
+  
     useEffect(() => {
+
+        // Taoufik 17/02/2025
+        // const fetchData = async () => {
+
+        //     let currentDate = new Date();
+        //     let currentDatesetHour = new Date(currentDate).setHours(0,0,0,0)
+        //     currentDate.setTime(currentDatesetHour)
+        //     currentDate = currentDate.toLocaleString()
+
+        //     let arrToSort = [...tripData]
+        //     arrToSort = arrToSort.map(trip => {return {
+        //         ...trip, 
+        //         startDate: new Date(trip.startDate).toLocaleString(),
+        //         endDate: new Date(trip.endDate).toLocaleString()
+        //     }})
+            
+        //     let sortedTrips = arrToSort.sort((a, b) =>  a.startDate - b.startDate).slice(0,4)
+            
+        //     sortedTrips = sortedTrips.filter(item => item.startDate >= currentDate )
+
+
+        //     setData(sortedTrips);
+        // }
 
         const fetchData = async () => {
             const arrToSort = [...tripData]
+ 
             const sortedTrips = arrToSort.sort((a, b) =>  b.startDate - a.startDate).slice(0, 5);
             
             setData(sortedTrips.map(trip => {return {
@@ -26,10 +50,14 @@ const Home = () => {
                 startDate: new Date(trip.startDate).toLocaleString(),
                 endDate: new Date(trip.endDate).toLocaleString()
             }}))
+
+
         }
 
         fetchData();
+
     }, [])
+
 
 
 

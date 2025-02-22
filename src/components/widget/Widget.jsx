@@ -140,7 +140,15 @@ const Widget = ({ type }) => {
             const thisMonthTrips = tripData.filter((trip) => ((trip.timeStamp.seconds * 1000 <= today.getTime()) && (trip.timeStamp.seconds * 1000 > lastMonthToDate.getTime())));
             const previousMonthTrips = tripData.filter((trip) => (trip.timeStamp.seconds * 1000 <= lastMonthToDate.getTime()) && (trip.timeStamp.seconds * 1000 > previousMonth.getTime()));
 
-            const totalEarnings =  tripData.map(trip => trip.earnings).reduce((previousVal, currentVal) => previousVal + currentVal, 0);
+            // 17/02/2025
+            let confirmedtrips = [...tripData];
+            confirmedtrips = confirmedtrips.filter(item => item.status != "unconfirmed");
+            confirmedtrips = confirmedtrips.map(trip => {return {
+                ...trip, 
+                startDate: new Date(trip.startDate).toLocaleString(),
+                endDate: new Date(trip.endDate).toLocaleString()
+            }})
+            const totalEarnings =  confirmedtrips.map(trip => trip.earnings).reduce((previousVal, currentVal) => previousVal + currentVal, 0);
             const thisMonthEarnings = thisMonthTrips.map(trip => trip.earnings).reduce((previousVal, currentVal) => previousVal + currentVal, 0);
             const previousMonthEarnings = previousMonthTrips.map(trip => trip.earnings).reduce((previousVal, currentVal) => previousVal + currentVal, 0);
 
@@ -156,7 +164,7 @@ const Widget = ({ type }) => {
         <div className='widget'>
             <div className="left">
                 <span className="title">{data.title}</span>
-                <span className="counter">{data.isMoney && "$"}{amount}</span>
+                <span className="counter">{amount}{data.isMoney && "dh"}</span>
                 <Link to={data.url} style={{textDecoration: "none"}}>
                     <span className="link">{data.link}</span>
                 </Link>

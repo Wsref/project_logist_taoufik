@@ -58,7 +58,7 @@ const EditTrip = ({ resource, title }) => {
             endDate: destinationDate,
             earnings: tripEarnings
         })
-    }, [truckChoice, facilityOne, facilityTwo, originDate, destinationDate, tripEarnings])
+    }, [truckChoice, destinationDate, tripEarnings])
 
 
     const handleUpdate = async (e) => {
@@ -72,6 +72,7 @@ const EditTrip = ({ resource, title }) => {
                 }
             await setDoc(doc(db, resource, id), {
                 ...data,
+                status: "confirmed",
                 timeStamp: serverTimestamp(),
             });
             navigate(`/${resource}`)
@@ -95,7 +96,7 @@ const EditTrip = ({ resource, title }) => {
                 </div>
                 <div className="bottom">
                     <div className="right">
-                        {data && truckChoice && facilityOne && facilityTwo && originDate && destinationDate && 
+                        {data && truckChoice && destinationDate && 
                         <form>
                             <div className="formInput">
                                 <label>Truck</label>
@@ -110,7 +111,7 @@ const EditTrip = ({ resource, title }) => {
 
                             />
                             </div>
-                            <div className="formInput">
+                            {/* <div className="formInput">
                                 <label>Origin Facility</label>
                                 <Select 
                                         className="custom-select" 
@@ -133,8 +134,8 @@ const EditTrip = ({ resource, title }) => {
                                     resource="facilities"
 
                                 />
-                            </div>
-                            <div className="formInput">
+                            </div> */}
+                            {/* <div className="formInput">
                                 <label>Start Date</label>
                                 <input 
                                     id={"startDate"}
@@ -142,7 +143,7 @@ const EditTrip = ({ resource, title }) => {
                                     onChange={handleInput} 
                                     defaultValue={new Date(originDate).toISOString().substr(0, 16)}
                                 />
-                            </div>
+                            </div> */}
                             <div className="formInput">
                                 <label>End Date</label>
                                 <input 
@@ -164,7 +165,7 @@ const EditTrip = ({ resource, title }) => {
                             </div>
                             <div className="btn-row">
                                 <button onClick={goBack} className="cancelBtn">Cancel</button>
-                                <button onClick={handleUpdate} className='submitBtn'>Send</button>
+                                <button onClick={handleUpdate} className='submitBtn'>Confirm</button>
                             </div>
                         </form>}
                     </div>

@@ -1,6 +1,6 @@
 @import "../../../src/variables";
 
-.dataTable {
+.dataTableh {
     height: 100%;
     width: 90%;
     margin: auto;
@@ -12,44 +12,26 @@
         color: $secondary-dark;
         margin-bottom: 1%;
         display: flex;
-        align-items: center;
+        // align-items: center;
         justify-content: space-between;
 
-        .link {
-            text-decoration: none;
-            color: white;
-            font-size: 0.5em;
-            font-weight: 400;
-            background-color: green;
-            padding: 0.4em 0.8em;
-            border-radius: 0.5em;
+
+        .iconh {
             cursor: pointer;
-            box-shadow: $box-shadow-light;
         }
 
-        .link2 {
+        .linkhist {
             text-decoration: none;
             color: white;
             font-size: 0.5em;
-            font-weight: 400;
+            // font-weight: 400;
             background-color: rgb(71, 71, 71);
-            padding: 0.4em 0.8em;
+            padding: 0;
             border-radius: 0.5em;
-            cursor: pointer;
-            box-shadow: $box-shadow-light;
+            // cursor: pointer;
+            // box-shadow: $box-shadow-light;
         }
 
-        .link3 {
-            text-decoration: none;
-            color: white;
-            font-size: 0.5em;
-            font-weight: 400;
-            background-color: rgb(71, 71, 71);
-            padding: 0.4em 0.8em;
-            border-radius: 0.5em;
-            cursor: pointer;
-            box-shadow: $box-shadow-light;
-        }
     }
 
     .datagrid {

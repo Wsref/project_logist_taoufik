@@ -9,7 +9,7 @@ import { AppContext } from '../../App';
 
 const Featured = () => {
     const { tripData } = useContext(AppContext)
-    const [targetRevenue] = useState(100000);
+    const [targetRevenue] = useState(70000);
     const [thisMonthRevenue, setThisMonthRevenue] = useState(0);
     const [lastMonthRevenue, setLastMonthRevenue] = useState(0);
     const [thisYearRevenue, setThisYearRevenue] = useState(0);
@@ -71,7 +71,7 @@ const Featured = () => {
                     </div>
                     <div className="info">
                         <p className="title">Total revenue this month:</p>
-                        <p className="amount">${thisMonthRevenue}</p>
+                        <p className="amount">{thisMonthRevenue}dh</p>
                         <p className="desc">Previous transactions processing. Last payments may not be included.</p>
                     </div>
                 </div>
@@ -84,12 +84,12 @@ const Featured = () => {
                             thisMonthRevenue > targetRevenue ? (
                                 <div className="itemResult positive">
                                     <KeyboardArrowUpOutlinedIcon fontSize='small'/>
-                                    <div className="resultAmount">${thisMonthRevenue - targetRevenue}</div>
+                                    <div className="resultAmount">{thisMonthRevenue - targetRevenue}dh</div>
                                 </div>
                             ) : (
                                 <div className="itemResult negative">
                                     <KeyboardArrowDownOutlinedIcon fontSize='small'/>
-                                    <div className="resultAmount">${targetRevenue - thisMonthRevenue}</div>
+                                    <div className="resultAmount">{targetRevenue - thisMonthRevenue}dh</div>
                                 </div>
                             )
                         }
@@ -100,17 +100,17 @@ const Featured = () => {
                             thisMonthRevenue > lastMonthRevenue ? (
                                 <div className="itemResult positive">
                                     <KeyboardArrowUpOutlinedIcon fontSize='small'/>
-                                    <div className="resultAmount">${thisMonthRevenue - lastMonthRevenue}</div>
+                                    <div className="resultAmount">{thisMonthRevenue - lastMonthRevenue}dh</div>
                                 </div>
                             ) : (
                                 <div className="itemResult negative">
                                     <KeyboardArrowDownOutlinedIcon fontSize='small'/>
-                                    <div className="resultAmount">${lastMonthRevenue - thisMonthRevenue}</div>
+                                    <div className="resultAmount">{lastMonthRevenue - thisMonthRevenue}dh</div>
                                 </div>
                             )
                         }
                     </div>
-                    <div className="item">
+                    {/* <div className="item">
                         <div className="itemTitle">YTD</div>
                         {
                             thisYearRevenue > lastYearRevenue ? (
@@ -125,7 +125,7 @@ const Featured = () => {
                                 </div>
                             )
                         }
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

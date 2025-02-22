@@ -1,21 +1,28 @@
+// ----------------------------------------------------------------------------------------------------------
+
+import { createContext, useContext, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
+
+import { AuthContext } from "./context/AuthContext";
+import { db } from "./firebase";
+import { facilityInputs, tripInputs, truckInputs } from "./formSource";
+import { truckDetails, tripDetails, facilityDetails } from "./detailSource";
+
+
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
 import New from "./pages/new/New";
-import { facilityInputs, tripInputs, truckInputs } from "./formSource";
-import { truckDetails, tripDetails, facilityDetails } from "./detailSource";
 import Login from "./pages/login/Login";
-import { createContext, useContext, useEffect, useState } from "react";
-import { AuthContext } from "./context/AuthContext";
 import NewTrip from "./pages/newTrip/NewTrip";
 import TruckDetails from "./pages/truckDetails/TruckDetails";
 import FacilityDetails from "./pages/facilityDetails/FacilityDetails";
 import TripDetails from "./pages/tripDetails/TripDetails";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "./firebase";
 import Edit from "./pages/edit/Edit";
 import EditTrip from "./pages/editTrip/EditTrip";
+
+// ----------------------------------------------------------------------------------------------------------
 
 export const AppContext = createContext();
 
@@ -26,26 +33,45 @@ function App() {
     const [tripData, setTripData] = useState([]);
 
     useEffect(() => {
-        const fetchData = async (resource, setter) => {
-            let list = [];
+        // const fetchData = async (resource, setter) => {
+        //     let list = [];
 
-            try {
-                const querySnapshot = await getDocs(collection(db, resource));
-                querySnapshot.forEach((doc) => {
+        //     try {
+        //         const querySnapshot = await getDocs(collection(db, resource));
+        //         querySnapshot.forEach((doc) => {
+        //             let docData = doc.data();
+
+        //             if (resource === "trips") {
+        //                 docData.startDate = docData.startDate.toDate();
+        //                 docData.endDate = docData.endDate.toDate();
+        //             }
+
+        //             list.push({ id: doc.id, ...docData });
+        //         });
+
+        //         setter(list);
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // };
+        const fetchData =  (resource, setter) => {
+            
+        
+            onSnapshot(collection(db, resource), (snapshot) => {
+                let list = [];
+                snapshot.docs.forEach((doc) => {
                     let docData = doc.data();
-
                     if (resource === "trips") {
                         docData.startDate = docData.startDate.toDate();
                         docData.endDate = docData.endDate.toDate();
                     }
-
-                    list.push({ id: doc.id, ...docData });
-                });
-
+                    list.push({ id:doc.id, ...docData });
+                })
                 setter(list);
-            } catch (error) {
-                console.log(error);
-            }
+            });
+        
+            
+        
         };
 
         fetchData("trucks", setTruckData);
@@ -64,9 +90,9 @@ function App() {
                     truckData,
                     facilityData,
                     tripData,
-                    setTruckData,
-                    setFacilityData,
-                    setTripData,
+                    // setTruckData,
+                    // setFacilityData,
+                    // setTripData,
                 }}
             >
                 <BrowserRouter>
@@ -80,7 +106,7 @@ function App() {
                                     </RequireAuth>
                                 }
                             />
-                            <Route path="login" element={<Login />} />
+                            {!currentUser && <Route path="login" element={<Login />} />}
                             <Route path="trucks">
                                 <Route
                                     index
@@ -88,7 +114,8 @@ function App() {
                                         <RequireAuth>
                                             <List
                                                 resource={"trucks"}
-                                                title="Add New Truck"
+                                                title="Trucks"
+                                                history={null}
                                             />
                                         </RequireAuth>
                                     }
@@ -136,7 +163,18 @@ function App() {
                                         <RequireAuth>
                                             <List
                                                 resource={"trips"}
-                                                title="Add New Trip"
+                                                title="Trips"
+                                                history={null}
+                                            />
+                                        </RequireAuth>
+                                    }
+                                />
+                                <Route
+                                    path="history"
+                                    element={
+                                        <RequireAuth>
+                                            <List
+                                                history={1}
                                             />
                                         </RequireAuth>
                                     }
@@ -158,7 +196,7 @@ function App() {
                                         <RequireAuth>
                                             <NewTrip
                                                 resource="trips"
-                                                title="Add New Trip"
+                                                title="New Trip"
                                                 inputs={tripInputs}
                                             />
                                         </RequireAuth>
@@ -170,7 +208,7 @@ function App() {
                                         <RequireAuth>
                                             <EditTrip
                                                 resource="trips"
-                                                title="Edit Trip"
+                                                title="Confirm Trip"
                                                 inputs={tripInputs}
                                             />
                                         </RequireAuth>
@@ -184,7 +222,8 @@ function App() {
                                         <RequireAuth>
                                             <List
                                                 resource="facilities"
-                                                title="Add New Facility"
+                                                title="Facilities"
+                                                history={null}
                                             />
                                         </RequireAuth>
                                     }

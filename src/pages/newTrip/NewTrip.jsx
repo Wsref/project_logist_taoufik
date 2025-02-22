@@ -10,6 +10,7 @@ import { AppContext } from '../../App';
 
 const NewTrip = ({ resource, title }) => {
 
+
     const [data, setData] = useState({});
     const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ const NewTrip = ({ resource, title }) => {
 
     useEffect(() => {
         setData({
-            ...data, 
+            ...data,
             truck: truckChoice, 
             originFacility: facilityOne, 
             destinationFacility: facilityTwo
@@ -39,7 +40,6 @@ const NewTrip = ({ resource, title }) => {
     const handleAdd = async (e) => {
         e.preventDefault();
 
-
         try {
             if (resource === "trips") {
                     data.earnings = parseInt(data.earnings);
@@ -48,6 +48,7 @@ const NewTrip = ({ resource, title }) => {
                 }
             await addDoc(collection(db, resource), {
                 ...data,
+                status: "unconfirmed", 
                 timeStamp: serverTimestamp(),
             });
             navigate(-1)
