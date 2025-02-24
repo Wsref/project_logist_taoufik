@@ -34,20 +34,20 @@ const Login = () => {
                 <div className="left"><img src={'signingraphic.jpg'} alt=""/></div>
                 <div className="right">
                     <div className="heading">
-                        <h2>Responsable Logistique</h2>
-                        <span>Connectez-vous avec un e-mail et un mot de passe pour commencer!</span>
+                        <h2>Manager</h2>
+                        <span>Use your own Email and Password to access the system!</span>
                     </div>
                     <form onSubmit={handleLogin}>
-                        <input type="email" placeholder='email' onChange={e=>setEmail(e.target.value)} />
-                        <input type="password" placeholder='mot de passe' onChange={e=>setPassword(e.target.value)} />
+                        <input type="email" placeholder='Email' onChange={e=>setEmail(e.target.value)} />
+                        <input type="password" placeholder='Password' onChange={e=>setPassword(e.target.value)} />
                         <button type="submit">Login</button>
-                        { error && <span>Email ou mot de passe incorrect.</span> }
+                        { error && <span>Email or Password incorrect.</span> }
                     </form>
                 </div>
             </div>
             <hr />
             <div className="bottom">
-                <h2>Nous sommes Internationaux</h2>
+                <h2>We are International</h2>
                 <div className="features">
                     <div className="feature">
                         <img src={'worldmap.jpg'} alt=""/>
